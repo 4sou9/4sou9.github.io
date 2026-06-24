@@ -7,60 +7,73 @@
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=UnifrakturCook:wght@700&family=VT323&family=Major+Mono+Display&family=Noto+Serif+JP:wght@400;600;800&family=Noto+Sans+KR:wght@400;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=MedievalSharp&family=Pirata+One&family=Shippori+Mincho:wght@600;800&family=Monoton&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 <link href="assets/poster.css" rel="stylesheet">
 <style>
 :root{ --accent:#b15cff; }
-.frame{border:var(--bw) solid var(--accent);position:relative;padding:22px 26px 18px;
-  display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-.frame::before{content:"";position:absolute;inset:5px;border:1px solid var(--accent);pointer-events:none}
+.cz{font-family:"Cinzel",serif;font-weight:900} .czd{font-family:"Cinzel Decorative",serif;font-weight:900}
+.cor{font-family:"Cormorant Garamond",serif} .cori{font-family:"Cormorant Garamond",serif;font-style:italic}
+.med{font-family:"MedievalSharp",cursive} .pir{font-family:"Pirata One",cursive}
+.shp{font-family:"Shippori Mincho",serif;font-weight:600} .mono{font-family:"Monoton",cursive}
+.kr{font-family:"Noto Sans KR",sans-serif;font-weight:700}
 
-.corner{position:absolute;font-family:"Anton",sans-serif;font-size:24px;color:var(--accent);line-height:.8}
-.corner.tl{left:12px;top:10px} .corner.tr{right:12px;top:10px}
-.corner.bl{left:12px;bottom:8px} .corner.br{right:12px;bottom:8px}
-.edge{position:absolute;writing-mode:vertical-rl;font-family:"Noto Serif JP",serif;font-weight:600;
-  font-size:22px;letter-spacing:.3em;color:var(--white);top:50%;transform:translateY(-50%)}
-.edge.l{left:10px} .edge.r{right:10px}
+.frame{border:var(--bw) solid var(--accent);position:relative;padding:24px 30px 16px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.frame::before{content:"";position:absolute;inset:6px;border:1px solid var(--accent);pointer-events:none}
 
-.top{display:flex;flex-direction:column;align-items:center;gap:4px}
+.corner{position:absolute;font-family:"Cinzel Decorative",serif;font-weight:900;font-size:22px;color:var(--accent);line-height:.8}
+.corner.tl{left:14px;top:12px} .corner.tr{right:14px;top:12px}
+.corner.bl{left:14px;bottom:10px} .corner.br{right:14px;bottom:10px}
+.edge{position:absolute;writing-mode:vertical-rl;font-family:"Shippori Mincho",serif;font-weight:600;
+  font-size:21px;letter-spacing:.34em;color:var(--white);top:50%;transform:translateY(-50%)}
+.edge.l{left:12px} .edge.r{right:12px}
+
+.incant{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:19px;letter-spacing:.34em;color:var(--white)}
 .kic{display:flex;align-items:center;justify-content:center;gap:12px;
-  font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.2em;color:var(--accent)}
-.ttl{font-family:"Anton",sans-serif;font-size:118px;line-height:.78;color:var(--accent);letter-spacing:.02em}
-.sub{font-family:"Ma Shan Zheng",cursive;font-size:34px;color:var(--white)}
-.sub2{font-family:"UnifrakturCook",cursive;font-size:24px;color:var(--accent)}
+  font-family:"MedievalSharp",cursive;font-size:14px;letter-spacing:.22em;color:var(--accent)}
+.ttl{font-family:"Cinzel Decorative",serif;font-weight:900;font-size:96px;line-height:.84;color:var(--accent);letter-spacing:.02em}
+.sub{font-family:"Shippori Mincho",serif;font-weight:800;font-size:34px;color:var(--white)}
+.sub2{font-family:"Pirata One",cursive;font-size:24px;color:var(--accent);letter-spacing:.08em}
 
-.check{height:18px;width:62%;
-  background:repeating-conic-gradient(var(--accent) 0% 25%, transparent 0% 50%) 0 0/18px 18px}
+.check{height:18px;width:66%;background:repeating-conic-gradient(var(--accent) 0% 25%, transparent 0% 50%) 0 0/18px 18px}
 
-.mid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:26px;width:100%}
-.col{display:flex;flex-direction:column;gap:12px;font-family:"Major Mono Display",monospace;
-  font-size:14px;letter-spacing:.08em}
-.col .ln{display:flex;align-items:center;gap:8px}
+.mid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;width:100%}
+.col{display:flex;flex-direction:column;gap:9px;font-family:"MedievalSharp",cursive;font-size:16px;letter-spacing:.06em}
+.col .ln{display:flex;align-items:center;gap:9px}
 .col.l{text-align:right} .col.l .ln{justify-content:flex-end}
-.col .rn{font-family:"Noto Serif JP",serif;font-size:17px;color:var(--white)}
-.col .en{color:var(--accent)} .col .mk{color:var(--accent)}
+.col .rn{font-family:"Shippori Mincho",serif;font-weight:600;font-size:18px;color:var(--white)}
+.col .en{color:var(--accent)} .col .mk{color:var(--accent);font-size:13px}
+.col .num{font-family:"Cinzel",serif;font-weight:600;color:var(--accent)}
 
-.emblem{position:relative;width:360px;height:360px;display:flex;align-items:center;justify-content:center}
-.emblem .art{width:100%;height:100%;background:var(--accent);
+.emblem{position:relative;width:344px;height:344px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--accent)}
+.emblem .art{width:96%;height:96%;background:var(--accent);
   -webkit-mask-image:url('assets/grunge/g40.svg');mask-image:url('assets/grunge/g40.svg');
   -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
-.emblem .ring{position:absolute;background:var(--white);-webkit-mask-mode:alpha;mask-mode:alpha;
-  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.flank{display:flex;justify-content:center;gap:0}
+.emblem .ic{position:absolute} .emblem .ic.t{top:-13px;left:50%;transform:translateX(-50%)}
+.emblem .ic.b{bottom:-13px;left:50%;transform:translateX(-50%)}
 
-.bottomband{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
-.after{font-family:"Anton",sans-serif;font-size:150px;line-height:.7;color:var(--accent)}
-.caps{display:flex;align-items:center;justify-content:center;gap:14px;width:78%;
-  font-family:"Noto Sans KR",sans-serif;font-weight:700;font-size:15px;letter-spacing:.18em;color:var(--white)}
-.caps .sep{flex:1;border-bottom:var(--bw) solid var(--accent);height:1px}
+.ring{display:flex;justify-content:center;align-items:center;gap:22px}
+
+/* 対称スペック帯 */
+.specband{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;
+  font-family:"MedievalSharp",cursive;font-size:15px;letter-spacing:.08em;color:var(--accent);
+  border-top:1px solid var(--accent);border-bottom:1px solid var(--accent);padding:7px 0;width:88%}
+.specband b{color:var(--white);font-weight:400} .specband .d{color:var(--accent)}
+
+.after{font-family:"Cinzel Decorative",serif;font-weight:900;font-size:118px;line-height:.8;color:var(--accent)}
+.aftsub{font-family:"Monoton",cursive;font-size:22px;letter-spacing:.3em;color:var(--white);margin-top:-4px}
+.caps{display:flex;align-items:center;justify-content:center;gap:14px;width:80%;
+  font-family:"Cinzel",serif;font-weight:600;font-size:15px;letter-spacing:.16em;color:var(--white)}
+.caps .sep{flex:1;border-bottom:1px solid var(--accent);height:1px}
 .caps .o{color:var(--accent)}
 
 .fl{display:flex;justify-content:space-between;align-items:center;width:100%;
   border-top:var(--bw) solid var(--accent);padding-top:6px;
-  font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.14em;color:var(--accent)}
-.fl .lg{display:flex;align-items:center;gap:9px;font-family:"Anton",sans-serif;font-size:28px}
-.fl .mid{font-family:"Noto Serif JP",serif;font-weight:600;color:var(--white)}
+  font-family:"MedievalSharp",cursive;font-size:13px;letter-spacing:.12em;color:var(--accent)}
+.fl .lg{display:flex;align-items:center;gap:9px;font-family:"Cinzel Decorative",serif;font-weight:900;font-size:24px}
+.fl .mid{font-family:"Shippori Mincho",serif;font-weight:600;color:var(--white)}
 </style>
 </head>
 <body>
@@ -78,60 +91,73 @@
  <div class="frame">
 
   <span class="corner tl">✦</span><span class="corner tr">✦</span>
-  <span class="corner bl">036</span><span class="corner br">036</span>
-  <span class="edge l">超越彼岸</span><span class="edge r">虚空接近</span>
+  <span class="corner bl">✦</span><span class="corner br">✦</span>
+  <span class="edge l">超越彼岸虚空</span><span class="edge r">因果永劫接近</span>
 
-  <!-- タイトル -->
-  <div class="top">
-    <div class="kic">
-      <span class="sym" style="width:16px;height:16px;-webkit-mask-image:url('assets/sym/s37.svg');mask-image:url('assets/sym/s37.svg')"></span>
-      036 · 第四層 · vol.04
-      <span class="sym" style="width:16px;height:16px;-webkit-mask-image:url('assets/sym/s37.svg');mask-image:url('assets/sym/s37.svg')"></span>
-    </div>
-    <div class="ttl">ASTRAL</div>
-    <div class="sub">彼岸の確率</div>
-    <div class="sub2">What Comes After</div>
+  <div class="kic">
+    <span class="sym" style="width:15px;height:15px;-webkit-mask-image:url('assets/sym/s37.svg');mask-image:url('assets/sym/s37.svg')"></span>
+    ✦ 036 · 第四層 · VOL.IV ✦
+    <span class="sym" style="width:15px;height:15px;-webkit-mask-image:url('assets/sym/s37.svg');mask-image:url('assets/sym/s37.svg')"></span>
   </div>
+  <div class="incant">· POST · TENEBRAS · LUX ·</div>
+  <div class="ttl">ASTRAL</div>
+  <div class="sub">彼岸の確率</div>
+  <div class="sub2">What Comes After</div>
 
   <div class="check"></div>
 
-  <!-- 中央エンブレム＋左右対称ラベル -->
   <div class="mid">
     <div class="col l">
-      <div class="ln"><span class="rn">物質</span><span class="mk">◇</span></div>
-      <div class="ln"><span class="rn">精神</span><span class="mk">◇</span></div>
-      <div class="ln"><span class="rn">時間</span><span class="mk">◇</span></div>
-      <div class="ln"><span class="rn">虚無</span><span class="mk">◇</span></div>
+      <div class="ln"><span class="rn">物質</span><span class="mk">◇</span><span class="num">I</span></div>
+      <div class="ln"><span class="rn">精神</span><span class="mk">◇</span><span class="num">II</span></div>
+      <div class="ln"><span class="rn">時間</span><span class="mk">◇</span><span class="num">III</span></div>
+      <div class="ln"><span class="rn">虚無</span><span class="mk">◇</span><span class="num">IV</span></div>
+      <div class="ln"><span class="rn">因果</span><span class="mk">◇</span><span class="num">V</span></div>
+      <div class="ln"><span class="rn">永劫</span><span class="mk">◇</span><span class="num">VI</span></div>
     </div>
 
     <div class="emblem">
       <span class="art"></span>
+      <span class="sym ic t" style="width:20px;height:20px;-webkit-mask-image:url('assets/sym/s31.svg');mask-image:url('assets/sym/s31.svg')"></span>
+      <span class="sym ic b" style="width:20px;height:20px;-webkit-mask-image:url('assets/sym/s31.svg');mask-image:url('assets/sym/s31.svg')"></span>
       <a class="gate" href="index.html" aria-label="進む" style="position:absolute;inset:0;z-index:5"></a>
     </div>
 
     <div class="col r">
-      <div class="ln"><span class="mk">◇</span><span class="en">matter</span></div>
-      <div class="ln"><span class="mk">◇</span><span class="en">spirit</span></div>
-      <div class="ln"><span class="mk">◇</span><span class="en">time</span></div>
-      <div class="ln"><span class="mk">◇</span><span class="en">void</span></div>
+      <div class="ln"><span class="num">I</span><span class="mk">◇</span><span class="en">matter</span></div>
+      <div class="ln"><span class="num">II</span><span class="mk">◇</span><span class="en">spirit</span></div>
+      <div class="ln"><span class="num">III</span><span class="mk">◇</span><span class="en">time</span></div>
+      <div class="ln"><span class="num">IV</span><span class="mk">◇</span><span class="en">void</span></div>
+      <div class="ln"><span class="num">V</span><span class="mk">◇</span><span class="en">karma</span></div>
+      <div class="ln"><span class="num">VI</span><span class="mk">◇</span><span class="en">aeon</span></div>
     </div>
   </div>
 
-  <div class="flank">
-    <span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s31.svg');mask-image:url('assets/sym/s31.svg')"></span>
-    <span class="sym w" style="width:22px;height:22px;margin:0 18px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
-    <span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s31.svg');mask-image:url('assets/sym/s31.svg')"></span>
+  <div class="ring">
+    <span class="sym" style="width:24px;height:24px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
+    <span class="sym w" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s25.svg');mask-image:url('assets/sym/s25.svg')"></span>
+    <span class="sym" style="width:26px;height:26px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
+    <span class="sym w" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s25.svg');mask-image:url('assets/sym/s25.svg')"></span>
+    <span class="sym" style="width:24px;height:24px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
   </div>
 
-  <!-- 下部 -->
-  <div class="bottomband">
-    <div class="caps"><span>WHAT</span><span class="sep"></span><span class="o">超越</span><span class="sep"></span><span>AFTER</span></div>
-    <div class="after">AFTER</div>
-    <div class="caps"><span class="o">彼岸</span><span class="sep"></span><span>第四層</span><span class="sep"></span><span class="o">피안</span></div>
+  <div class="specband">
+    <span>vector <b>∞</b></span><span class="d">◇</span>
+    <span>layer <b>04/∞</b></span><span class="d">◇</span>
+    <span>gate <b>DISSOLVE</b></span><span class="d">◇</span>
+    <span>void <b>1.00</b></span><span class="d">◇</span>
+    <span>node <b>星</b></span><span class="d">◇</span>
+    <span>exit <b>???</b></span>
   </div>
+
+  <div class="caps"><span>WHAT</span><span class="sep"></span><span class="o">超越</span><span class="sep"></span><span>AFTER</span></div>
+  <div class="after">AFTER</div>
+  <div class="aftsub">彼岸 · BEYOND</div>
+  <div class="caps"><span class="o">彼岸</span><span class="sep"></span><span>第四層</span><span class="sep"></span><span class="o">피안</span></div>
+  <div class="incant" style="font-size:17px">· AD · ASTRA · PER · ASPERA ·</div>
 
   <div class="fl">
-    <span class="lg"><span class="sym" style="width:24px;height:24px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>4SOU9</span>
+    <span class="lg"><span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>4SOU9</span>
     <span class="mid">— 第四の門の先に何があるのか —</span>
     <span>036 · N35.6 E139.7</span>
   </div>

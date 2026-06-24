@@ -7,68 +7,89 @@
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=UnifrakturCook:wght@700&family=VT323&family=Major+Mono+Display&family=Noto+Serif+JP:wght@400;600;800&family=Noto+Sans+KR:wght@400;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;700&family=Teko:wght@600&family=Special+Elite&family=Nosifer&family=Yuji+Syuku&family=Pirata+One&family=Noto+Sans+KR:wght@700;900&display=swap" rel="stylesheet">
 <link href="assets/poster.css" rel="stylesheet">
 <style>
 :root{ --accent:#ff2218; }
-.wrap{display:flex;flex-direction:column;gap:12px}
+.wrap{display:flex;flex-direction:column;gap:11px}
+.osw{font-family:"Oswald",sans-serif} .beb{font-family:"Bebas Neue",sans-serif}
+.tek{font-family:"Teko",sans-serif;font-weight:600} .se{font-family:"Special Elite",cursive}
+.nos{font-family:"Nosifer",cursive} .ys{font-family:"Yuji Syuku",serif}
+.pir{font-family:"Pirata One",cursive} .kr{font-family:"Noto Sans KR",sans-serif;font-weight:900}
+
 .hl{display:flex;justify-content:space-between;align-items:center;border-bottom:var(--bw) solid var(--accent);
-  padding-bottom:6px;font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.18em;color:var(--accent)}
+  padding-bottom:6px;font-family:"Special Elite",cursive;font-size:14px;letter-spacing:.1em;color:var(--accent)}
 .hl .r{color:var(--white)}
+.tick{font-family:"Special Elite",cursive;font-size:13px;letter-spacing:.08em;color:var(--white);
+  border-bottom:1px solid var(--accent);padding-bottom:5px;white-space:nowrap;overflow:hidden}
 
 .cell{border:var(--bw) solid var(--accent);position:relative;overflow:hidden;display:flex;
   align-items:center;justify-content:center}
-.cap{position:absolute;left:6px;bottom:4px;font-family:"Major Mono Display",monospace;font-size:12px;color:var(--accent)}
-.idx{position:absolute;right:6px;top:4px;font-family:"Anton",sans-serif;font-size:26px;color:var(--accent);line-height:.8}
+.cap{position:absolute;left:6px;bottom:4px;font-family:"Special Elite",cursive;font-size:12px;color:var(--accent)}
+.idx{position:absolute;right:6px;top:2px;font-family:"Teko",sans-serif;font-weight:600;font-size:32px;color:var(--accent);line-height:.8}
 .art{background:var(--accent);-webkit-mask-mode:alpha;mask-mode:alpha;
-  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-  -webkit-mask-position:center;mask-position:center}
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
 
-/* タイトルセル */
-.titlecell{display:flex;flex-direction:column;justify-content:center;line-height:.82}
-.titlecell .mini{font-family:"Major Mono Display",monospace;font-size:14px;letter-spacing:.2em;color:var(--white)}
-.titlecell .ttl{font-family:"Anton",sans-serif;font-size:104px;color:var(--accent);line-height:.78}
-.titlecell .cn{font-family:"Ma Shan Zheng",cursive;font-size:40px;color:var(--white);margin-top:4px}
-.titlecell .fr{font-family:"UnifrakturCook",cursive;font-size:26px;color:var(--accent)}
+.titlecell{display:flex;flex-direction:column;justify-content:center;line-height:.84}
+.titlecell .mini{font-family:"Special Elite",cursive;font-size:13px;letter-spacing:.16em;color:var(--white)}
+.titlecell .ttl{font-family:"Oswald",sans-serif;font-weight:700;font-size:96px;color:var(--accent);line-height:.82;text-transform:uppercase}
+.titlecell .cn{font-family:"Yuji Syuku",serif;font-size:38px;color:var(--white);margin-top:2px}
+.titlecell .fr{font-family:"Pirata One",cursive;font-size:26px;color:var(--accent)}
 
-.topgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;height:248px}
-.midgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;height:382px}
+.topgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;height:232px}
+.midgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;height:360px}
+.docgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:10px}
 
-/* マニフェスト */
-.manifesto{flex-direction:column;align-items:stretch;justify-content:center;gap:6px;padding:14px}
-.manifesto .ln{display:flex;align-items:baseline;gap:8px;font-family:"Anton",sans-serif;font-size:30px;line-height:.86}
-.manifesto .ln .jp{font-family:"Noto Serif JP",serif;font-weight:800;color:var(--white);font-size:26px}
+.manifesto{flex-direction:column;align-items:stretch;justify-content:center;gap:5px;padding:14px}
+.manifesto .ln{display:flex;align-items:baseline;gap:8px;font-family:"Oswald",sans-serif;font-weight:700;
+  font-size:30px;line-height:.9;text-transform:uppercase}
+.manifesto .ln .jp{font-family:"Yuji Syuku",serif;color:var(--white);font-size:26px}
 .manifesto .ln em{font-style:normal;color:var(--accent)}
-.manifesto .bd{margin-top:8px;height:24px;background:var(--accent);
+.manifesto .bd{margin-top:6px;height:22px;background:var(--accent);
+  -webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg');
+  -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;-webkit-mask-size:22px 22px;mask-size:22px 22px;
+  -webkit-mask-mode:alpha;mask-mode:alpha}
+
+/* 起訴状 */
+.charges{border:var(--bw) solid var(--accent);padding:10px 12px}
+.charges .h{font-family:"Special Elite",cursive;font-size:13px;letter-spacing:.12em;color:var(--white);
+  border-bottom:1px solid var(--accent);padding-bottom:4px;margin-bottom:6px}
+.charges .cr{display:flex;align-items:baseline;gap:8px;font-family:"Oswald",sans-serif;font-weight:500;
+  font-size:18px;letter-spacing:.04em;color:var(--accent);padding:2px 0;text-transform:uppercase}
+.charges .cr b{font-family:"Teko",sans-serif;font-weight:600;font-size:22px;color:var(--white);min-width:1.6em}
+.charges .cr .jp{font-family:"Yuji Syuku",serif;color:var(--white);font-size:17px}
+
+/* スペック＋バーコード */
+.docr{border:var(--bw) solid var(--accent);padding:10px 12px;display:flex;flex-direction:column}
+.docr .sr{display:flex;gap:6px;font-family:"Special Elite",cursive;font-size:14px;color:var(--accent);
+  padding:3px 0;border-bottom:1px dotted var(--accent)}
+.docr .sr .v{margin-left:auto;color:var(--white)}
+.barc{margin-top:auto;height:42px;background:repeating-linear-gradient(90deg,
+  var(--accent) 0 3px,transparent 3px 6px,var(--accent) 6px 7px,transparent 7px 12px,var(--accent) 12px 16px,transparent 16px 19px)}
+
+.barbed{height:24px;background:var(--accent);
   -webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg');
   -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;-webkit-mask-size:24px 24px;mask-size:24px 24px;
   -webkit-mask-mode:alpha;mask-mode:alpha}
 
-/* 有刺鉄線（刃の連続） */
-.barbed{height:26px;background:var(--accent);
-  -webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg');
-  -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;-webkit-mask-size:26px 26px;mask-size:26px 26px;
-  -webkit-mask-mode:alpha;mask-mode:alpha}
-
 .strip{display:flex;align-items:stretch;gap:8px}
-.strip .slbl{writing-mode:vertical-rl;font-family:"Major Mono Display",monospace;font-size:12px;
-  letter-spacing:.14em;color:var(--accent);display:flex;align-items:center}
-.scell{flex:1;height:128px;border:var(--bw) solid var(--accent);display:flex;align-items:center;
+.strip .slbl{writing-mode:vertical-rl;font-family:"Special Elite",cursive;font-size:12px;
+  letter-spacing:.12em;color:var(--accent);display:flex;align-items:center}
+.scell{flex:1;height:120px;border:var(--bw) solid var(--accent);display:flex;align-items:center;
   justify-content:center;position:relative}
 .scell .art{width:66%;height:70%}
-.scell em{position:absolute;left:4px;bottom:2px;font-family:"Major Mono Display",monospace;
-  font-size:10px;font-style:normal;color:var(--accent)}
+.scell em{position:absolute;left:4px;bottom:2px;font-family:"Special Elite",cursive;font-size:10px;font-style:normal;color:var(--accent)}
 
-.bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:6px}
-.bottom .badges{display:flex;flex-direction:column;gap:6px;font-family:"Major Mono Display",monospace;
-  font-size:13px;letter-spacing:.1em;color:var(--accent)}
-.bottom .badges b{color:var(--white);font-weight:400}
-.bottom .big{font-family:"Anton",sans-serif;font-size:118px;line-height:.7;color:var(--accent);text-align:right}
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:4px}
+.bottom .badges{display:flex;flex-direction:column;gap:5px;font-family:"Special Elite",cursive;font-size:13px;color:var(--accent)}
+.bottom .badges b{color:var(--white)}
+.bottom .big{font-family:"Bebas Neue",sans-serif;font-size:172px;line-height:.66;color:var(--accent);text-align:right;letter-spacing:.01em}
+.bottom .big .nos{font-family:"Nosifer",cursive;display:block;font-size:30px;color:var(--white);letter-spacing:.05em;text-align:right;margin-bottom:6px}
 
 .fl{display:flex;justify-content:space-between;align-items:center;border-top:var(--bw) solid var(--accent);
-  padding-top:6px;font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.16em;color:var(--accent)}
-.fl .lg{display:flex;align-items:center;gap:9px;font-family:"Anton",sans-serif;font-size:30px}
-.fl .mid{font-family:"Noto Serif JP",serif;font-weight:600;color:var(--white)}
+  padding-top:6px;font-family:"Special Elite",cursive;font-size:13px;letter-spacing:.1em;color:var(--accent)}
+.fl .lg{display:flex;align-items:center;gap:9px;font-family:"Bebas Neue",sans-serif;font-size:34px;letter-spacing:.04em}
+.fl .mid{font-family:"Yuji Syuku",serif;color:var(--white)}
 </style>
 </head>
 <body>
@@ -85,30 +106,26 @@
 <div class="poster">
  <div class="wrap">
 
-  <div class="hl">
-    <span>conflict // 闘争 os // 第三層</span>
-    <span class="r">035 // hate vs love</span>
-  </div>
+  <div class="hl"><span>conflict // 闘争 os // 第三層</span><span class="r">035 // HATE vs LOVE</span></div>
+  <div class="tick">// CASE No.035 · 紛争文化 · 투쟁 · NO MERCY · 暴力 · 第三層 · blood 0.99 · 刃 · SEALED · 憎悪 //</div>
 
   <div class="topgrid">
     <div class="titlecell">
-      <span class="mini">want · be ————</span>
+      <span class="mini">WANT · BE ————</span>
       <span class="ttl">CONFLICT</span>
       <span class="cn">紛争文化</span>
       <span class="fr">Hate vs Love</span>
     </div>
     <div class="cell">
       <span class="art" style="width:80%;height:84%;-webkit-mask-image:url('assets/grunge/g31.svg');mask-image:url('assets/grunge/g31.svg')"></span>
-      <span class="cap">sigil / 刃眼</span>
-      <span class="idx">03</span>
+      <span class="cap">sigil / 刃眼</span><span class="idx">03</span>
     </div>
   </div>
 
   <div class="midgrid">
     <div class="cell">
       <span class="art" style="width:74%;height:92%;-webkit-mask-image:url('assets/fig/f10.svg');mask-image:url('assets/fig/f10.svg')"></span>
-      <span class="cap">fig.03 — body</span>
-      <span class="idx">035</span>
+      <span class="cap">fig.03 — body</span><span class="idx">035</span>
     </div>
     <div class="cell manifesto">
       <div class="ln"><span class="jp">憎悪</span>ハ<em>愛</em></div>
@@ -117,6 +134,26 @@
       <div class="ln" style="color:var(--white)">WAR IS <em>PEACE</em></div>
       <div class="ln"><span class="jp">自由</span>ハ<em>隷属</em></div>
       <div class="bd"></div>
+    </div>
+  </div>
+
+  <!-- 起訴状 ＋ スペック/バーコード -->
+  <div class="docgrid">
+    <div class="charges">
+      <div class="h">起訴状 // RAP SHEET No.035</div>
+      <div class="cr"><b>01</b><span class="jp">攻撃</span>— assault</div>
+      <div class="cr"><b>02</b><span class="jp">暴力</span>— violence</div>
+      <div class="cr"><b>03</b><span class="jp">支配</span>— domination</div>
+      <div class="cr"><b>04</b><span class="jp">紛争</span>— conflict</div>
+      <div class="cr"><b>05</b><span class="jp">憎悪</span>— hatred</div>
+    </div>
+    <div class="docr">
+      <div class="sr"><span>code</span><span class="v">035</span></div>
+      <div class="sr"><span>gate</span><span class="v">SEALED</span></div>
+      <div class="sr"><span>rage</span><span class="v">0.99</span></div>
+      <div class="sr"><span>node</span><span class="v">刃 / blade</span></div>
+      <div class="sr"><span>exit</span><span class="v">NONE</span></div>
+      <div class="barc"></div>
     </div>
   </div>
 
@@ -129,17 +166,17 @@
     <div class="scell"><span class="art" style="width:54%;height:58%;-webkit-mask-image:url('assets/sym/s73.svg');mask-image:url('assets/sym/s73.svg')"></span><em>e.03</em></div>
     <div class="scell"><span class="art" style="-webkit-mask-image:url('assets/grunge/g16.svg');mask-image:url('assets/grunge/g16.svg')"></span><em>e.04</em></div>
     <div class="scell"><span class="art" style="width:56%;height:60%;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span><em>e.05</em></div>
-    <div class="scell"><span class="art" style="-webkit-mask-image:url('assets/circuit/c41.svg');mask-image:url('assets/circuit/c41.svg')"></span><em>e.06</em></div>
+    <div class="scell"><span class="art" style="-webkit-mask-image:url('assets/fig/f16.svg');mask-image:url('assets/fig/f16.svg')"></span><em>e.06</em></div>
   </div>
 
   <div class="bottom">
     <div class="badges">
-      <span>code&nbsp;: <b>035</b></span>
-      <span>gate&nbsp;: <b>SEALED</b></span>
-      <span>rage&nbsp;: <b>0.99</b></span>
-      <span>node&nbsp;: <b>刃 / blade</b></span>
+      <span>blood&nbsp;: <b>0.99</b></span>
+      <span>mercy&nbsp;: <b>NONE</b></span>
+      <span>verdict: <b>GUILTY</b></span>
+      <span>第三層 / 刃</span>
     </div>
-    <div class="big">CONFLICT</div>
+    <div class="big"><span class="nos">血 · MURDA</span>CONFLICT</div>
   </div>
 
   <div class="fl">
@@ -148,7 +185,7 @@
     <span>035 · N35.6 E139.7</span>
   </div>
 
-  <a class="gate" href="4.html" aria-label="進む" style="position:absolute;left:22px;top:298px;width:55%;height:382px;z-index:5"></a>
+  <a class="gate" href="4.html" aria-label="進む" style="position:absolute;left:22px;top:284px;width:54%;height:360px;z-index:5"></a>
 
  </div>
 </div>
