@@ -7,24 +7,29 @@
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Wallpoet&family=DotGothic16&family=Share+Tech+Mono&family=VT323&family=Noto+Sans+KR:wght@400;700;900&family=Ma+Shan+Zheng&family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Wallpoet&family=DotGothic16&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;700&family=VT323&family=Noto+Sans+KR:wght@400;700;900&family=Ma+Shan+Zheng&family=Noto+Sans:wght@700&family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Hebrew:wght@700&family=Noto+Sans+Thai:wght@700&family=Noto+Sans+Devanagari:wght@700&display=swap" rel="stylesheet">
 <link href="assets/poster.css" rel="stylesheet">
 <style>
 :root{ --accent:#84ff12; }
-.stage{position:relative;width:100%;height:1300px;font-family:"Share Tech Mono",monospace}
+.stage{position:relative;width:100%;height:1380px;font-family:"Share Tech Mono",monospace}
 .orb{font-family:"Orbitron",sans-serif;font-weight:900}
 .wall{font-family:"Wallpoet",monospace}
 .dot{font-family:"DotGothic16",sans-serif}
 .shr{font-family:"Share Tech Mono",monospace}
+.jb{font-family:"JetBrains Mono",monospace}
 .pix{font-family:"VT323",monospace}
 .kr{font-family:"Noto Sans KR",sans-serif;font-weight:700}
 .cn{font-family:"Ma Shan Zheng",cursive}
 .ns{font-family:"Noto Sans",sans-serif;font-weight:700}
+.ar{font-family:"Noto Sans Arabic",sans-serif;font-weight:700}
+.he{font-family:"Noto Sans Hebrew",sans-serif;font-weight:700}
+.th{font-family:"Noto Sans Thai",sans-serif;font-weight:700}
+.dv{font-family:"Noto Sans Devanagari",sans-serif;font-weight:700}
 
 .hl{position:absolute;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
   font-family:"Share Tech Mono",monospace;font-size:13px;letter-spacing:.16em;color:var(--accent)}
 .hl.a{top:0;border-bottom:var(--bw) solid var(--accent);padding-bottom:6px}
-.hl.b{top:34px;font-size:12px;color:var(--white);letter-spacing:.1em;opacity:1;border-bottom:1px solid var(--accent);padding-bottom:5px}
+.hl.b{top:34px;font-size:12px;color:var(--white);letter-spacing:.08em;border-bottom:1px solid var(--accent);padding-bottom:5px}
 
 .title{position:absolute;left:0;top:64px;line-height:.84}
 .title .dg{font-family:"VT323",monospace;font-size:28px;letter-spacing:.16em;color:var(--white)}
@@ -35,7 +40,6 @@
 .vkata{position:absolute;writing-mode:vertical-rl;font-family:"DotGothic16",sans-serif;
   font-size:32px;letter-spacing:.22em;color:var(--white)}
 
-/* 左サイドログ */
 .rail{position:absolute;left:0;top:300px;width:118px;border:var(--bw) solid var(--accent);
   padding:7px 6px;font-family:"Share Tech Mono",monospace;font-size:13px;line-height:1.55;color:var(--accent)}
 .rail .h{color:var(--white);border-bottom:1px solid var(--accent);margin-bottom:3px;padding-bottom:2px;font-size:11px;letter-spacing:.1em}
@@ -54,31 +58,36 @@
   var(--accent) 0 5px,transparent 5px 9px,var(--accent) 9px 11px,transparent 11px 18px)}
 .halftone{position:absolute;font-family:"Share Tech Mono",monospace;letter-spacing:.04em}
 
-/* 16進ダンプ */
-.hex{position:absolute;font-family:"Share Tech Mono",monospace;font-size:13px;line-height:1.5;
-  letter-spacing:.08em;color:var(--accent);border:1px solid var(--accent);padding:8px 10px}
-.hex .h{color:var(--white);font-size:11px;letter-spacing:.1em;margin-bottom:3px}
+/* ターミナル */
+.term{position:absolute;border:var(--bw) solid var(--accent);font-family:"JetBrains Mono",monospace}
+.term .bar{display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--accent);
+  padding:5px 8px;font-size:12px;letter-spacing:.06em;color:var(--white)}
+.term .bar i{width:9px;height:9px;border:1px solid var(--accent);display:block}
+.term .body{padding:8px 10px;font-size:13px;line-height:1.5;color:var(--accent);white-space:pre-wrap}
+.term .body .w{color:var(--white)}
+.term .cur{background:var(--accent);color:var(--black);padding:0 2px}
 
-/* パケット表 */
+/* ASCII */
+.ascii{position:absolute;font-family:"JetBrains Mono",monospace;white-space:pre;line-height:1.16;
+  letter-spacing:0;font-size:13px;color:var(--accent)}
+.ascii.w{color:var(--white)}
+.boxart{position:absolute;font-family:"JetBrains Mono",monospace;white-space:pre;line-height:1.12;
+  font-size:14px;color:var(--accent)}
+
 .specs{position:absolute;display:grid;grid-template-columns:1fr 1fr;gap:0 16px;
   border-top:var(--bw) solid var(--accent);border-bottom:var(--bw) solid var(--accent);padding:6px 0}
 .specs .sr{display:flex;gap:6px;font-family:"Share Tech Mono",monospace;font-size:13px;
   letter-spacing:.06em;color:var(--accent);padding:3px 0;border-bottom:1px dotted var(--accent)}
 .specs .sr .v{margin-left:auto;color:var(--white)}
 
-/* 信号バー */
 .bars{position:absolute;display:flex;align-items:flex-end;gap:4px;height:70px}
 .bars i{width:9px;background:var(--accent);display:block}
 
-/* グリフ列 */
 .glyphs{position:absolute;display:flex;align-items:center;gap:12px}
 .glyphs .g{display:flex;flex-direction:column;align-items:center;gap:2px}
 .glyphs .g em{font-family:"Share Tech Mono",monospace;font-size:10px;font-style:normal;color:var(--accent)}
 
 .static{position:absolute;font-family:"Orbitron",sans-serif;font-weight:900;font-size:128px;line-height:.74;color:var(--accent)}
-
-.spec{position:absolute;font-family:"Share Tech Mono",monospace;font-size:14px;line-height:1.7;color:var(--accent)}
-.spec b{color:var(--white)}
 
 .foot-line{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;
   align-items:center;border-top:var(--bw) solid var(--accent);padding-top:6px;
@@ -102,7 +111,7 @@
  <div class="stage">
 
   <div class="hl a"><span>digital overload // 電脳 os // 第二層</span><span class="ns">034 // СБОЙ // 신호 상실</span></div>
-  <div class="hl b"><span>&gt;&gt; rerouting packets · 過負荷 · ノイズ · 0xFE · ░▒▓ · loss 0.91 · 噪音 · ΘΟΡΥΒΟΣ · 暴走 &lt;&lt;</span></div>
+  <div class="hl b"><span>&gt;&gt; rerouting packets · 過負荷 · ノイズ · 0xFE · ░▒▓ · loss 0.91 · ΘΟΡΥΒΟΣ · شواش · 暴走 &lt;&lt;</span></div>
 
   <div class="title">
     <div class="dg">デジタル＝過負荷</div>
@@ -110,7 +119,16 @@
     <div class="tag">DIGITAL NOISE / vol.02 / 演算過剰</div>
   </div>
 
-  <div class="vkata" style="right:0;top:140px">脳ノ電子的崩壊ノ嵐</div>
+  <div class="vkata" style="right:0;top:150px">脳ノ電子的崩壊ノ嵐</div>
+
+  <!-- 多言語の「ノイズ／過負荷」 -->
+  <div class="frag ns" style="left:150px;top:226px;font-size:22px;color:var(--white)">ШУМ</div>
+  <div class="frag ar" style="left:250px;top:222px;font-size:24px;color:var(--accent)">ضوضاء</div>
+  <div class="frag he" style="left:372px;top:224px;font-size:23px;color:var(--white)">רעש</div>
+  <div class="frag dv" style="left:455px;top:224px;font-size:22px;color:var(--accent)">अधिभार</div>
+  <div class="frag th" style="left:150px;top:262px;font-size:20px;color:var(--accent)">เสียงรบกวน</div>
+  <div class="frag kr" style="left:300px;top:264px;font-size:20px;color:var(--white)">노이즈의 폭풍</div>
+  <div class="frag cn" style="left:470px;top:255px;font-size:30px;color:var(--accent)">噪音之嵐</div>
 
   <!-- 左サイドログ -->
   <div class="rail">
@@ -119,48 +137,61 @@
   </div>
 
   <!-- ワイヤー頭 + 隠しゲート -->
-  <div class="head" style="left:290px;top:300px;width:380px;height:380px"></div>
-  <a class="gate" href="3.html" aria-label="進む" style="position:absolute;left:290px;top:300px;width:380px;height:380px;z-index:5"></a>
+  <div class="head" style="left:300px;top:300px;width:360px;height:360px"></div>
+  <a class="gate" href="3.html" aria-label="進む" style="position:absolute;left:300px;top:300px;width:360px;height:360px;z-index:5"></a>
 
   <!-- 回路 -->
-  <div class="wire" style="left:150px;top:660px;width:230px;height:120px;-webkit-mask-image:url('assets/circuit/c15.svg');mask-image:url('assets/circuit/c15.svg')"></div>
-  <div class="wire" style="left:570px;top:690px;width:300px;height:150px;-webkit-mask-image:url('assets/circuit/c33.svg');mask-image:url('assets/circuit/c33.svg')"></div>
-  <div class="wire" style="left:660px;top:300px;width:170px;height:110px;-webkit-mask-image:url('assets/circuit/c5.svg');mask-image:url('assets/circuit/c5.svg')"></div>
-  <div class="wire" style="left:150px;top:300px;width:130px;height:120px;-webkit-mask-image:url('assets/circuit/c41.svg');mask-image:url('assets/circuit/c41.svg')"></div>
+  <div class="wire" style="left:150px;top:560px;width:210px;height:110px;-webkit-mask-image:url('assets/circuit/c15.svg');mask-image:url('assets/circuit/c15.svg')"></div>
+  <div class="wire" style="left:600px;top:560px;width:280px;height:140px;-webkit-mask-image:url('assets/circuit/c33.svg');mask-image:url('assets/circuit/c33.svg')"></div>
+  <div class="wire" style="left:680px;top:300px;width:150px;height:100px;-webkit-mask-image:url('assets/circuit/c5.svg');mask-image:url('assets/circuit/c5.svg')"></div>
+  <div class="wire" style="left:150px;top:330px;width:120px;height:110px;-webkit-mask-image:url('assets/circuit/c41.svg');mask-image:url('assets/circuit/c41.svg')"></div>
 
-  <!-- テキスト断片（多言語・多フォント） -->
-  <div class="frag dot" style="left:150px;top:255px;font-size:28px;color:var(--white)">ブレインノイズ</div>
-  <div class="frag shr" style="left:150px;top:444px;font-size:17px;letter-spacing:.1em;color:var(--accent)">but i can't feel a thing</div>
-  <div class="frag cn" style="left:610px;top:235px;font-size:44px;color:var(--accent)">噪音之嵐</div>
-  <div class="frag wall" style="left:705px;top:470px;font-size:16px;color:var(--white)">SIGNAL<br>LOST</div>
-  <div class="frag kr" style="left:430px;top:262px;font-size:20px;color:var(--accent)">노이즈의 폭풍</div>
-  <div class="frag ns" style="left:300px;top:720px;font-size:18px;letter-spacing:.04em;color:var(--white)">ШУМ · ХАОС · ΘΟΡΥΒΟΣ</div>
-
-  <!-- グリッチ & ハーフトーン -->
-  <div class="glitch" style="left:150px;top:500px;width:120px;height:120px"></div>
-  <div class="halftone" style="left:430px;top:760px;font-size:24px;color:var(--accent)">█▓▒░ ノイズ ░▒▓█ 過負荷 █▓▒░</div>
+  <div class="frag shr" style="left:150px;top:470px;font-size:17px;letter-spacing:.1em;color:var(--accent)">but i can't feel a thing</div>
+  <div class="frag wall" style="left:705px;top:430px;font-size:16px;color:var(--white)">SIGNAL<br>LOST</div>
 
   <!-- 散乱記号 -->
-  <span class="sym" style="position:absolute;left:262px;top:228px;width:24px;height:24px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span>
-  <span class="sym w" style="position:absolute;left:690px;top:636px;width:24px;height:24px;-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span>
-  <span class="sym" style="position:absolute;left:842px;top:560px;width:28px;height:28px;-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span>
+  <span class="sym" style="position:absolute;left:268px;top:268px;width:24px;height:24px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span>
+  <span class="sym w" style="position:absolute;left:660px;top:636px;width:24px;height:24px;-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span>
 
-  <!-- 16進ダンプ -->
-  <div class="hex" style="left:0;top:840px;width:300px">
-    <div class="h">// memory dump 0x00–0x2F</div>
-    FE A3 7C 00 9D FF 1B C4<br>E0 91 22 7A 0F D3 88 5E<br>11 AC 6B 90 FE FE 00 31<br>4D 2E 9C B7 0A 0A 0A 0A
+  <!-- ターミナル -->
+  <div class="term" style="left:0;top:710px;width:470px">
+    <div class="bar"><i></i><i></i><i></i>&nbsp; /dev/noise — overload.sh</div>
+    <div class="body">$ ./overload --layer 2 --seed 0xFE
+&gt; mounting <span class="w">電脳</span> kernel ........ ok
+&gt; decoding signal ......... <span class="w">LOST</span>
+&gt; packet 0xFE dropped (loss 0.91)
+&gt; <span class="w">ШУМ</span> overflow at 0x2F // <span class="w">ضوضاء</span>
+&gt; WARNING: 過負荷 // רעש // शोर
+&gt; ░▒▓ reality desync ▓▒░
+&gt; SEGMENTATION FAULT (core dumped)
+$ <span class="cur">█</span></div>
   </div>
+
+  <!-- ASCII：データ崩壊 -->
+  <div class="ascii" style="left:495px;top:712px">█▓▒░01▒█NULL░▓█ノ▒░█01▓▒
+░▓█ERR▒░█01010▓▒░ノイズ█▒
+▓▒░█OVERFLOW▒░▓█0xFE░▒▓█
+█01▒░▓█SEGFAULT░▒▓█核▒▓█
+░▒▓█01001110▒░█過負荷▓▒░</div>
+
+  <!-- ASCII：ボックスパネル -->
+  <div class="boxart w" style="left:495px;top:835px">╔══════════════╗
+║  SIGNAL LOST ║
+║  N O I S E ! ║
+╠═════╤════════╣
+║ FE  │ ░▒▓██  ║
+╚═════╧════════╝</div>
 
   <!-- 信号バー -->
-  <div class="bars" style="left:330px;top:880px">
+  <div class="bars" style="left:730px;top:840px">
     <i style="height:40%"></i><i style="height:72%"></i><i style="height:25%"></i><i style="height:90%"></i>
     <i style="height:55%"></i><i style="height:100%"></i><i style="height:33%"></i><i style="height:68%"></i>
-    <i style="height:48%"></i><i style="height:82%"></i><i style="height:20%"></i><i style="height:60%"></i>
+    <i style="height:48%"></i><i style="height:82%"></i>
   </div>
-  <div class="frag wall" style="left:330px;top:962px;font-size:13px;color:var(--accent)">FREQ 17.4 · AMP 0.91</div>
+  <div class="frag wall" style="left:730px;top:922px;font-size:12px;color:var(--accent)">FREQ 17.4</div>
 
-  <!-- パケット表 -->
-  <div class="specs" style="left:560px;top:880px;width:356px">
+  <!-- スペック -->
+  <div class="specs" style="left:0;top:990px;width:470px">
     <div class="sr"><span>packet</span><span class="v">0xFE</span></div>
     <div class="sr"><span>layer</span><span class="v">02 / ∞</span></div>
     <div class="sr"><span>signal</span><span class="v">LOST</span></div>
@@ -169,22 +200,27 @@
     <div class="sr"><span>exit</span><span class="v">NONE</span></div>
   </div>
 
+  <!-- 多言語 帯 -->
+  <div class="frag ns" style="left:495px;top:990px;font-size:17px;color:var(--white)">ХАОС · ΘΟΡΥΒΟΣ</div>
+  <div class="frag ar" style="left:495px;top:1018px;font-size:18px;color:var(--accent)">الفوضى</div>
+  <div class="frag th" style="left:650px;top:1018px;font-size:16px;color:var(--white)">ความโกลาหล</div>
+  <div class="halftone" style="left:495px;top:1050px;font-size:20px;color:var(--accent)">█▓▒░ ノイズ ░▒▓█ 過負荷</div>
+
   <!-- グリフ列 -->
-  <div class="glyphs" style="left:0;top:1010px">
+  <div class="glyphs" style="left:0;top:1100px">
     <div class="g"><span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span><em>n0</em></div>
     <div class="g"><span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span><em>n1</em></div>
     <div class="g"><span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s9.svg');mask-image:url('assets/sym/s9.svg')"></span><em>n2</em></div>
     <div class="g"><span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s27.svg');mask-image:url('assets/sym/s27.svg')"></span><em>n3</em></div>
     <div class="g"><span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span><em>n4</em></div>
     <div class="g"><span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s57.svg');mask-image:url('assets/sym/s57.svg')"></span><em>n5</em></div>
-    <div class="g"><span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s62.svg');mask-image:url('assets/sym/s62.svg')"></span><em>n6</em></div>
-    <span class="frag shr" style="position:static;font-size:12px;color:var(--accent)">index // corrupted</span>
+    <span class="frag jb" style="position:static;font-size:12px;color:var(--accent)">index // corrupted</span>
   </div>
 
-  <!-- スペック & 巨大語 -->
-  <div class="spec" style="left:0;top:1110px">packet : <b>0xFE</b><br>signal : <b>LOST</b><br>noise&nbsp;&nbsp;: <b>0.91</b></div>
-  <div class="static" style="right:0;top:1080px">STATIC</div>
-  <div class="frag dot" style="right:0;top:1042px;font-size:20px;color:var(--white)">雑音 = 静寂</div>
+  <!-- 巨大語 -->
+  <div class="frag dot" style="right:0;top:1150px;font-size:20px;color:var(--white)">雑音 = 静寂</div>
+  <div class="static" style="right:0;top:1185px">STATIC</div>
+  <div class="frag jb" style="left:0;top:1200px;font-size:13px;line-height:1.7;color:var(--accent)">$ tail -f /var/log/void<br>&gt; <span style="color:var(--white)">no signal · 無 · 無 · 無</span></div>
 
   <div class="foot-line">
     <span class="lg"><span class="sym" style="width:24px;height:24px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>4SOU9</span>
