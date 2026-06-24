@@ -53,6 +53,22 @@
   -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
 
+/* 中央モニター（枠に手を収める） */
+.monitor{position:absolute;border:var(--bw) solid var(--accent);display:flex;flex-direction:column}
+.monitor .mbar{display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--accent);
+  padding:5px 8px;font-family:"Share Tech Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--white)}
+.monitor .mbar i{width:8px;height:8px;border:1px solid var(--accent);display:block}
+.monitor .mscreen{position:relative;flex:1}
+.monitor .hd{position:absolute;inset:5% 5% 9%;background:var(--accent);
+  -webkit-mask-image:url('assets/fig/f17.svg');mask-image:url('assets/fig/f17.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
+.monitor .ml{position:absolute;font-family:"Share Tech Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--accent)}
+.monitor .ml.w{color:var(--white)}
+.monitor .ml.tl{left:6px;top:5px} .monitor .ml.tr{right:6px;top:5px}
+.monitor .ml.bl{left:6px;bottom:5px} .monitor .ml.br{right:6px;bottom:5px}
+.monitor .ml.cc{left:50%;bottom:28px;transform:translateX(-50%);white-space:nowrap}
+
 .frag{position:absolute;line-height:1.0}
 .glitch{position:absolute;background:repeating-linear-gradient(0deg,
   var(--accent) 0 5px,transparent 5px 9px,var(--accent) 9px 11px,transparent 11px 18px)}
@@ -136,22 +152,19 @@
     00 <b>FE</b><br>01 <b>A3</b><br>02 <b>7C</b><br>03 <b>00</b><br>04 <b>9D</b><br>05 <b>FF</b><br>06 <b>1B</b><br>07 <b>C4</b><br>08 <b>E0</b><br>09 <b>91</b>
   </div>
 
-  <!-- ワイヤー頭 + 隠しゲート -->
-  <div class="head" style="left:300px;top:300px;width:360px;height:360px"></div>
-  <a class="gate" href="3.html" aria-label="進む" style="position:absolute;left:300px;top:300px;width:360px;height:360px;z-index:5"></a>
-
-  <!-- 回路 -->
-  <div class="wire" style="left:150px;top:560px;width:210px;height:110px;-webkit-mask-image:url('assets/circuit/c15.svg');mask-image:url('assets/circuit/c15.svg')"></div>
-  <div class="wire" style="left:600px;top:560px;width:280px;height:140px;-webkit-mask-image:url('assets/circuit/c33.svg');mask-image:url('assets/circuit/c33.svg')"></div>
-  <div class="wire" style="left:680px;top:300px;width:150px;height:100px;-webkit-mask-image:url('assets/circuit/c5.svg');mask-image:url('assets/circuit/c5.svg')"></div>
-  <div class="wire" style="left:150px;top:330px;width:120px;height:110px;-webkit-mask-image:url('assets/circuit/c41.svg');mask-image:url('assets/circuit/c41.svg')"></div>
-
-  <div class="frag shr" style="left:150px;top:470px;font-size:17px;letter-spacing:.1em;color:var(--accent)">but i can't feel a thing</div>
-  <div class="frag wall" style="left:705px;top:430px;font-size:16px;color:var(--white)">SIGNAL<br>LOST</div>
-
-  <!-- 散乱記号 -->
-  <span class="sym" style="position:absolute;left:268px;top:268px;width:24px;height:24px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span>
-  <span class="sym w" style="position:absolute;left:660px;top:636px;width:24px;height:24px;-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span>
+  <!-- 中央モニター（手を枠に収める）＋隠しゲート -->
+  <div class="monitor" style="left:198px;top:298px;width:486px;height:408px">
+    <div class="mbar"><i></i><i></i><i></i>&nbsp; ▣ subj.17 // 電子的崩壊 // LIVE FEED</div>
+    <div class="mscreen">
+      <span class="hd"></span>
+      <span class="ml tl">17.4Hz</span>
+      <span class="ml tr w">● REC</span>
+      <span class="ml cc w">but i can't feel a thing</span>
+      <span class="ml bl">fig.17 — body</span>
+      <span class="ml br">SIGNAL LOST</span>
+    </div>
+    <a class="gate" href="3.html" aria-label="進む" style="position:absolute;inset:0;z-index:5"></a>
+  </div>
 
   <!-- ターミナル -->
   <div class="term" style="left:0;top:710px;width:470px">
