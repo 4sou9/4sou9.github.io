@@ -31,6 +31,26 @@
 .hl.a{top:0;border-bottom:var(--bw) solid var(--accent);padding-bottom:6px}
 .hl.b{top:34px;font-size:12px;color:var(--white);letter-spacing:.08em;border-bottom:1px solid var(--accent);padding-bottom:5px}
 
+/* OSステータスバー（ヘッダー） */
+.osbar{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:13px;
+  border-bottom:var(--bw) solid var(--accent);padding-bottom:6px;
+  font-family:"Share Tech Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--accent)}
+.osbar .win{display:flex;gap:5px} .osbar .win i{width:9px;height:9px;border:1px solid var(--accent);display:block}
+.osbar .tt{color:var(--white);letter-spacing:.1em}
+.osbar .meter{display:flex;align-items:center;gap:5px}
+.osbar .meter .bar{width:52px;height:9px;border:1px solid var(--accent);padding:1px}
+.osbar .meter .bar b{display:block;height:100%;background:var(--accent)}
+.osbar .sp{margin-left:auto}
+/* コマンドライン（フッター） */
+.cmdbar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:11px;
+  border-top:var(--bw) solid var(--accent);padding-top:6px;
+  font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.03em;color:var(--accent)}
+.cmdbar .pr{color:var(--white)}
+.cmdbar .cur{background:var(--accent);color:var(--black);padding:0 2px}
+.cmdbar .prog{margin-left:auto;display:flex;align-items:center;gap:7px}
+.cmdbar .prog .pb{width:120px;height:11px;border:1px solid var(--accent);padding:1px}
+.cmdbar .prog .pb b{display:block;height:100%;background:var(--accent)}
+
 .title{position:absolute;left:0;top:64px;line-height:.84}
 .title .dg{font-family:"VT323",monospace;font-size:28px;letter-spacing:.16em;color:var(--white)}
 .title .ov{position:relative;font-family:"Orbitron",sans-serif;font-weight:900;font-size:92px;color:var(--accent);letter-spacing:-.01em}
@@ -137,7 +157,17 @@
 <div class="poster">
  <div class="stage">
 
-  <div class="hl a"><span>digital overload // 電脳 os // 第二層</span><span class="ns">034 // СБОЙ // 신호 상실</span></div>
+  <div class="osbar">
+    <span class="win"><i></i><i></i><i></i></span>
+    <span class="tt">OVERLOAD.SH</span>
+    <span>electron os // 第二層</span>
+    <span class="meter">CPU <span class="bar"><b style="width:88%"></b></span> 91%</span>
+    <span class="meter">MEM <span class="bar"><b style="width:42%"></b></span></span>
+    <span>NET ✕</span>
+    <span class="sp">88:88</span>
+    <span class="tt">034</span>
+    <span>⏻</span>
+  </div>
   <div class="hl b"><span>&gt;&gt; rerouting packets · 過負荷 · ノイズ · 0xFE · ░▒▓ · loss 0.91 · ΘΟΡΥΒΟΣ · شواش · 暴走 &lt;&lt;</span></div>
 
   <div class="title">
@@ -273,10 +303,10 @@ $ <span class="cur">█</span></div>
   <div class="static" style="right:0;top:1194px">STATIC</div>
   <div class="frag jb" style="left:240px;top:1240px;font-size:13px;line-height:1.7;color:var(--accent)">$ tail -f /var/log/void<br>&gt; <span style="color:var(--white)">no signal · 無 · 無 · 無</span></div>
 
-  <div class="foot-line">
-    <span class="lg"><span class="sym" style="width:24px;height:24px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>4SOU9</span>
-    <span class="mid">— 信号は既に失われている —</span>
-    <span>034 · N35.6 E139.7</span>
+  <div class="cmdbar">
+    <span class="pr">root@void:~/layer2$</span>
+    <span>./descend --to 3 <span class="cur">█</span></span>
+    <span class="prog">loss <span class="pb"><b style="width:91%"></b></span> 0.91 · 034 · 4SOU9</span>
   </div>
 
  </div>
