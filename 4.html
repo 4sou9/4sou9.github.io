@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第四層 / AFTER</title>
+<title>第四層 / WHAT COMES AFTER</title>
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,11 +11,56 @@
 <link href="assets/poster.css" rel="stylesheet">
 <style>
 :root{ --accent:#b15cff; }
-/* 焦点・図・背後人物のマスクはHTML基準のパスで直接上書き（CSS変数内url()の二重解決を回避） */
-.eye{-webkit-mask-image:url('assets/grunge/g40.svg');mask-image:url('assets/grunge/g40.svg')}
-.fig .h{-webkit-mask-image:url('assets/fig/f13.svg');mask-image:url('assets/fig/f13.svg')}
-.ghostfig{-webkit-mask-image:url('assets/fig/f6.svg');mask-image:url('assets/fig/f6.svg')}
-.intent{font-size:175px}
+.frame{border:var(--bw) solid var(--accent);position:relative;padding:22px 26px 18px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.frame::before{content:"";position:absolute;inset:5px;border:1px solid var(--accent);pointer-events:none}
+
+.corner{position:absolute;font-family:"Anton",sans-serif;font-size:24px;color:var(--accent);line-height:.8}
+.corner.tl{left:12px;top:10px} .corner.tr{right:12px;top:10px}
+.corner.bl{left:12px;bottom:8px} .corner.br{right:12px;bottom:8px}
+.edge{position:absolute;writing-mode:vertical-rl;font-family:"Noto Serif JP",serif;font-weight:600;
+  font-size:22px;letter-spacing:.3em;color:var(--white);top:50%;transform:translateY(-50%)}
+.edge.l{left:10px} .edge.r{right:10px}
+
+.top{display:flex;flex-direction:column;align-items:center;gap:4px}
+.kic{display:flex;align-items:center;justify-content:center;gap:12px;
+  font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.2em;color:var(--accent)}
+.ttl{font-family:"Anton",sans-serif;font-size:118px;line-height:.78;color:var(--accent);letter-spacing:.02em}
+.sub{font-family:"Ma Shan Zheng",cursive;font-size:34px;color:var(--white)}
+.sub2{font-family:"UnifrakturCook",cursive;font-size:24px;color:var(--accent)}
+
+.check{height:18px;width:62%;
+  background:repeating-conic-gradient(var(--accent) 0% 25%, transparent 0% 50%) 0 0/18px 18px}
+
+.mid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:26px;width:100%}
+.col{display:flex;flex-direction:column;gap:12px;font-family:"Major Mono Display",monospace;
+  font-size:14px;letter-spacing:.08em}
+.col .ln{display:flex;align-items:center;gap:8px}
+.col.l{text-align:right} .col.l .ln{justify-content:flex-end}
+.col .rn{font-family:"Noto Serif JP",serif;font-size:17px;color:var(--white)}
+.col .en{color:var(--accent)} .col .mk{color:var(--accent)}
+
+.emblem{position:relative;width:360px;height:360px;display:flex;align-items:center;justify-content:center}
+.emblem .art{width:100%;height:100%;background:var(--accent);
+  -webkit-mask-image:url('assets/grunge/g40.svg');mask-image:url('assets/grunge/g40.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
+.emblem .ring{position:absolute;background:var(--white);-webkit-mask-mode:alpha;mask-mode:alpha;
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.flank{display:flex;justify-content:center;gap:0}
+
+.bottomband{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
+.after{font-family:"Anton",sans-serif;font-size:150px;line-height:.7;color:var(--accent)}
+.caps{display:flex;align-items:center;justify-content:center;gap:14px;width:78%;
+  font-family:"Noto Sans KR",sans-serif;font-weight:700;font-size:15px;letter-spacing:.18em;color:var(--white)}
+.caps .sep{flex:1;border-bottom:var(--bw) solid var(--accent);height:1px}
+.caps .o{color:var(--accent)}
+
+.fl{display:flex;justify-content:space-between;align-items:center;width:100%;
+  border-top:var(--bw) solid var(--accent);padding-top:6px;
+  font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.14em;color:var(--accent)}
+.fl .lg{display:flex;align-items:center;gap:9px;font-family:"Anton",sans-serif;font-size:28px}
+.fl .mid{font-family:"Noto Serif JP",serif;font-weight:600;color:var(--white)}
 </style>
 </head>
 <body>
@@ -30,145 +75,68 @@
 </defs></svg>
 
 <div class="poster">
+ <div class="frame">
 
-  <div class="topbar bb">
-    <div class="l">
-      <span class="brand">astral.</span>
-      <span class="sym" style="width:16px;height:16px;-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span>
-      <span class="kv">彼岸OS // 第四層</span>
+  <span class="corner tl">✦</span><span class="corner tr">✦</span>
+  <span class="corner bl">036</span><span class="corner br">036</span>
+  <span class="edge l">超越彼岸</span><span class="edge r">虚空接近</span>
+
+  <!-- タイトル -->
+  <div class="top">
+    <div class="kic">
+      <span class="sym" style="width:16px;height:16px;-webkit-mask-image:url('assets/sym/s37.svg');mask-image:url('assets/sym/s37.svg')"></span>
+      036 · 第四層 · vol.04
+      <span class="sym" style="width:16px;height:16px;-webkit-mask-image:url('assets/sym/s37.svg');mask-image:url('assets/sym/s37.svg')"></span>
     </div>
-    <div class="r">
-      <span class="dots"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i></span>
-      <span class="kv">DM</span>
-      <span class="badge">036</span>
+    <div class="ttl">ASTRAL</div>
+    <div class="sub">彼岸の確率</div>
+    <div class="sub2">What Comes After</div>
+  </div>
+
+  <div class="check"></div>
+
+  <!-- 中央エンブレム＋左右対称ラベル -->
+  <div class="mid">
+    <div class="col l">
+      <div class="ln"><span class="rn">物質</span><span class="mk">◇</span></div>
+      <div class="ln"><span class="rn">精神</span><span class="mk">◇</span></div>
+      <div class="ln"><span class="rn">時間</span><span class="mk">◇</span></div>
+      <div class="ln"><span class="rn">虚無</span><span class="mk">◇</span></div>
+    </div>
+
+    <div class="emblem">
+      <span class="art"></span>
+      <a class="gate" href="index.html" aria-label="進む" style="position:absolute;inset:0;z-index:5"></a>
+    </div>
+
+    <div class="col r">
+      <div class="ln"><span class="mk">◇</span><span class="en">matter</span></div>
+      <div class="ln"><span class="mk">◇</span><span class="en">spirit</span></div>
+      <div class="ln"><span class="mk">◇</span><span class="en">time</span></div>
+      <div class="ln"><span class="mk">◇</span><span class="en">void</span></div>
     </div>
   </div>
 
-  <div class="ticker bb">// WHAT COMES AFTER THE FOURTH LAYER · 第四層 · 피안 · 超越 · vector&nbsp;∞ · ✦✧ · THE END? · 虚空 · //</div>
-
-  <div class="mast">
-    <div class="big">ASTRAL</div>
-    <div class="sub">
-      <span class="cn">彼岸の確率</span>
-      <span class="fr">What Comes After</span>
-      <span class="mo">vol.04 / beyond / 超越装置</span>
-    </div>
+  <div class="flank">
+    <span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s31.svg');mask-image:url('assets/sym/s31.svg')"></span>
+    <span class="sym w" style="width:22px;height:22px;margin:0 18px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
+    <span class="sym" style="width:22px;height:22px;-webkit-mask-image:url('assets/sym/s31.svg');mask-image:url('assets/sym/s31.svg')"></span>
   </div>
 
-  <div class="hero">
-    <div class="rail bx">
-      <div class="rr"><b>01</b>— 彼</div>
-      <div class="rr"><b>02</b>— 岸</div>
-      <div class="rr"><b>03</b>— 超</div>
-      <div class="rr"><b>04</b>— 越</div>
-      <div class="rr"><b>05</b>— 虚</div>
-      <div class="rr"><b>06</b>— 空</div>
-      <div class="rr"><b>07</b>— 星</div>
-      <div class="rr"><b>08</b>— 環</div>
-      <span class="vtxt">超越彼岸虚空</span>
-      <div class="barcode"></div>
-    </div>
-
-    <div class="eyebox bx">
-      <span class="eye"></span>
-      <a class="gate" href="index.html" aria-label="進む"></a>
-      <span class="c tl">vctr—∞</span>
-      <span class="c tr">x036</span>
-      <span class="c bl">星 / the astral</span>
-      <span class="c br">gate:dissolve</span>
-      <span class="num">肆</span>
-    </div>
-
-    <div class="rcol">
-      <div class="numrow">
-        <span class="n">肆</span>
-        <span class="sym" style="width:46px;height:46px;-webkit-mask-image:url('assets/sym/s13.svg');mask-image:url('assets/sym/s13.svg')"></span>
-      </div>
-      <div class="list bt bb">
-        <div class="row cur"><span class="mk">+</span><span class="jp">物質</span><span class="ld"></span><span class="en">matter</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">精神</span><span class="ld"></span><span class="en">spirit</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">時間</span><span class="ld"></span><span class="en">time</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">虚無</span><span class="ld"></span><span class="en">void</span></div>
-      </div>
-      <div class="split">彼&nbsp;—&nbsp;岸<br><b>HI</b>—GAN</div>
-      <p class="para">第四層、彼岸ノ確率。피안은 시작의 다른 끝。一切都会回到虚空之中。What comes after is not an end but a fold — the fourth gate dissolves into the void.</p>
-      <div class="iconrow">
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s42.svg');mask-image:url('assets/sym/s42.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
-        <span class="kv">no.004 / beyond</span>
-      </div>
-    </div>
+  <!-- 下部 -->
+  <div class="bottomband">
+    <div class="caps"><span>WHAT</span><span class="sep"></span><span class="o">超越</span><span class="sep"></span><span>AFTER</span></div>
+    <div class="after">AFTER</div>
+    <div class="caps"><span class="o">彼岸</span><span class="sep"></span><span>第四層</span><span class="sep"></span><span class="o">피안</span></div>
   </div>
 
-  <div class="specs bt bb">
-    <div class="sr"><span class="k">vector</span><span>:</span><span class="v">∞</span></div>
-    <div class="sr"><span class="k">layer</span><span>:</span><span class="v">04 / ∞</span></div>
-    <div class="sr"><span class="k">gate</span><span>:</span><span class="v">DISSOLVE</span></div>
-    <div class="sr"><span class="k">void</span><span>:</span><span class="v">1.00</span></div>
-    <div class="sr"><span class="k">node</span><span>:</span><span class="v">星 / astral</span></div>
-    <div class="sr"><span class="k">exit</span><span>:</span><span class="v">???</span></div>
+  <div class="fl">
+    <span class="lg"><span class="sym" style="width:24px;height:24px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>4SOU9</span>
+    <span class="mid">— 第四の門の先に何があるのか —</span>
+    <span>036 · N35.6 E139.7</span>
   </div>
 
-  <div class="glyphs bb">
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s6.svg');mask-image:url('assets/sym/s6.svg')"></span><em>a1</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span><em>b2</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s42.svg');mask-image:url('assets/sym/s42.svg')"></span><em>c3</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s9.svg');mask-image:url('assets/sym/s9.svg')"></span><em>d4</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg')"></span><em>e5</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s27.svg');mask-image:url('assets/sym/s27.svg')"></span><em>f6</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s64.svg');mask-image:url('assets/sym/s64.svg')"></span><em>g7</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span><em>h8</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span><em>i9</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span><em>j0</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span><em>k1</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s77.svg');mask-image:url('assets/sym/s77.svg')"></span><em>l2</em></div>
-    <span class="kv" style="margin-left:auto">index // 012 glyphs</span>
-  </div>
-
-  <div class="lower">
-    <span class="ghostfig"></span>
-    <div class="fig">
-      <span class="h"></span>
-      <span class="cap">fig.04 — body</span>
-    </div>
-    <div class="modcol">
-      <div class="hd">transmission</div>
-      <div class="mr"><span>freq</span><b>∞</b></div>
-      <div class="mr"><span>sig</span><b>▒░  ░▒</b></div>
-      <div class="mr"><span>void</span><b>1.00</b></div>
-      <div class="mr"><span>超越</span><b>接近</b></div>
-      <div class="modgrid">
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s19.svg');mask-image:url('assets/sym/s19.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s62.svg');mask-image:url('assets/sym/s62.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s85.svg');mask-image:url('assets/sym/s85.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s73.svg');mask-image:url('assets/sym/s73.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s57.svg');mask-image:url('assets/sym/s57.svg')"></span>
-      </div>
-    </div>
-    <div class="intent">AFTER</div>
-  </div>
-
-  <div class="caps bt">
-    <div class="r"><span>WHAT</span><span class="sep"></span><span class="o">超越</span><span class="sep"></span><span>AFTER</span></div>
-    <div class="r"><span class="o">彼岸</span><span class="sep"></span><span>第四層</span><span class="sep"></span><span class="o">피안</span></div>
-    <div class="r"><span>BEYOND</span><span class="sep"></span><span class="o">虚空</span><span class="sep"></span><span>DIMENSIONS</span></div>
-  </div>
-
-  <div class="foot bt">
-    <div class="lg">
-      <span class="sym" style="width:25px;height:25px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
-      4SOU9
-    </div>
-    <div class="mid">— 第四の門の先に何があるのか —</div>
-    <div class="rg">
-      <span>N35.6 E139.7</span>
-      <span class="hatch"><i></i><i></i><i></i><i></i></span>
-    </div>
-  </div>
-
+ </div>
 </div>
 </body>
 </html>

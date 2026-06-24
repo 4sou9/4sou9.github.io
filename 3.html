@@ -11,11 +11,64 @@
 <link href="assets/poster.css" rel="stylesheet">
 <style>
 :root{ --accent:#ff2218; }
-/* 焦点・図・背後人物のマスクはHTML基準のパスで直接上書き（CSS変数内url()の二重解決を回避） */
-.eye{-webkit-mask-image:url('assets/grunge/g31.svg');mask-image:url('assets/grunge/g31.svg')}
-.fig .h{-webkit-mask-image:url('assets/fig/f10.svg');mask-image:url('assets/fig/f10.svg')}
-.ghostfig{-webkit-mask-image:url('assets/fig/f9.svg');mask-image:url('assets/fig/f9.svg')}
-.intent{font-size:112px}
+.wrap{display:flex;flex-direction:column;gap:12px}
+.hl{display:flex;justify-content:space-between;align-items:center;border-bottom:var(--bw) solid var(--accent);
+  padding-bottom:6px;font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.18em;color:var(--accent)}
+.hl .r{color:var(--white)}
+
+.cell{border:var(--bw) solid var(--accent);position:relative;overflow:hidden;display:flex;
+  align-items:center;justify-content:center}
+.cap{position:absolute;left:6px;bottom:4px;font-family:"Major Mono Display",monospace;font-size:12px;color:var(--accent)}
+.idx{position:absolute;right:6px;top:4px;font-family:"Anton",sans-serif;font-size:26px;color:var(--accent);line-height:.8}
+.art{background:var(--accent);-webkit-mask-mode:alpha;mask-mode:alpha;
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center}
+
+/* タイトルセル */
+.titlecell{display:flex;flex-direction:column;justify-content:center;line-height:.82}
+.titlecell .mini{font-family:"Major Mono Display",monospace;font-size:14px;letter-spacing:.2em;color:var(--white)}
+.titlecell .ttl{font-family:"Anton",sans-serif;font-size:104px;color:var(--accent);line-height:.78}
+.titlecell .cn{font-family:"Ma Shan Zheng",cursive;font-size:40px;color:var(--white);margin-top:4px}
+.titlecell .fr{font-family:"UnifrakturCook",cursive;font-size:26px;color:var(--accent)}
+
+.topgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;height:248px}
+.midgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;height:382px}
+
+/* マニフェスト */
+.manifesto{flex-direction:column;align-items:stretch;justify-content:center;gap:6px;padding:14px}
+.manifesto .ln{display:flex;align-items:baseline;gap:8px;font-family:"Anton",sans-serif;font-size:30px;line-height:.86}
+.manifesto .ln .jp{font-family:"Noto Serif JP",serif;font-weight:800;color:var(--white);font-size:26px}
+.manifesto .ln em{font-style:normal;color:var(--accent)}
+.manifesto .bd{margin-top:8px;height:24px;background:var(--accent);
+  -webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg');
+  -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;-webkit-mask-size:24px 24px;mask-size:24px 24px;
+  -webkit-mask-mode:alpha;mask-mode:alpha}
+
+/* 有刺鉄線（刃の連続） */
+.barbed{height:26px;background:var(--accent);
+  -webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg');
+  -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;-webkit-mask-size:26px 26px;mask-size:26px 26px;
+  -webkit-mask-mode:alpha;mask-mode:alpha}
+
+.strip{display:flex;align-items:stretch;gap:8px}
+.strip .slbl{writing-mode:vertical-rl;font-family:"Major Mono Display",monospace;font-size:12px;
+  letter-spacing:.14em;color:var(--accent);display:flex;align-items:center}
+.scell{flex:1;height:128px;border:var(--bw) solid var(--accent);display:flex;align-items:center;
+  justify-content:center;position:relative}
+.scell .art{width:66%;height:70%}
+.scell em{position:absolute;left:4px;bottom:2px;font-family:"Major Mono Display",monospace;
+  font-size:10px;font-style:normal;color:var(--accent)}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:6px}
+.bottom .badges{display:flex;flex-direction:column;gap:6px;font-family:"Major Mono Display",monospace;
+  font-size:13px;letter-spacing:.1em;color:var(--accent)}
+.bottom .badges b{color:var(--white);font-weight:400}
+.bottom .big{font-family:"Anton",sans-serif;font-size:118px;line-height:.7;color:var(--accent);text-align:right}
+
+.fl{display:flex;justify-content:space-between;align-items:center;border-top:var(--bw) solid var(--accent);
+  padding-top:6px;font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.16em;color:var(--accent)}
+.fl .lg{display:flex;align-items:center;gap:9px;font-family:"Anton",sans-serif;font-size:30px}
+.fl .mid{font-family:"Noto Serif JP",serif;font-weight:600;color:var(--white)}
 </style>
 </head>
 <body>
@@ -30,145 +83,74 @@
 </defs></svg>
 
 <div class="poster">
+ <div class="wrap">
 
-  <div class="topbar bb">
-    <div class="l">
-      <span class="brand">conflict.</span>
-      <span class="sym" style="width:16px;height:16px;-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span>
-      <span class="kv">闘争OS // 第三層</span>
-    </div>
-    <div class="r">
-      <span class="dots"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i></span>
-      <span class="kv">DM</span>
-      <span class="badge">035</span>
-    </div>
+  <div class="hl">
+    <span>conflict // 闘争 os // 第三層</span>
+    <span class="r">035 // hate vs love</span>
   </div>
 
-  <div class="ticker bb">// BLOOD IN THE THIRD LAYER · 第三層 · 투쟁 · 紛争 · code&nbsp;035 · ✕✕ · NO MERCY · 暴力 · //</div>
-
-  <div class="mast">
-    <div class="big">CONFLICT</div>
-    <div class="sub">
+  <div class="topgrid">
+    <div class="titlecell">
+      <span class="mini">want · be ————</span>
+      <span class="ttl">CONFLICT</span>
       <span class="cn">紛争文化</span>
       <span class="fr">Hate vs Love</span>
-      <span class="mo">vol.03 / war / 闘争本能</span>
+    </div>
+    <div class="cell">
+      <span class="art" style="width:80%;height:84%;-webkit-mask-image:url('assets/grunge/g31.svg');mask-image:url('assets/grunge/g31.svg')"></span>
+      <span class="cap">sigil / 刃眼</span>
+      <span class="idx">03</span>
     </div>
   </div>
 
-  <div class="hero">
-    <div class="rail bx">
-      <div class="rr"><b>01</b>— 闘</div>
-      <div class="rr"><b>02</b>— 争</div>
-      <div class="rr"><b>03</b>— 紛</div>
-      <div class="rr"><b>04</b>— 怒</div>
-      <div class="rr"><b>05</b>— 血</div>
-      <div class="rr"><b>06</b>— 刃</div>
-      <div class="rr"><b>07</b>— 暴</div>
-      <div class="rr"><b>08</b>— 力</div>
-      <span class="vtxt">闘争本能暴力</span>
-      <div class="barcode"></div>
-    </div>
-
-    <div class="eyebox bx">
-      <span class="eye"></span>
-      <a class="gate" href="4.html" aria-label="進む"></a>
-      <span class="c tl">blood—∞</span>
-      <span class="c tr">x035</span>
-      <span class="c bl">刃 / the blade</span>
-      <span class="c br">gate:sealed</span>
-      <span class="num">参</span>
-    </div>
-
-    <div class="rcol">
-      <div class="numrow">
-        <span class="n">参</span>
-        <span class="sym" style="width:46px;height:46px;-webkit-mask-image:url('assets/sym/s13.svg');mask-image:url('assets/sym/s13.svg')"></span>
-      </div>
-      <div class="list bt bb">
-        <div class="row cur"><span class="mk">+</span><span class="jp">攻撃</span><span class="ld"></span><span class="en">attack</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">防御</span><span class="ld"></span><span class="en">defense</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">支配</span><span class="ld"></span><span class="en">control</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">服従</span><span class="ld"></span><span class="en">submit</span></div>
-      </div>
-      <div class="split">闘&nbsp;—&nbsp;争<br><b>CON</b>—FLICT</div>
-      <p class="para">第三層ハ血デ満チテイル。투쟁은 사랑의 다른 이름。憎しみと愛は同じ刃の両面。Hate and love share one blade — the third gate is sealed in blood.</p>
-      <div class="iconrow">
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s42.svg');mask-image:url('assets/sym/s42.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
-        <span class="kv">no.003 / war</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="specs bt bb">
-    <div class="sr"><span class="k">code</span><span>:</span><span class="v">035</span></div>
-    <div class="sr"><span class="k">layer</span><span>:</span><span class="v">03 / ∞</span></div>
-    <div class="sr"><span class="k">gate</span><span>:</span><span class="v">SEALED</span></div>
-    <div class="sr"><span class="k">rage</span><span>:</span><span class="v">0.99</span></div>
-    <div class="sr"><span class="k">node</span><span>:</span><span class="v">刃 / blade</span></div>
-    <div class="sr"><span class="k">exit</span><span>:</span><span class="v">NONE</span></div>
-  </div>
-
-  <div class="glyphs bb">
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s6.svg');mask-image:url('assets/sym/s6.svg')"></span><em>a1</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span><em>b2</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s42.svg');mask-image:url('assets/sym/s42.svg')"></span><em>c3</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s9.svg');mask-image:url('assets/sym/s9.svg')"></span><em>d4</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg')"></span><em>e5</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s27.svg');mask-image:url('assets/sym/s27.svg')"></span><em>f6</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s64.svg');mask-image:url('assets/sym/s64.svg')"></span><em>g7</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span><em>h8</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span><em>i9</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span><em>j0</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span><em>k1</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s77.svg');mask-image:url('assets/sym/s77.svg')"></span><em>l2</em></div>
-    <span class="kv" style="margin-left:auto">index // 012 glyphs</span>
-  </div>
-
-  <div class="lower">
-    <span class="ghostfig"></span>
-    <div class="fig">
-      <span class="h"></span>
+  <div class="midgrid">
+    <div class="cell">
+      <span class="art" style="width:74%;height:92%;-webkit-mask-image:url('assets/fig/f10.svg');mask-image:url('assets/fig/f10.svg')"></span>
       <span class="cap">fig.03 — body</span>
+      <span class="idx">035</span>
     </div>
-    <div class="modcol">
-      <div class="hd">transmission</div>
-      <div class="mr"><span>freq</span><b>66.6</b></div>
-      <div class="mr"><span>sig</span><b>██▓▒░</b></div>
-      <div class="mr"><span>rage</span><b>0.99</b></div>
-      <div class="mr"><span>本能</span><b>暴走</b></div>
-      <div class="modgrid">
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s19.svg');mask-image:url('assets/sym/s19.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s62.svg');mask-image:url('assets/sym/s62.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s85.svg');mask-image:url('assets/sym/s85.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s73.svg');mask-image:url('assets/sym/s73.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s57.svg');mask-image:url('assets/sym/s57.svg')"></span>
-      </div>
-    </div>
-    <div class="intent">CONFLICT</div>
-  </div>
-
-  <div class="caps bt">
-    <div class="r"><span>HATE</span><span class="sep"></span><span class="o">闘争</span><span class="sep"></span><span>LOVE</span></div>
-    <div class="r"><span class="o">紛争</span><span class="sep"></span><span>第三層</span><span class="sep"></span><span class="o">투쟁</span></div>
-    <div class="r"><span>STRIKE</span><span class="sep"></span><span class="o">暴力</span><span class="sep"></span><span>CONFLICT</span></div>
-  </div>
-
-  <div class="foot bt">
-    <div class="lg">
-      <span class="sym" style="width:25px;height:25px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
-      4SOU9
-    </div>
-    <div class="mid">— 第三の門は血で封じられている —</div>
-    <div class="rg">
-      <span>N35.6 E139.7</span>
-      <span class="hatch"><i></i><i></i><i></i><i></i></span>
+    <div class="cell manifesto">
+      <div class="ln"><span class="jp">憎悪</span>ハ<em>愛</em></div>
+      <div class="ln" style="color:var(--white)">HATE IS <em>LOVE</em></div>
+      <div class="ln"><span class="jp">戦争</span>ハ<em>平和</em></div>
+      <div class="ln" style="color:var(--white)">WAR IS <em>PEACE</em></div>
+      <div class="ln"><span class="jp">自由</span>ハ<em>隷属</em></div>
+      <div class="bd"></div>
     </div>
   </div>
 
+  <div class="barbed"></div>
+
+  <div class="strip">
+    <span class="slbl">tape&nbsp;at&nbsp;3 // 証拠</span>
+    <div class="scell"><span class="art" style="width:60%;height:64%;-webkit-mask-image:url('assets/grunge/g2.svg');mask-image:url('assets/grunge/g2.svg')"></span><em>e.01</em></div>
+    <div class="scell"><span class="art" style="-webkit-mask-image:url('assets/fig/f15.svg');mask-image:url('assets/fig/f15.svg')"></span><em>e.02</em></div>
+    <div class="scell"><span class="art" style="width:54%;height:58%;-webkit-mask-image:url('assets/sym/s73.svg');mask-image:url('assets/sym/s73.svg')"></span><em>e.03</em></div>
+    <div class="scell"><span class="art" style="-webkit-mask-image:url('assets/grunge/g16.svg');mask-image:url('assets/grunge/g16.svg')"></span><em>e.04</em></div>
+    <div class="scell"><span class="art" style="width:56%;height:60%;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span><em>e.05</em></div>
+    <div class="scell"><span class="art" style="-webkit-mask-image:url('assets/circuit/c41.svg');mask-image:url('assets/circuit/c41.svg')"></span><em>e.06</em></div>
+  </div>
+
+  <div class="bottom">
+    <div class="badges">
+      <span>code&nbsp;: <b>035</b></span>
+      <span>gate&nbsp;: <b>SEALED</b></span>
+      <span>rage&nbsp;: <b>0.99</b></span>
+      <span>node&nbsp;: <b>刃 / blade</b></span>
+    </div>
+    <div class="big">CONFLICT</div>
+  </div>
+
+  <div class="fl">
+    <span class="lg"><span class="sym" style="width:24px;height:24px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>4SOU9</span>
+    <span class="mid">— 第三の門は血で封じられている —</span>
+    <span>035 · N35.6 E139.7</span>
+  </div>
+
+  <a class="gate" href="4.html" aria-label="進む" style="position:absolute;left:22px;top:298px;width:55%;height:382px;z-index:5"></a>
+
+ </div>
 </div>
 </body>
 </html>

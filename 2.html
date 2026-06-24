@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第二層 / OVERLOAD</title>
+<title>第二層 / DIGITAL OVERLOAD</title>
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,11 +11,48 @@
 <link href="assets/poster.css" rel="stylesheet">
 <style>
 :root{ --accent:#84ff12; }
-/* 焦点・図・背後人物のマスクはHTML基準のパスで直接上書き（CSS変数内url()の二重解決を回避） */
-.eye{-webkit-mask-image:url('assets/fig/f17.svg');mask-image:url('assets/fig/f17.svg')}
-.fig .h{-webkit-mask-image:url('assets/fig/f2.svg');mask-image:url('assets/fig/f2.svg')}
-.ghostfig{-webkit-mask-image:url('assets/fig/f8.svg');mask-image:url('assets/fig/f8.svg')}
-.intent{font-size:175px}
+.stage{position:relative;width:100%;height:1200px;font-family:"Major Mono Display",monospace}
+.head-line{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;
+  align-items:center;border-bottom:var(--bw) solid var(--accent);padding-bottom:6px;
+  font-size:13px;letter-spacing:.18em;color:var(--accent)}
+.head-line .r{color:var(--white)}
+
+/* タイトル（グリッチ） */
+.title{position:absolute;left:0;top:40px;line-height:.78}
+.title .dg{font-family:"VT323",monospace;font-size:30px;letter-spacing:.2em;color:var(--white)}
+.title .ov{position:relative;font-family:"Anton",sans-serif;font-size:120px;color:var(--accent)}
+.title .ov .echo{position:absolute;left:6px;top:5px;color:var(--white);z-index:-1}
+
+.vkata{position:absolute;writing-mode:vertical-rl;font-family:"Noto Serif JP",serif;font-weight:600;
+  font-size:34px;letter-spacing:.28em;color:var(--white)}
+
+/* ワイヤー頭（隠しゲート） */
+.head{position:absolute;background:var(--accent);
+  -webkit-mask-image:url('assets/fig/f17.svg');mask-image:url('assets/fig/f17.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
+.gatebox{position:absolute;z-index:5}
+
+.wire{position:absolute;background:var(--accent);
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
+
+.frag{position:absolute;line-height:.95}
+.glitch{position:absolute;background:repeating-linear-gradient(0deg,
+  var(--accent) 0 5px,transparent 5px 9px,var(--accent) 9px 11px,transparent 11px 18px)}
+.halftone{position:absolute;font-family:"Major Mono Display",monospace;letter-spacing:.05em}
+
+.spec{position:absolute;font-family:"Major Mono Display",monospace;font-size:14px;
+  line-height:1.7;letter-spacing:.08em;color:var(--accent)}
+.spec b{color:var(--white);font-weight:400}
+
+.static{position:absolute;font-family:"Anton",sans-serif;font-size:160px;line-height:.7;color:var(--accent)}
+
+.foot-line{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;
+  align-items:center;border-top:var(--bw) solid var(--accent);padding-top:6px;
+  font-size:13px;letter-spacing:.16em;color:var(--accent)}
+.foot-line .lg{display:flex;align-items:center;gap:9px;font-family:"Anton",sans-serif;font-size:30px}
+.foot-line .mid{font-family:"Noto Serif JP",serif;font-weight:600;color:var(--white)}
 </style>
 </head>
 <body>
@@ -30,145 +67,53 @@
 </defs></svg>
 
 <div class="poster">
+ <div class="stage">
 
-  <div class="topbar bb">
-    <div class="l">
-      <span class="brand">overload.</span>
-      <span class="sym" style="width:16px;height:16px;-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span>
-      <span class="kv">電脳OS // 第二層</span>
-    </div>
-    <div class="r">
-      <span class="dots"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i></span>
-      <span class="kv">DM</span>
-      <span class="badge">034</span>
-    </div>
+  <div class="head-line">
+    <span>digital&nbsp;overload // 電脳 os // 第二層</span>
+    <span class="r">034 // 신호 상실</span>
   </div>
 
-  <div class="ticker bb">// SIGNAL LOST IN THE SECOND LAYER · 第二層 · 노이즈 · 過負荷 · packet&nbsp;0xFE · ▓▒░ · STATIC · 雑音 · //</div>
-
-  <div class="mast">
-    <div class="big">OVERLOAD</div>
-    <div class="sub">
-      <span class="cn">電脳過負荷</span>
-      <span class="fr">Digital Noise</span>
-      <span class="mo">vol.02 / static / 演算過剰</span>
-    </div>
+  <div class="title">
+    <div class="dg">デジタル＝</div>
+    <div class="ov">OVERLOAD<span class="echo">OVERLOAD</span></div>
   </div>
 
-  <div class="hero">
-    <div class="rail bx">
-      <div class="rr"><b>01</b>— 電</div>
-      <div class="rr"><b>02</b>— 脳</div>
-      <div class="rr"><b>03</b>— 雑</div>
-      <div class="rr"><b>04</b>— 音</div>
-      <div class="rr"><b>05</b>— 過</div>
-      <div class="rr"><b>06</b>— 負</div>
-      <div class="rr"><b>07</b>— 荷</div>
-      <div class="rr"><b>08</b>— 渦</div>
-      <span class="vtxt">電脳演算過剰</span>
-      <div class="barcode"></div>
-    </div>
+  <div class="vkata" style="right:0;top:150px">デジタル過負荷ノ嵐</div>
 
-    <div class="eyebox bx">
-      <span class="eye"></span>
-      <a class="gate" href="3.html" aria-label="進む"></a>
-      <span class="c tl">sgnl—loss</span>
-      <span class="c tr">0xFE</span>
-      <span class="c bl">渦 / the static</span>
-      <span class="c br">buffer:full</span>
-      <span class="num">弐</span>
-    </div>
+  <div class="head" style="left:300px;top:330px;width:380px;height:380px"></div>
+  <a class="gate gatebox" href="3.html" aria-label="進む" style="left:300px;top:330px;width:380px;height:380px"></a>
 
-    <div class="rcol">
-      <div class="numrow">
-        <span class="n">弐</span>
-        <span class="sym" style="width:46px;height:46px;-webkit-mask-image:url('assets/sym/s13.svg');mask-image:url('assets/sym/s13.svg')"></span>
-      </div>
-      <div class="list bt bb">
-        <div class="row cur"><span class="mk">+</span><span class="jp">入力</span><span class="ld"></span><span class="en">input</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">出力</span><span class="ld"></span><span class="en">output</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">演算</span><span class="ld"></span><span class="en">process</span></div>
-        <div class="row"><span class="mk">×</span><span class="jp">暴走</span><span class="ld"></span><span class="en">runaway</span></div>
-      </div>
-      <div class="split">雑&nbsp;—&nbsp;音<br><b>NO</b>—IZE</div>
-      <p class="para">電脳ノ第二層、信号ハ既ニ失ワレタ。노이즈는 신호의 그림자。所有的声音都是错误的回响。Every voice is a glitch — static rising, meaning dissolving into noise.</p>
-      <div class="iconrow">
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s42.svg');mask-image:url('assets/sym/s42.svg')"></span>
-        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
-        <span class="kv">no.002 / static</span>
-      </div>
-    </div>
+  <div class="wire" style="left:20px;top:660px;width:250px;height:120px;-webkit-mask-image:url('assets/circuit/c15.svg');mask-image:url('assets/circuit/c15.svg')"></div>
+  <div class="wire" style="left:560px;top:700px;width:300px;height:150px;-webkit-mask-image:url('assets/circuit/c33.svg');mask-image:url('assets/circuit/c33.svg')"></div>
+  <div class="wire" style="left:640px;top:330px;width:180px;height:120px;-webkit-mask-image:url('assets/circuit/c5.svg');mask-image:url('assets/circuit/c5.svg')"></div>
+
+  <div class="frag f-jp" style="left:30px;top:300px;font-size:30px;color:var(--white)">ブレインノイズ</div>
+  <div class="frag f-mono" style="left:30px;top:344px;font-size:18px;letter-spacing:.12em;color:var(--accent)">but i can't feel a thing</div>
+  <div class="frag f-cn" style="left:600px;top:248px;font-size:46px;color:var(--accent)">噪音之嵐</div>
+  <div class="frag f-jp" style="left:470px;top:790px;width:360px;font-size:15px;line-height:1.5;color:var(--accent)">所有的声音都是错误的回响。노이즈는 신호의 그림자。Every voice is a glitch — meaning dissolving into static.</div>
+  <div class="frag f-mono" style="left:30px;top:872px;font-size:16px;letter-spacing:.1em;color:var(--white)">信号喪失 / 신호 상실 / 0xfe</div>
+
+  <div class="glitch" style="left:30px;top:430px;width:230px;height:64px"></div>
+  <div class="halftone" style="left:30px;top:524px;font-size:30px;color:var(--accent)">█▓▒░▒▓█ ノイズ ░▒▓█▓▒░</div>
+
+  <span class="sym" style="position:absolute;left:268px;top:255px;width:26px;height:26px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span>
+  <span class="sym w" style="position:absolute;left:690px;top:636px;width:26px;height:26px;-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span>
+  <span class="sym" style="position:absolute;left:842px;top:560px;width:30px;height:30px;-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span>
+
+  <div class="spec" style="left:30px;top:952px">
+    packet&nbsp;: <b>0xFE</b><br>signal&nbsp;: <b>LOST</b><br>noise&nbsp;&nbsp;: <b>0.91</b>
   </div>
 
-  <div class="specs bt bb">
-    <div class="sr"><span class="k">packet</span><span>:</span><span class="v">0xFE</span></div>
-    <div class="sr"><span class="k">layer</span><span>:</span><span class="v">02 / ∞</span></div>
-    <div class="sr"><span class="k">signal</span><span>:</span><span class="v">LOST</span></div>
-    <div class="sr"><span class="k">noise</span><span>:</span><span class="v">0.91</span></div>
-    <div class="sr"><span class="k">node</span><span>:</span><span class="v">渦 / vortex</span></div>
-    <div class="sr"><span class="k">exit</span><span>:</span><span class="v">NONE</span></div>
+  <div class="static" style="right:0;top:980px">STATIC</div>
+
+  <div class="foot-line">
+    <span class="lg"><span class="sym" style="width:24px;height:24px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>4SOU9</span>
+    <span class="mid">— 信号は既に失われている —</span>
+    <span>034 · N35.6 E139.7</span>
   </div>
 
-  <div class="glyphs bb">
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s6.svg');mask-image:url('assets/sym/s6.svg')"></span><em>a1</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span><em>b2</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s42.svg');mask-image:url('assets/sym/s42.svg')"></span><em>c3</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s9.svg');mask-image:url('assets/sym/s9.svg')"></span><em>d4</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg')"></span><em>e5</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s27.svg');mask-image:url('assets/sym/s27.svg')"></span><em>f6</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s64.svg');mask-image:url('assets/sym/s64.svg')"></span><em>g7</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span><em>h8</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span><em>i9</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span><em>j0</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span><em>k1</em></div>
-    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s77.svg');mask-image:url('assets/sym/s77.svg')"></span><em>l2</em></div>
-    <span class="kv" style="margin-left:auto">index // 012 glyphs</span>
-  </div>
-
-  <div class="lower">
-    <span class="ghostfig"></span>
-    <div class="fig">
-      <span class="h"></span>
-      <span class="cap">fig.02 — body</span>
-    </div>
-    <div class="modcol">
-      <div class="hd">transmission</div>
-      <div class="mr"><span>freq</span><b>17.4</b></div>
-      <div class="mr"><span>sig</span><b>░▒▓██</b></div>
-      <div class="mr"><span>loss</span><b>0.91</b></div>
-      <div class="mr"><span>知覚</span><b>過剰</b></div>
-      <div class="modgrid">
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s19.svg');mask-image:url('assets/sym/s19.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s62.svg');mask-image:url('assets/sym/s62.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s85.svg');mask-image:url('assets/sym/s85.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s73.svg');mask-image:url('assets/sym/s73.svg')"></span>
-        <span class="sym" style="-webkit-mask-image:url('assets/sym/s57.svg');mask-image:url('assets/sym/s57.svg')"></span>
-      </div>
-    </div>
-    <div class="intent">STATIC</div>
-  </div>
-
-  <div class="caps bt">
-    <div class="r"><span>INTO</span><span class="sep"></span><span class="o">雑音</span><span class="sep"></span><span>STATIC</span></div>
-    <div class="r"><span class="o">過負荷</span><span class="sep"></span><span>第二層</span><span class="sep"></span><span class="o">노이즈</span></div>
-    <div class="r"><span>PROCESS</span><span class="sep"></span><span class="o">暴走</span><span class="sep"></span><span>OVERLOAD</span></div>
-  </div>
-
-  <div class="foot bt">
-    <div class="lg">
-      <span class="sym" style="width:25px;height:25px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
-      4SOU9
-    </div>
-    <div class="mid">— 信号は既に失われている —</div>
-    <div class="rg">
-      <span>N35.6 E139.7</span>
-      <span class="hatch"><i></i><i></i><i></i><i></i></span>
-    </div>
-  </div>
-
+ </div>
 </div>
 </body>
 </html>
