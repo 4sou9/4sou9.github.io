@@ -51,11 +51,13 @@
 .rowA{display:grid;grid-template-columns:116px 1fr 170px 40px;gap:var(--g);height:402px}
 .rowB{display:grid;grid-template-columns:1fr 300px;gap:var(--g);align-items:stretch}
 .rowC{display:grid;grid-template-columns:1fr 170px 170px;gap:var(--g);height:160px}
-.rstack{display:flex;flex-direction:column;gap:var(--g)}
-.rrow{display:flex;gap:var(--g)}
+.rstack{display:flex;flex-direction:column;gap:var(--g);min-width:0}
+.rrow{display:flex;gap:var(--g);min-width:0}
+.rrow>*{min-width:0}
 
 /* 汎用ウィンドウ */
-.win{border:var(--bw) solid var(--accent);position:relative;display:flex;flex-direction:column}
+.win{border:var(--bw) solid var(--accent);position:relative;display:flex;flex-direction:column;
+  min-width:0;overflow:hidden}
 .win .wh{display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--accent);
   padding:4px 8px;font-family:"Share Tech Mono",monospace;font-size:11px;letter-spacing:.08em;color:var(--white)}
 .win .wh i{width:8px;height:8px;border:1px solid var(--accent);display:block}
@@ -96,8 +98,8 @@
 .ascii{font-family:"JetBrains Mono",monospace;white-space:pre;line-height:1.16;font-size:13px;color:var(--accent)}
 .boxart{font-family:"JetBrains Mono",monospace;white-space:pre;line-height:1.12;font-size:14px;color:var(--white)}
 
-.bars{display:flex;align-items:flex-end;gap:4px;height:64px}
-.bars i{width:9px;background:var(--accent);display:block}
+.bars{display:flex;align-items:flex-end;gap:3px;height:64px}
+.bars i{width:7px;background:var(--accent);display:block;flex:none}
 
 .specs .wb{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;align-content:center}
 .specs .sr{display:flex;gap:6px;font-size:13px;letter-spacing:.06em;color:var(--accent);
