@@ -4,3 +4,7 @@ Thumbs.db
 
 # Claude Code
 .claude/
+
+# 素材ソース・参考（巨大なので除外）
+SVG/
+参考/

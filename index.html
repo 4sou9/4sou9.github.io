@@ -1,81 +1,334 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ねこ</title>
-  <meta name="description" content="ここは備忘録や、作ったソフトや、描いた絵などを公開しているねこ(4sou9)の個人ウェブサイトです。" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第一層 / CLEAR INTENT</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=UnifrakturCook:wght@700&family=VT323&family=Major+Mono+Display&family=Noto+Serif+JP:wght@400;600;800&family=Noto+Sans+KR:wght@400;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ===== 3色フラット（白・オレンジ・黒／階調なし） ===== */
+  --orange:#ff5e00;
+  --white:#f1ebdd;
+  --black:#0a0806;
+  --bw:2px;        /* 枠線幅 */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--black)}
+body{background:var(--black);color:var(--orange);font-family:"Archivo Black",sans-serif;
+  -webkit-font-smoothing:none;
+  display:flex;justify-content:center;align-items:flex-start;
+  min-height:100vh;padding:18px;overflow:auto}   /* 収まらなければ圧縮せず普通にスクロール/拡大 */
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" sizes="48x48" />
-  <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
-  <link rel="icon" href="/icons/favicon-96x96.png" type="image/png" sizes="96x96" />
-  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#1a1a1a" />
+/* ===== フォント ===== */
+.f-anton{font-family:"Anton",sans-serif}
+.f-arch {font-family:"Archivo Black",sans-serif}
+.f-frak {font-family:"UnifrakturCook",cursive}
+.f-pix  {font-family:"VT323",monospace}
+.f-mono {font-family:"Major Mono Display",monospace;text-transform:lowercase}
+.f-jp   {font-family:"Noto Serif JP",serif}
+.f-kr   {font-family:"Noto Sans KR",sans-serif}
+.f-cn   {font-family:"Ma Shan Zheng",cursive}
+.w{color:var(--white)} .o{color:var(--orange)}
 
-  <!-- OGP -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://4sou9.github.io/" />
-  <meta property="og:title" content="ねこ" />
-  <meta property="og:description" content="Link" />
-  <meta property="og:image" content="https://4sou9.github.io/icons/og-image.svg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ねこ" />
-  <meta name="twitter:description" content="Link" />
-  <meta name="twitter:image" content="https://4sou9.github.io/icons/og-image.svg" />
+/* ===== 縦長ポスター（固定px） ===== */
+.poster{position:relative;width:960px;flex:0 0 960px;background:transparent;
+  filter:url(#ink);                 /* 全要素に1パスのインク（ぼかし→二階調化） */
+  padding:22px;display:flex;flex-direction:column;gap:9px}
 
-  <style>html { background: #1a1a1a; scrollbar-gutter: stable both-edges; }</style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "ねこ",
-    "alternateName": "4sou9",
-    "url": "https://4sou9.github.io/",
-    "description": "ここは備忘録や、作ったソフトや、描いた絵などを公開しているねこ(4sou9)の個人ウェブサイトです。",
-    "sameAs": [
-      "https://github.com/4sou9",
-      "https://steamcommunity.com/id/nekonanox"
-    ]
-  }
-  </script>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #1a1a1a;
-      color: #f4f5f7;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-        "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
-      font-size: 16px;
-      line-height: 1.75;
-      margin: 0 auto;
-      max-width: 46rem;
-      padding: 3rem 1.25rem 4rem;
-    }
-    h1 { font-size: 1.2rem; font-weight: 600; margin: 0 0 2.5rem; }
-    nav { display: flex; flex-direction: column; gap: 0.4rem; }
-    a { color: #f4f5f7; text-decoration: none; font-size: 1rem; font-weight: 500; }
-    a:visited { color: #aab2bd; }
-    a:hover { text-decoration: underline; }
-  </style>
+.bx{border:var(--bw) solid var(--orange)}
+.bt{border-top:var(--bw) solid var(--orange)}
+.bb{border-bottom:var(--bw) solid var(--orange)}
+
+/* 記号マスク */
+.sym{display:inline-block;background:var(--orange);vertical-align:middle;
+  -webkit-mask-mode:alpha;mask-mode:alpha;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:contain;mask-size:contain}
+.sym.w{background:var(--white)}
+
+/* ---- ブランドバー ---- */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding-bottom:8px;gap:16px}
+.topbar .l,.topbar .r{display:flex;align-items:center;gap:11px}
+.brand{font-family:"Major Mono Display",monospace;font-size:17px;letter-spacing:.05em;color:var(--orange)}
+.kv{font-size:12px;letter-spacing:.22em;color:var(--orange);font-family:"Major Mono Display",monospace}
+.badge{font-family:"Anton",sans-serif;font-size:56px;line-height:.7;color:var(--orange)}
+.dots{display:flex;gap:7px} .dots i{width:8px;height:8px;background:var(--orange);display:block;opacity:.35}
+.dots i.on{opacity:1}
+
+/* ---- ticker ---- */
+.ticker{font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.18em;
+  color:var(--orange);white-space:nowrap;overflow:hidden;padding:5px 0}
+
+/* ---- マストヘッド ---- */
+.mast{line-height:.74;padding:4px 0 2px}
+.mast .big{font-family:"Anton",sans-serif;font-size:138px;letter-spacing:-.01em;color:var(--orange)}
+.mast .sub{display:flex;align-items:baseline;gap:16px;margin-top:6px}
+.mast .sub .cn{font-family:"Ma Shan Zheng",cursive;font-size:38px;color:var(--white)}
+.mast .sub .fr{font-family:"UnifrakturCook",cursive;font-size:28px;color:var(--orange)}
+.mast .sub .mo{font-family:"Major Mono Display",monospace;font-size:14px;color:var(--orange);letter-spacing:.15em}
+
+/* ---- HERO ---- */
+.hero{display:grid;grid-template-columns:120px 1fr 290px;gap:10px}
+.rail{display:flex;flex-direction:column;gap:5px;font-family:"Major Mono Display",monospace;padding:8px 6px}
+.rail .rr{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--orange);letter-spacing:.06em}
+.rail .rr b{color:var(--white);font-weight:400}
+.vtxt{writing-mode:vertical-rl;font-family:"Noto Serif JP",serif;font-weight:600;
+  font-size:20px;letter-spacing:.3em;color:var(--white);margin-top:auto}
+.barcode{height:28px;margin-top:8px;
+  background:repeating-linear-gradient(90deg,var(--orange) 0 3px,transparent 3px 6px,var(--orange) 6px 8px,transparent 8px 13px)}
+
+.eyebox{position:relative;height:440px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.eye{position:absolute;inset:6%;background:var(--orange);
+  -webkit-mask-image:url('assets/grunge/g19.svg');mask-image:url('assets/grunge/g19.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
+.gate{position:absolute;inset:0;cursor:default;-webkit-tap-highlight-color:transparent}
+.gate:focus{outline:none}
+.eyebox .c{position:absolute;font-family:"Major Mono Display",monospace;font-size:12px;
+  color:var(--orange);letter-spacing:.1em}
+.eyebox .tl{left:8px;top:6px} .eyebox .tr{right:8px;top:6px}
+.eyebox .bl{left:8px;bottom:6px} .eyebox .br{right:8px;bottom:6px}
+.eyebox .num{position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  font-family:"Anton",sans-serif;font-size:30px;color:var(--orange);writing-mode:vertical-rl}
+
+.rcol{display:flex;flex-direction:column;gap:8px}
+.numrow{display:flex;align-items:flex-start;justify-content:space-between}
+.numrow .n{font-family:"Anton",sans-serif;font-size:64px;line-height:.72;color:var(--orange)}
+.list{display:flex;flex-direction:column;gap:4px;padding:9px 0}
+.list .row{display:flex;align-items:center;gap:6px;font-family:"Major Mono Display",monospace;
+  font-size:12px;letter-spacing:.06em}
+.list .row .mk{width:12px;text-align:center;color:var(--orange)}
+.list .row .jp{font-family:"Noto Serif JP",serif;color:var(--white);min-width:4.2em;font-size:14px}
+.list .row .ld{flex:1;border-bottom:var(--bw) dashed var(--orange);height:1px}
+.list .row .en{color:var(--orange)}
+.split{font-family:"Anton",sans-serif;line-height:.84;color:var(--orange);font-size:52px}
+.split b{color:var(--white);font-weight:inherit}
+.para{font-family:"Noto Serif JP",serif;font-weight:400;text-align:justify;
+  font-size:13px;line-height:1.55;color:var(--orange)}
+.iconrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* ---- スペック表 ---- */
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;padding:5px 0}
+.specs .sr{display:flex;align-items:center;gap:6px;font-family:"Major Mono Display",monospace;
+  font-size:13px;letter-spacing:.06em;color:var(--orange);padding:3px 0;
+  border-bottom:var(--bw) dotted var(--orange)}
+.specs .sr .k{min-width:4em} .specs .sr .v{color:var(--white);margin-left:auto}
+
+/* ---- グリフ索引 ---- */
+.glyphs{display:flex;align-items:center;gap:11px;padding:5px 0;overflow:hidden}
+.glyphs .g{display:flex;flex-direction:column;align-items:center;gap:2px}
+.glyphs .g .sym{width:20px;height:20px}
+.glyphs .g em{font-family:"Major Mono Display",monospace;font-size:10px;color:var(--orange);font-style:normal}
+
+/* ---- 図＋INTENT ---- */
+.lower{position:relative;display:grid;grid-template-columns:190px 165px 1fr;gap:10px;align-items:end}
+.modcol{display:flex;flex-direction:column;gap:4px;font-family:"Major Mono Display",monospace;
+  font-size:12px;color:var(--orange);padding-bottom:5px}
+.modcol .hd{color:var(--orange);letter-spacing:.12em;border-bottom:var(--bw) solid var(--orange);padding-bottom:3px;margin-bottom:3px}
+.modcol .mr{display:flex;justify-content:space-between;gap:6px}
+.modcol .mr b{color:var(--white);font-weight:400}
+.modgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+.modgrid .sym{width:100%;height:22px}
+.ghostfig{position:absolute;right:0;bottom:0;height:118%;width:150px;background:var(--orange);opacity:.5;
+  -webkit-mask-image:url('assets/fig/f13.svg');mask-image:url('assets/fig/f13.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:bottom right;mask-position:bottom right;-webkit-mask-mode:alpha;mask-mode:alpha;
+  z-index:0;pointer-events:none}
+.fig{height:210px;display:flex;align-items:flex-end;justify-content:center;position:relative;z-index:1}
+.fig .h{width:78%;height:100%;background:var(--orange);
+  -webkit-mask-image:url('assets/fig/f19.svg');mask-image:url('assets/fig/f19.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:bottom;mask-position:bottom;-webkit-mask-mode:alpha;mask-mode:alpha}
+.fig .cap{position:absolute;left:4px;top:2px;font-family:"Major Mono Display",monospace;font-size:12px;color:var(--orange)}
+.intent{font-family:"Anton",sans-serif;font-size:175px;line-height:.7;color:var(--orange);text-align:right}
+
+/* ---- キャプション ---- */
+.caps{display:flex;flex-direction:column;gap:5px;padding:8px 0}
+.caps .r{display:flex;align-items:center;gap:10px;font-family:"Noto Sans KR",sans-serif;font-weight:700;
+  font-size:16px;letter-spacing:.16em;color:var(--white)}
+.caps .r .sep{flex:1;border-bottom:var(--bw) solid var(--orange);height:1px}
+.caps .r .o{color:var(--orange)}
+
+/* ---- フッター ---- */
+.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:8px}
+.foot .lg{display:flex;align-items:center;gap:10px;font-family:"Anton",sans-serif;font-size:32px;
+  letter-spacing:.04em;color:var(--orange)}
+.foot .mid{font-family:"Noto Serif JP",serif;font-weight:600;font-size:13px;letter-spacing:.18em;color:var(--white)}
+.foot .rg{display:flex;align-items:center;gap:10px;font-family:"Major Mono Display",monospace;
+  font-size:13px;letter-spacing:.12em;color:var(--orange)}
+.hatch{display:flex;gap:3px} .hatch i{width:10px;height:10px;border:var(--bw) solid var(--orange);display:block}
+</style>
 </head>
 <body>
-  <main>
-    <h1>ねこ</h1>
-    <nav>
-      <a href="https://4sou9.github.io/blog/">Blog</a>
-      <a href="https://github.com/4sou9">GitHub</a>
-      <a href="https://steamcommunity.com/id/nekonanox">Steam</a>
-      <a href="https://discord.com/invite/rm9rVX8xhY">Discord</a>
-      <a href="https://x.com/anime_anpanman">X</a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">YouTube</a>
-    </nav>
-  </main>
-  <footer style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">
-    <a href="/sitemap.html">サイトマップ</a>
-  </footer>
+
+<!-- インク：全体に1パス（ぼかし→二階調化） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" result="b"/>
+    <feColorMatrix in="b" type="matrix"
+      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 13 -4" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="6" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+
+  <!-- ブランドバー -->
+  <div class="topbar bb">
+    <div class="l">
+      <span class="brand">probability.</span>
+      <span class="sym" style="width:16px;height:16px;-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span>
+      <span class="kv">確率論 OS // 第一層</span>
+    </div>
+    <div class="r">
+      <span class="dots"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i></span>
+      <span class="kv">DM</span>
+      <span class="badge">033</span>
+    </div>
+  </div>
+
+  <!-- ticker -->
+  <div class="ticker bb">// ENTERING THE FIRST LAYER · 第一層 · 미로 · 觉醒 · seed&nbsp;20260624 · ∴∴ · NO&nbsp;EXIT · 概率&nbsp;0.33 · 視 · //</div>
+
+  <!-- マストヘッド -->
+  <div class="mast">
+    <div class="big">PROBABILITY</div>
+    <div class="sub">
+      <span class="cn">混沌の確率</span>
+      <span class="fr">Clear Intent</span>
+      <span class="mo">vol.01 / entrance / 観測装置</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <!-- 左レール -->
+    <div class="rail bx">
+      <div class="rr"><b>01</b>— 觀</div>
+      <div class="rr"><b>02</b>— 闇</div>
+      <div class="rr"><b>03</b>— 識</div>
+      <div class="rr"><b>04</b>— 層</div>
+      <div class="rr"><b>05</b>— 門</div>
+      <div class="rr"><b>06</b>— 視</div>
+      <div class="rr"><b>07</b>— 迷</div>
+      <div class="rr"><b>08</b>— 觉</div>
+      <span class="vtxt">確率観測装置</span>
+      <div class="barcode"></div>
+    </div>
+
+    <!-- 目（隠しゲート） -->
+    <div class="eyebox bx">
+      <span class="eye"></span>
+      <a class="gate" href="2.html" aria-label="進む"></a>
+      <span class="c tl">obsv—∞</span>
+      <span class="c tr">x33·1</span>
+      <span class="c bl">視 / the watcher</span>
+      <span class="c br">gate:open</span>
+      <span class="num">壱</span>
+    </div>
+
+    <!-- 右レール -->
+    <div class="rcol">
+      <div class="numrow">
+        <span class="n">壱</span>
+        <span class="sym" style="width:46px;height:46px;-webkit-mask-image:url('assets/sym/s13.svg');mask-image:url('assets/sym/s13.svg')"></span>
+      </div>
+      <div class="list bt bb">
+        <div class="row cur"><span class="mk">+</span><span class="jp">意識</span><span class="ld"></span><span class="en">conscious</span></div>
+        <div class="row"><span class="mk">×</span><span class="jp">無意識</span><span class="ld"></span><span class="en">subconscious</span></div>
+        <div class="row"><span class="mk">×</span><span class="jp">超意識</span><span class="ld"></span><span class="en">superconscious</span></div>
+        <div class="row"><span class="mk">×</span><span class="jp">非意識</span><span class="ld"></span><span class="en">nonconscious</span></div>
+      </div>
+      <div class="split">迷&nbsp;—&nbsp;宮<br><b>MEI</b>—KYU</div>
+      <p class="para">迷宮ノ第一層ニ立ツ者ヘ。視ヨ、出口ハ既ニ開イテイル。확률은 선택의 그림자。注视着你的不是镜子，而是第一道门。Probability is intent rendered visible — small alterations, infinite futures.</p>
+      <div class="iconrow">
+        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span>
+        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
+        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s42.svg');mask-image:url('assets/sym/s42.svg')"></span>
+        <span class="sym" style="width:19px;height:19px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
+        <span class="kv">no.001 / entrance</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- スペック表 -->
+  <div class="specs bt bb">
+    <div class="sr"><span class="k">seed</span><span>:</span><span class="v">20260624</span></div>
+    <div class="sr"><span class="k">layer</span><span>:</span><span class="v">01 / ∞</span></div>
+    <div class="sr"><span class="k">gate</span><span>:</span><span class="v">OPEN</span></div>
+    <div class="sr"><span class="k">risk</span><span>:</span><span class="v">0.33</span></div>
+    <div class="sr"><span class="k">node</span><span>:</span><span class="v">視 / watcher</span></div>
+    <div class="sr"><span class="k">exit</span><span>:</span><span class="v">NONE</span></div>
+  </div>
+
+  <!-- グリフ索引 -->
+  <div class="glyphs bb">
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s6.svg');mask-image:url('assets/sym/s6.svg')"></span><em>a1</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s40.svg');mask-image:url('assets/sym/s40.svg')"></span><em>b2</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s42.svg');mask-image:url('assets/sym/s42.svg')"></span><em>c3</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s9.svg');mask-image:url('assets/sym/s9.svg')"></span><em>d4</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg')"></span><em>e5</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s27.svg');mask-image:url('assets/sym/s27.svg')"></span><em>f6</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s64.svg');mask-image:url('assets/sym/s64.svg')"></span><em>g7</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span><em>h8</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span><em>i9</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s44.svg');mask-image:url('assets/sym/s44.svg')"></span><em>j0</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span><em>k1</em></div>
+    <div class="g"><span class="sym" style="-webkit-mask-image:url('assets/sym/s77.svg');mask-image:url('assets/sym/s77.svg')"></span><em>l2</em></div>
+    <span class="kv" style="margin-left:auto">index // 012 glyphs</span>
+  </div>
+
+  <!-- 図＋モジュール＋INTENT -->
+  <div class="lower">
+    <span class="ghostfig"></span>
+    <div class="fig">
+      <span class="h"></span>
+      <span class="cap">fig.01 — hand</span>
+    </div>
+    <div class="modcol">
+      <div class="hd">transmission</div>
+      <div class="mr"><span>freq</span><b>33.1</b></div>
+      <div class="mr"><span>sig</span><b>██▓▒░</b></div>
+      <div class="mr"><span>loss</span><b>0.07</b></div>
+      <div class="mr"><span>知覚</span><b>覚醒</b></div>
+      <div class="modgrid">
+        <span class="sym" style="-webkit-mask-image:url('assets/sym/s19.svg');mask-image:url('assets/sym/s19.svg')"></span>
+        <span class="sym" style="-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span>
+        <span class="sym" style="-webkit-mask-image:url('assets/sym/s62.svg');mask-image:url('assets/sym/s62.svg')"></span>
+        <span class="sym" style="-webkit-mask-image:url('assets/sym/s85.svg');mask-image:url('assets/sym/s85.svg')"></span>
+        <span class="sym" style="-webkit-mask-image:url('assets/sym/s73.svg');mask-image:url('assets/sym/s73.svg')"></span>
+        <span class="sym" style="-webkit-mask-image:url('assets/sym/s57.svg');mask-image:url('assets/sym/s57.svg')"></span>
+      </div>
+    </div>
+    <div class="intent">INTENT</div>
+  </div>
+
+  <!-- キャプション -->
+  <div class="caps bt">
+    <div class="r"><span>WITH</span><span class="sep"></span><span class="o">明晰</span><span class="sep"></span><span>INTENT</span></div>
+    <div class="r"><span class="o">迷宮</span><span class="sep"></span><span>第一層</span><span class="sep"></span><span class="o">시작</span></div>
+    <div class="r"><span>OBSERVE</span><span class="sep"></span><span class="o">觉醒</span><span class="sep"></span><span>PROBABILITIES</span></div>
+  </div>
+
+  <!-- フッター -->
+  <div class="foot bt">
+    <div class="lg">
+      <span class="sym" style="width:25px;height:25px;-webkit-mask-image:url('assets/sym/s32.svg');mask-image:url('assets/sym/s32.svg')"></span>
+      4SOU9
+    </div>
+    <div class="mid">— 視よ、第一の門は既に開いている —</div>
+    <div class="rg">
+      <span>N35.6 E139.7</span>
+      <span class="hatch"><i></i><i></i><i></i><i></i></span>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
