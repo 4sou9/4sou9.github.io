@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第七層 / OMEN</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Nosifer&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="assets/poster.css" rel="stylesheet">
+<style>
+/* 鋼色 × トキシックグリーン × 黒 */
+:root{ --accent:#b9bccb; --white:#a6ff3a; --black:#090a0c; --bw:2px; }
+.stage{position:relative;width:100%;height:980px;font-family:"Share Tech Mono",monospace}
+.rm{font-family:"Rubik Mono One",sans-serif} .nos{font-family:"Nosifer",cursive} .sh{font-family:"Share Tech Mono",monospace}
+.g{color:var(--white)}
+
+/* 見出し（唯一の大きな文字） */
+.head{position:absolute;left:0;right:0;top:6px;text-align:center;line-height:.9}
+.head .t{font-family:"Rubik Mono One",sans-serif;font-size:128px;letter-spacing:.02em;color:var(--accent)}
+.head .d{font-family:"Nosifer",cursive;font-size:66px;color:var(--white);margin-top:-22px;display:block}
+
+/* パネル */
+.panel{position:absolute;border:var(--bw) solid var(--accent);overflow:hidden}
+.panel::after{content:"";position:absolute;inset:4px;border:1px solid var(--accent);pointer-events:none}
+.art{position:absolute;inset:8%;background:var(--accent);-webkit-mask-mode:alpha;mask-mode:alpha;
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+.flip{transform:scaleX(-1)}
+.lbl{position:absolute;font-family:"Share Tech Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--accent)}
+
+/* 鏡像の小箱（下部） */
+.minibox{position:absolute;border:var(--bw) solid var(--white);height:50px;overflow:hidden}
+.minibox .dots{position:absolute;inset:0;
+  background:radial-gradient(var(--white) 1.6px,transparent 1.7px) 0 0/14px 14px}
+
+/* ドット三角クラスタ（緑・対称） */
+.dottri{position:absolute;display:flex;flex-direction:column;gap:5px}
+.dottri .r{display:flex;gap:5px}
+.dottri i{width:7px;height:7px;background:var(--white);display:block}
+
+/* 小記号 */
+.sym2{position:absolute;background:var(--white);-webkit-mask-mode:alpha;mask-mode:alpha;
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+.conn{position:absolute;display:flex;align-items:center;gap:4px;color:var(--white)}
+.conn i{width:8px;height:8px;border:1.5px solid var(--white);border-radius:50%;display:block}
+.conn b{width:34px;height:1.5px;background:var(--white);display:block}
+
+.corner{position:absolute;font-family:"Share Tech Mono",monospace;font-size:13px;letter-spacing:.14em;color:var(--white)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 13 -4" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="6" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+ <div class="stage">
+
+  <!-- 見出し -->
+  <div class="head">
+    <span class="t">OMEN</span>
+    <span class="d">visions</span>
+  </div>
+
+  <!-- 上部隅：対称クラスタ -->
+  <span class="conn" style="left:40px;top:70px"><i></i><b></b><i></i></span>
+  <span class="conn flip" style="right:40px;top:70px"><i></i><b></b><i></i></span>
+  <span class="sym2" style="left:48px;top:104px;width:22px;height:22px;-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span>
+  <span class="sym2 flip" style="right:48px;top:104px;width:22px;height:22px;-webkit-mask-image:url('assets/sym/s48.svg');mask-image:url('assets/sym/s48.svg')"></span>
+  <div class="minibox" style="left:40px;top:150px;width:130px"><span class="dots"></span></div>
+  <div class="minibox" style="right:40px;top:150px;width:130px"><span class="dots"></span></div>
+  <span class="corner" style="left:44px;top:208px;font-size:11px">SECT 07-A</span>
+  <span class="corner" style="right:44px;top:208px;font-size:11px">SECT 07-B</span>
+
+  <!-- 中央：実体（隠しゲート） -->
+  <div class="panel" style="left:50%;top:208px;width:360px;height:486px;transform:translateX(-50%)">
+    <span class="art" style="-webkit-mask-image:url('assets/fig/f17.svg');mask-image:url('assets/fig/f17.svg')"></span>
+    <span class="lbl" style="left:8px;top:6px">subj.07</span>
+    <span class="lbl" style="right:8px;top:6px">∞</span>
+    <span class="lbl g" style="left:8px;bottom:6px">the entity</span>
+    <span class="lbl" style="right:8px;bottom:6px">07</span>
+    <a class="gate" href="index.html" aria-label="next" style="position:absolute;inset:0;z-index:5"></a>
+  </div>
+
+  <!-- 左右ミラー：肢体パネル -->
+  <div class="panel" style="left:24px;top:236px;width:150px;height:430px">
+    <span class="art" style="-webkit-mask-image:url('assets/fig/f13.svg');mask-image:url('assets/fig/f13.svg')"></span>
+    <span class="lbl" style="left:6px;bottom:5px">L</span>
+  </div>
+  <div class="panel" style="right:24px;top:236px;width:150px;height:430px">
+    <span class="art flip" style="-webkit-mask-image:url('assets/fig/f13.svg');mask-image:url('assets/fig/f13.svg')"></span>
+    <span class="lbl" style="right:6px;bottom:5px">R</span>
+  </div>
+
+  <!-- 緑のドット三角（対称） -->
+  <div class="dottri" style="left:196px;top:470px">
+    <div class="r"><i></i></div><div class="r"><i></i><i></i></div>
+    <div class="r"><i></i><i></i><i></i></div><div class="r"><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="dottri flip" style="right:196px;top:470px">
+    <div class="r"><i></i></div><div class="r"><i></i><i></i></div>
+    <div class="r"><i></i><i></i><i></i></div><div class="r"><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <!-- 対称の小記号 -->
+  <span class="sym2" style="left:200px;top:250px;width:22px;height:22px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
+  <span class="sym2" style="right:200px;top:250px;width:22px;height:22px;-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span>
+  <span class="conn" style="left:190px;top:392px"><i></i><b></b><i></i></span>
+  <span class="conn flip" style="right:190px;top:392px"><i></i><b></b><i></i></span>
+
+  <!-- 下部ミラー小箱 -->
+  <div class="minibox" style="left:24px;top:724px;width:200px"><span class="dots"></span></div>
+  <div class="minibox" style="right:24px;top:724px;width:200px"><span class="dots"></span></div>
+  <div class="minibox" style="left:24px;top:792px;width:150px"><span class="dots"></span></div>
+  <div class="minibox" style="right:24px;top:792px;width:150px"><span class="dots"></span></div>
+
+  <!-- 中央下：コネクタ -->
+  <span class="conn" style="left:50%;top:812px;transform:translateX(-50%)"><i></i><b></b><span class="sym2" style="position:static;width:16px;height:16px;-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span><b></b><i></i></span>
+
+  <!-- 隅ラベル（数少ない文字） -->
+  <span class="corner" style="left:30px;top:690px">GOD 01</span>
+  <span class="corner" style="right:30px;top:690px">CHAOS FE</span>
+  <span class="corner" style="left:50%;bottom:14px;transform:translateX(-50%)">— 07 —</span>
+
+  <!-- 対称ボトム記号 -->
+  <span class="sym2" style="left:240px;top:730px;width:20px;height:20px;-webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg')"></span>
+  <span class="sym2 flip" style="right:240px;top:730px;width:20px;height:20px;-webkit-mask-image:url('assets/sym/s67.svg');mask-image:url('assets/sym/s67.svg')"></span>
+
+ </div>
+</div>
+</body>
+</html>
