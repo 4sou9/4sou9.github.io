@@ -2,7 +2,8 @@
    各ページは個別 <style> で独自レイアウトを定義する。 */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{ --accent:#ff5e00; --white:#f1ebdd; --black:#0a0806; --bw:2px; }
-html{background:var(--black)}
+html{background:var(--black);
+  -webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:var(--black);color:var(--accent);font-family:"Archivo Black",sans-serif;
   -webkit-font-smoothing:none;min-height:100vh;padding:18px;overflow:auto}
 
