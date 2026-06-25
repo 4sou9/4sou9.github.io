@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第八層 / REPLAY</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Pirata+One&family=Share+Tech+Mono&family=Anton&display=swap" rel="stylesheet">
+<link href="assets/poster.css" rel="stylesheet">
+<style>
+/* モーブピンク × 黒（角丸テーマ） */
+:root{ --accent:#d6a0c8; --white:#d6a0c8; --black:#0c0a0d; --bw:2px; --rad:26px; }
+.wrap{display:flex;flex-direction:column;gap:14px;font-family:"Share Tech Mono",monospace}
+.ab{font-family:"Archivo Black",sans-serif} .pir{font-family:"Pirata One",cursive}
+.sh{font-family:"Share Tech Mono",monospace} .an{font-family:"Anton",sans-serif}
+
+/* 見出し */
+.head{font-family:"Archivo Black",sans-serif;font-size:152px;line-height:.82;letter-spacing:-.01em;
+  color:var(--accent);text-align:center}
+
+/* サブヘッダ行 */
+.sub{display:flex;align-items:center;gap:14px;font-family:"Archivo Black",sans-serif;font-size:18px;
+  letter-spacing:.04em;color:var(--accent)}
+.sub .ico{display:flex;gap:8px;align-items:center}
+.sub .ico .sym{width:20px;height:20px}
+.sub .line{flex:1;height:2px;background:var(--accent);position:relative}
+.sub .line .sym{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;background:var(--black)}
+.sub .vs{font-family:"Pirata One",cursive;font-size:26px;letter-spacing:.06em}
+
+/* 角丸モニター */
+.mon{border:var(--bw) solid var(--accent);border-radius:var(--rad);position:relative;overflow:hidden}
+.mon .scr{position:absolute;inset:9px;border:1px solid var(--accent);border-radius:18px;overflow:hidden}
+.mon .img{position:absolute;inset:6%;background:var(--accent);-webkit-mask-mode:alpha;mask-mode:alpha;
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+.mon .lab{position:absolute;font-family:"Share Tech Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--accent);z-index:2}
+.mon .lab.tl{left:14px;top:11px} .mon .lab.br{right:14px;bottom:11px} .mon .lab.bl{left:14px;bottom:11px}
+.static{position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,var(--accent) 0 1px,transparent 1px 3px),
+            repeating-linear-gradient(90deg,var(--accent) 0 1px,transparent 1px 4px)}
+
+.mainrow{display:grid;grid-template-columns:1fr 210px;gap:14px;height:430px}
+
+/* 右列：333・球・物体 */
+.rcol{display:flex;flex-direction:column;align-items:center;gap:10px}
+.num333{font-family:"Archivo Black",sans-serif;font-size:56px;line-height:.8;color:var(--accent);position:relative}
+.num333 .m{position:absolute;font-family:"Share Tech Mono",monospace;font-size:12px}
+.num333 .m.t{top:-12px;left:50%;transform:translateX(-50%)} .num333 .m.b{bottom:-12px;left:50%;transform:translateX(-50%)}
+.obj{width:100%;border:var(--bw) solid var(--accent);border-radius:18px;aspect-ratio:1.2;position:relative;display:flex;align-items:center;justify-content:center}
+.obj .sym{width:72%;height:72%}
+.obj em{position:absolute;left:8px;bottom:5px;font-family:"Share Tech Mono",monospace;font-size:10px;font-style:normal;color:var(--accent)}
+.objrow{display:flex;gap:8px;width:100%}
+.objrow .obj{aspect-ratio:1}
+
+.botrow{display:grid;grid-template-columns:1fr 1fr 1.05fr;gap:14px;height:236px}
+.txtcell{border:var(--bw) solid var(--accent);border-radius:var(--rad);padding:14px 16px;position:relative;display:flex;flex-direction:column}
+.txtcell .lorem{font-family:"Share Tech Mono",monospace;font-size:11px;line-height:1.6;color:var(--accent);text-align:justify}
+.txtcell .p2{font-family:"Archivo Black",sans-serif;font-size:34px;color:var(--accent);margin-top:auto}
+.txtcell .mini{position:absolute;right:14px;bottom:12px;font-family:"Archivo Black",sans-serif;font-size:30px;color:var(--accent)}
+
+.ft{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border:var(--bw) solid var(--accent);border-radius:40px;padding:8px 22px;
+  font-family:"Share Tech Mono",monospace;font-size:13px;letter-spacing:.1em;color:var(--accent)}
+.ft .lg{font-family:"Archivo Black",sans-serif;font-size:22px}
+.ft .pir{font-family:"Pirata One",cursive;font-size:20px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 13 -4" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="6" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+ <div class="wrap">
+
+  <div class="head">REPLAY</div>
+
+  <div class="sub">
+    <span class="ico">
+      <span class="sym" style="-webkit-mask-image:url('assets/sym/s33.svg');mask-image:url('assets/sym/s33.svg')"></span>
+      <span class="sym" style="-webkit-mask-image:url('assets/sym/s38.svg');mask-image:url('assets/sym/s38.svg')"></span>
+    </span>
+    <span>VCR.</span>
+    <span class="line"><span class="sym" style="-webkit-mask-image:url('assets/sym/s79.svg');mask-image:url('assets/sym/s79.svg')"></span></span>
+    <span class="vs">Dead Air</span>
+  </div>
+
+  <!-- メイン：大モニター ＋ 右列 -->
+  <div class="mainrow">
+    <div class="mon">
+      <div class="scr">
+        <span class="static" style="opacity:.18"></span>
+        <span class="img" style="-webkit-mask-image:url('assets/grunge/g3.svg');mask-image:url('assets/grunge/g3.svg')"></span>
+      </div>
+      <span class="lab tl">REC · CH.08 // 再放送</span>
+      <span class="lab br">00:33:33</span>
+      <a class="gate" href="index.html" aria-label="next" style="position:absolute;inset:0;z-index:5"></a>
+    </div>
+
+    <div class="rcol">
+      <div class="num333"><span class="m t">·;·</span>333<span class="m b">·;·</span></div>
+      <div class="obj" style="aspect-ratio:1.35"><span class="sym" style="-webkit-mask-image:url('assets/sym/s39.svg');mask-image:url('assets/sym/s39.svg')"></span><em>orb</em></div>
+      <div class="objrow">
+        <div class="obj"><span class="sym" style="-webkit-mask-image:url('assets/astral/a6.svg');mask-image:url('assets/astral/a6.svg')"></span><em>unit</em></div>
+        <div class="obj"><span class="sym" style="-webkit-mask-image:url('assets/astral/a14.svg');mask-image:url('assets/astral/a14.svg')"></span><em>card</em></div>
+      </div>
+      <div class="obj" style="aspect-ratio:3.4"><span class="sym" style="width:58%;height:58%;-webkit-mask-image:url('assets/astral/a13.svg');mask-image:url('assets/astral/a13.svg')"></span><em>bus</em></div>
+    </div>
+  </div>
+
+  <!-- ボトム：静止画モニター・シーン・テキスト -->
+  <div class="botrow">
+    <div class="mon">
+      <div class="scr"><span class="static"></span></div>
+      <span class="lab bl">NO SIGNAL // 砂嵐</span>
+    </div>
+    <div class="mon">
+      <div class="scr">
+        <span class="static" style="opacity:.16"></span>
+        <span class="img" style="-webkit-mask-image:url('assets/grunge/g7.svg');mask-image:url('assets/grunge/g7.svg')"></span>
+      </div>
+      <span class="lab bl">REPLAY // 03</span>
+    </div>
+    <div class="txtcell">
+      <div class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 信号は繰り返す。何度も、何度も。</div>
+      <div class="p2">P2.</div>
+      <span class="mini">333</span>
+    </div>
+  </div>
+
+  <div class="ft">
+    <span class="lg">▲ 4SOU9</span>
+    <span class="pir">— the broadcast never ends —</span>
+    <span>038 · CH.08 · N35.6 E139.7</span>
+  </div>
+
+ </div>
+</div>
+</body>
+</html>
