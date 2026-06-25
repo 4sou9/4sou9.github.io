@@ -22,6 +22,21 @@ body{background:var(--black);color:var(--orange);font-family:"Archivo Black",san
   -webkit-font-smoothing:none;
   min-height:100vh;padding:18px;overflow:auto}   /* 収まらなければ圧縮せず普通にスクロール/拡大 */
 
+/* bodyのpaddingを考慮し、960px + 左右余白36px = 996px 未満になったら縮小 */
+@media (max-width: 996px) {
+  body {
+    padding: 0; /* 縮小時の余白のズレを防ぐ */
+    overflow-x: hidden; /* 横スクロールバーを完全に防止 */
+  }
+  
+  .poster {
+    /* 画面幅（100vw）に合わせて、960pxのデザインを等比縮小する魔法の計算 */
+    zoom: calc(100vw / 960);
+    width: 960px; /* 固定幅は維持 */
+    margin: 0;
+  }
+}
+
 /* ===== フォント ===== */
 .f-anton{font-family:"Anton",sans-serif}
 .f-arch {font-family:"Archivo Black",sans-serif}
