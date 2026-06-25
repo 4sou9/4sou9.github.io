@@ -1,9 +1,9 @@
 /* ===== 共有プリミティブ（色・フォント・マスク・ポスター枠・インク） =====
    各ページは個別 <style> で独自レイアウトを定義する。 */
-*{margin:0;padding:0;box-sizing:border-box}
-:root{ --accent:#ff5e00; --white:#f1ebdd; --black:#0a0806; --bw:2px; }
-html{background:var(--black);
+*{margin:0;padding:0;box-sizing:border-box;
   -webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{ --accent:#ff5e00; --white:#f1ebdd; --black:#0a0806; --bw:2px; }
+html{background:var(--black)}
 body{background:var(--black);color:var(--accent);font-family:"Archivo Black",sans-serif;
   -webkit-font-smoothing:none;min-height:100vh;padding:18px;overflow:auto}
 
