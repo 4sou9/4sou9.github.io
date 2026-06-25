@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_1" data-name="レイヤー 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#_名称未設定グラデーション_39);
+      }
+    </style>
+    <linearGradient id="_名称未設定グラデーション_39" data-name="名称未設定グラデーション 39" x1="32" y1="64" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1387b8"/>
+      <stop offset=".06" stop-color="#1179a9"/>
+      <stop offset=".25" stop-color="#0f5786"/>
+      <stop offset=".43" stop-color="#0c3d6b"/>
+      <stop offset=".62" stop-color="#0b2a57"/>
+      <stop offset=".81" stop-color="#0a1e4b"/>
+      <stop offset="1" stop-color="#0a1b48"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-1" d="M32,0c17.67,0,32,14.33,32,32s-14.33,32-32,32S0,49.67,0,32,14.33,0,32,0ZM32,8c-13.25,0-24,10.75-24,24s10.75,24,24,24,24-10.75,24-24-10.75-24-24-24ZM32,14c9.94,0,18,8.06,18,18s-8.06,18-18,18-18-8.06-18-18,8.06-18,18-18ZM32,22c-5.52,0-10,4.48-10,10s4.48,10,10,10,10-4.48,10-10-4.48-10-10-10ZM32,28c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z"/>
+</svg>
