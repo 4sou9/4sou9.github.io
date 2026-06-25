@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ねこ</title>
-<link rel="icon" href="favicon.ico">
+<link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Share+Tech+Mono&family=Major+Mono+Display&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-<link href="assets/poster.css" rel="stylesheet">
+<link href="/assets/poster.css" rel="stylesheet">
 <style is:global is:inline>
 /* 青写真: シアン × 氷白 × 紺黒 */
 :root{ --accent:#2de1ff; --white:#dff6ff; --black:#07141c; --bw:2px; --grid:#103246; }
@@ -29,7 +29,7 @@
 
 /* 機械本体（隠しゲート） */
 .machine{position:absolute;background:var(--accent);
-  -webkit-mask-image:url('assets/astral/a1.svg');mask-image:url('assets/astral/a1.svg');
+  -webkit-mask-image:url('/assets/astral/a1.svg');mask-image:url('/assets/astral/a1.svg');
   -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
 
@@ -93,7 +93,7 @@
 
   <!-- 機械本体 -->
   <div class="machine" style="left:300px;top:330px;width:420px;height:470px"></div>
-  <a class="gate" href="rite.html" aria-label="next" style="position:absolute;left:300px;top:330px;width:420px;height:470px;z-index:5;cursor:default"></a>
+  <a class="gate" href="/rite/" aria-label="next" style="position:absolute;left:300px;top:330px;width:420px;height:470px;z-index:5;cursor:default"></a>
 
   <!-- 寸法線 -->
   <div class="dimh" style="left:300px;top:300px;width:420px"><span>Ø XXX.X</span></div>
