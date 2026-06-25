@@ -8,3 +8,8 @@ Thumbs.db
 # 素材ソース・参考（巨大なので除外）
 SVG/
 参考/
+
+# Astro / Node
+node_modules/
+dist/
+.astro/

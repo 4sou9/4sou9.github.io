@@ -1,4 +1,4 @@
-# Common command menu for the blog repo.
+
 # Launch by double-clicking menu.bat (or: powershell -File menu.ps1).
 # NOTE: kept ASCII-only on purpose. Windows PowerShell 5.1 mojibakes
 #       Japanese in UTF-8 (no BOM) .ps1 files and fails to parse them.
