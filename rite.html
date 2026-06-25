@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ねこ</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Monoton&family=Share+Tech+Mono&family=Pirata+One&display=swap" rel="stylesheet">
+<link href="assets/poster.css" rel="stylesheet">
+<style>
+/* 興行フライヤー: マゼンタ × 淡桃 × 黒 */
+:root{ --accent:#ff3ea5; --white:#ffd9ec; --black:#0a0610; --bw:2px; }
+.wrap{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;
+  font-family:"Share Tech Mono",monospace}
+.an{font-family:"Anton",sans-serif} .beb{font-family:"Bebas Neue",sans-serif}
+.mn{font-family:"Monoton",cursive} .pir{font-family:"Pirata One",cursive} .sh{font-family:"Share Tech Mono",monospace}
+
+.hd{display:flex;justify-content:space-between;align-items:center;width:100%;
+  border-bottom:var(--bw) solid var(--accent);padding-bottom:6px;font-size:13px;letter-spacing:.14em;color:var(--accent)}
+.present{font-family:"Monoton",cursive;font-size:20px;letter-spacing:.18em;color:var(--white);margin-top:6px}
+.evt{font-family:"Anton",sans-serif;font-size:140px;line-height:.8;letter-spacing:.01em;color:var(--accent)}
+.tag{font-family:"Share Tech Mono",monospace;font-size:14px;letter-spacing:.2em;color:var(--white)}
+
+.idol{width:230px;height:230px;background:var(--accent);position:relative;
+  -webkit-mask-image:url('assets/grunge/g7.svg');mask-image:url('assets/grunge/g7.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
+
+.lineup{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;
+  border-top:var(--bw) solid var(--accent);border-bottom:var(--bw) solid var(--accent);padding:14px 0}
+.l1{font-family:"Bebas Neue",sans-serif;font-size:92px;line-height:.82;color:var(--accent);letter-spacing:.02em}
+.l2{font-family:"Bebas Neue",sans-serif;font-size:50px;line-height:.9;color:var(--white);letter-spacing:.03em}
+.l3{font-family:"Bebas Neue",sans-serif;font-size:34px;line-height:.95;color:var(--accent);letter-spacing:.04em}
+.supp{font-family:"Share Tech Mono",monospace;font-size:14px;line-height:1.7;letter-spacing:.08em;color:var(--white);max-width:760px}
+
+.info{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;
+  font-family:"Bebas Neue",sans-serif;font-size:26px;letter-spacing:.06em;color:var(--accent)}
+.info .o{color:var(--white)}
+.stamp{font-family:"Pirata One",cursive;font-size:30px;color:var(--white);border:2.5px solid var(--white);
+  padding:2px 12px;transform:rotate(-4deg);display:inline-block}
+
+.ft{display:flex;justify-content:space-between;align-items:center;width:100%;
+  border-top:var(--bw) solid var(--accent);padding-top:6px;font-size:12px;letter-spacing:.14em;color:var(--accent)}
+.ft .lg{font-family:"Anton",sans-serif;font-size:22px}
+.ft .mid{font-family:"Pirata One",cursive;font-size:18px;color:var(--white)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 13 -4" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="6" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+ <div class="wrap">
+
+  <div class="hd"><span>興行 // PROCESSION OS // 一夜限り</span><span>NO RE-ENTRY</span></div>
+
+  <div class="present">NULLSECT presents</div>
+  <div class="evt an">PROCESSION</div>
+  <div class="tag">A RITUAL IN XX ACTS · ONE NIGHT ONLY · 行列</div>
+
+  <!-- 偶像（隠しゲート） -->
+  <div class="idol"><a class="gate" href="gaze.html" aria-label="next" style="position:absolute;inset:0;z-index:5;cursor:default"></a></div>
+
+  <!-- ラインナップ -->
+  <div class="lineup">
+    <div class="l1">THE WATCHER</div>
+    <div class="l2">BLACKMASS &nbsp;✚&nbsp; VENOM CHOIR &nbsp;✚&nbsp; GRAVE TIDE</div>
+    <div class="l3">NULL SAINT · STATIC HYMN · THE GNASH · PALE RITE · DUST ORACLE</div>
+    <div class="supp">HOLLOW SUN · COG MASS · WIRE SAINT · NINE VEILS · THE STILL · MAW CHOIR · ASHEN ECHO ·
+      NO TONGUE · GLASS PROCESSION · SEVEN ROT · THE OBSERVERS · VANTA HYMN · LAST GATE · 無の聖歌</div>
+  </div>
+
+  <div class="info">
+    <span>THE VOID HALL</span><span class="o">·</span><span>DOORS XX:XX</span><span class="o">·</span>
+    <span class="stamp">ALL SOULS</span><span class="o">·</span><span>NO EXIT</span>
+  </div>
+
+  <div class="ft">
+    <span class="lg">✸ NULLSECT</span>
+    <span class="mid">— the procession does not end —</span>
+    <span>N35.6 E139.7 · 興</span>
+  </div>
+
+ </div>
+</div>
+</body>
+</html>

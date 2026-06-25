@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ねこ</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Share+Tech+Mono&family=Major+Mono+Display&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<link href="assets/poster.css" rel="stylesheet">
+<style>
+/* 青写真: シアン × 氷白 × 紺黒 */
+:root{ --accent:#2de1ff; --white:#dff6ff; --black:#07141c; --bw:2px; --grid:#103246; }
+.stage{position:relative;width:100%;height:1180px;font-family:"Share Tech Mono",monospace;
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 31px,var(--grid) 31px 32px),
+    repeating-linear-gradient(90deg,transparent 0 31px,var(--grid) 31px 32px);}
+.mono{font-family:"Share Tech Mono",monospace} .mm{font-family:"Major Mono Display",monospace}
+.ab{font-family:"Archivo Black",sans-serif} .osw{font-family:"Oswald",sans-serif;font-weight:700}
+
+.hd{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:var(--bw) solid var(--accent);padding-bottom:6px;font-size:13px;letter-spacing:.12em;color:var(--accent)}
+.hd .w{color:var(--white)}
+
+.title{position:absolute;left:0;top:40px;line-height:.8}
+.title .t{font-family:"Archivo Black",sans-serif;font-size:118px;color:var(--accent);letter-spacing:-.01em}
+.title .s{font-family:"Major Mono Display",monospace;font-size:15px;letter-spacing:.2em;color:var(--white);margin-top:2px}
+
+/* 機械本体（隠しゲート） */
+.machine{position:absolute;background:var(--accent);
+  -webkit-mask-image:url('assets/astral/a1.svg');mask-image:url('assets/astral/a1.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
+
+/* 寸法線 */
+.dimh{position:absolute;border-top:1px solid var(--accent);display:flex;align-items:center;justify-content:center}
+.dimh::before,.dimh::after{content:"";position:absolute;top:-5px;width:1px;height:11px;background:var(--accent)}
+.dimh::before{left:0} .dimh::after{right:0}
+.dimh span{background:var(--black);padding:0 7px;font-size:11px;color:var(--accent);transform:translateY(-1px)}
+.dimv{position:absolute;border-left:1px solid var(--accent);display:flex;align-items:center;justify-content:center}
+.dimv::before,.dimv::after{content:"";position:absolute;left:-5px;width:11px;height:1px;background:var(--accent)}
+.dimv::before{top:0} .dimv::after{bottom:0}
+.dimv span{background:var(--black);padding:5px 0;writing-mode:vertical-rl;font-size:11px;color:var(--accent);transform:translateX(-1px)}
+
+/* 引き出し注記 */
+.call{position:absolute;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--white);letter-spacing:.05em}
+.call .dot{width:13px;height:13px;border:1.5px solid var(--accent);border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:9px;color:var(--accent);flex:none}
+.call .ln{width:46px;height:1px;background:var(--accent)}
+.call b{color:var(--accent);font-weight:400}
+
+/* 部品表・図面表 */
+.box{position:absolute;border:var(--bw) solid var(--accent)}
+.box .bh{border-bottom:1px solid var(--accent);padding:4px 9px;font-size:12px;letter-spacing:.12em;color:var(--white)}
+.parts .pr{display:grid;grid-template-columns:auto 1fr auto;gap:10px;padding:4px 9px;font-size:12px;color:var(--accent);
+  border-bottom:1px dotted var(--accent)}
+.parts .pr b{color:var(--white);font-weight:400}
+.tblock{position:absolute;right:0;bottom:0;border:var(--bw) solid var(--accent);display:grid;
+  grid-template-columns:1fr 1fr;font-size:12px;color:var(--accent)}
+.tblock div{border-right:1px solid var(--accent);border-bottom:1px solid var(--accent);padding:5px 9px}
+.tblock div:nth-child(2n){border-right:none}
+.tblock b{color:var(--white);font-weight:400;display:block;font-size:10px;letter-spacing:.1em}
+
+.ft{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;
+  border-top:var(--bw) solid var(--accent);padding-top:6px;font-size:12px;letter-spacing:.12em;color:var(--accent)}
+.ft .lg{font-family:"Archivo Black",sans-serif;font-size:22px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 14 -5" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="6" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.2" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+ <div class="stage">
+
+  <div class="hd">
+    <span>ENGINE // 機関 OS // SCHEMATIC No.<span class="w">XX</span></span>
+    <span>REV ░ · SCALE 1:∞ · DO NOT SCALE</span>
+  </div>
+
+  <div class="title">
+    <div class="t">ENGINE</div>
+    <div class="s">cross-section / 機関断面図 / assembly XX</div>
+  </div>
+
+  <!-- 機械本体 -->
+  <div class="machine" style="left:300px;top:330px;width:420px;height:470px"></div>
+  <a class="gate" href="rite.html" aria-label="next" style="position:absolute;left:300px;top:330px;width:420px;height:470px;z-index:5;cursor:default"></a>
+
+  <!-- 寸法線 -->
+  <div class="dimh" style="left:300px;top:300px;width:420px"><span>Ø XXX.X</span></div>
+  <div class="dimv" style="left:268px;top:330px;height:470px"><span>H XXX</span></div>
+  <div class="dimh" style="left:300px;top:828px;width:200px"><span>XX.X</span></div>
+
+  <!-- 引き出し注記 -->
+  <div class="call" style="left:728px;top:380px"><span class="dot">A</span><span class="ln"></span><b>intake</b> 吸気</div>
+  <div class="call" style="left:728px;top:520px"><span class="dot">B</span><span class="ln"></span><b>core</b> 核</div>
+  <div class="call" style="left:728px;top:660px"><span class="dot">C</span><span class="ln"></span><b>exhaust</b> 排気</div>
+  <div class="call" style="left:150px;top:478px;flex-direction:row-reverse"><span class="dot">D</span><span class="ln"></span><b>seal</b> 封</div>
+
+  <!-- 部品表 -->
+  <div class="box parts" style="left:0;top:560px;width:230px">
+    <div class="bh">// BILL OF MATERIALS</div>
+    <div class="pr"><span>A</span><b>intake valve</b><span>×XX</span></div>
+    <div class="pr"><span>B</span><b>core unit</b><span>×XX</span></div>
+    <div class="pr"><span>C</span><b>exhaust port</b><span>×XX</span></div>
+    <div class="pr"><span>D</span><b>seal ring</b><span>×XX</span></div>
+    <div class="pr"><span>E</span><b>cog 0xFE</b><span>×XX</span></div>
+  </div>
+
+  <!-- 図面タイトルブロック -->
+  <div class="tblock" style="right:0;bottom:42px;width:360px">
+    <div><b>TITLE</b>ENGINE</div><div><b>MATERIAL</b>0xFE alloy</div>
+    <div><b>DRAWN BY</b>NULLSECT</div><div><b>SCALE</b>1 : ∞</div>
+    <div><b>SHEET</b>XX OF XX</div><div style="border-right:none"><b>STATUS</b>SEALED</div>
+  </div>
+
+  <div class="ft">
+    <span class="lg">⌬ NULLSECT</span>
+    <span>— do not operate the engine of the maze —</span>
+    <span>N35.6 E139.7 · 0xFE</span>
+  </div>
+
+ </div>
+</div>
+</body>
+</html>
