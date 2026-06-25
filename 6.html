@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第六層 / DECLASSIFIED</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Special+Elite&family=Oswald:wght@500;700&family=Anton&family=Shippori+Mincho:wght@600;800&display=swap" rel="stylesheet">
+<link href="assets/poster.css" rel="stylesheet">
+<style>
+/* 白（紙）背景：紙 × 黒インク × 赤 */
+:root{ --accent:#1c160d; --white:#c0241a; --black:#e7e0cf; --bw:2px; }
+.wrap{display:flex;flex-direction:column;gap:12px;font-family:"Special Elite",cursive}
+.serif{font-family:"DM Serif Display",serif} .se{font-family:"Special Elite",cursive}
+.osw{font-family:"Oswald",sans-serif} .an{font-family:"Anton",sans-serif} .shp{font-family:"Shippori Mincho",serif;font-weight:600}
+.red{color:var(--white)}
+
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border-bottom:var(--bw) solid var(--accent);padding-bottom:6px;
+  font-family:"Special Elite",cursive;font-size:13px;letter-spacing:.1em;color:var(--accent)}
+.stamp{border:2.5px solid var(--white);color:var(--white);padding:2px 10px;font-family:"Oswald",sans-serif;
+  font-weight:700;letter-spacing:.14em;transform:rotate(-4deg);text-transform:uppercase}
+
+.mast{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;line-height:.9}
+.mast .t{font-family:"DM Serif Display",serif;font-size:88px;color:var(--accent);line-height:.82}
+.mast .meta{text-align:right;font-family:"Special Elite",cursive;font-size:13px;line-height:1.5;color:var(--accent)}
+.mast .meta b{font-family:"Anton",sans-serif;font-size:30px;color:var(--white);display:block;letter-spacing:.04em}
+
+.subbar{display:flex;align-items:center;gap:10px;border-top:1px solid var(--accent);border-bottom:1px solid var(--accent);
+  padding:5px 0;font-family:"Special Elite",cursive;font-size:13px;letter-spacing:.06em;color:var(--accent)}
+.subbar .redact{height:14px;background:var(--accent);flex:0 0 auto;display:inline-block}
+
+.main{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}
+.report{display:flex;flex-direction:column;gap:8px}
+.report .h{font-family:"Oswald",sans-serif;font-weight:700;font-size:20px;letter-spacing:.06em;color:var(--accent);
+  border-bottom:var(--bw) solid var(--accent);padding-bottom:3px;text-transform:uppercase}
+.cols{column-count:2;column-gap:16px;font-family:"Special Elite",cursive;font-size:12.5px;line-height:1.62;
+  color:var(--accent);text-align:justify}
+.cols .rb{background:var(--accent);color:transparent;-webkit-user-select:none;user-select:none}
+.report .red-note{font-family:"Oswald",sans-serif;font-weight:700;color:var(--white);font-size:15px;letter-spacing:.08em}
+
+.exhibit{border:var(--bw) solid var(--accent);position:relative;display:flex;flex-direction:column}
+.exhibit .eh{display:flex;justify-content:space-between;border-bottom:1px solid var(--accent);padding:4px 8px;
+  font-family:"Special Elite",cursive;font-size:12px;letter-spacing:.08em;color:var(--accent)}
+.exhibit .ei{position:relative;flex:1;min-height:300px}
+.exhibit .ph{position:absolute;inset:8% 12%;background:var(--accent);
+  -webkit-mask-image:url('assets/grunge/g26.svg');mask-image:url('assets/grunge/g26.svg');
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;-webkit-mask-mode:alpha;mask-mode:alpha}
+.exhibit .cap{position:absolute;left:8px;bottom:6px;font-family:"Special Elite",cursive;font-size:12px;color:var(--accent)}
+.exhibit .xstamp{position:absolute;right:8px;top:34px;border:2.5px solid var(--white);color:var(--white);
+  font-family:"Oswald",sans-serif;font-weight:700;font-size:15px;letter-spacing:.12em;padding:2px 8px;transform:rotate(8deg)}
+
+/* フォーム表 */
+.form{border:var(--bw) solid var(--accent)}
+.form .fh{border-bottom:var(--bw) solid var(--accent);padding:5px 10px;font-family:"Oswald",sans-serif;
+  font-weight:700;letter-spacing:.1em;color:var(--accent);font-size:15px}
+.form .fr{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;font-family:"Special Elite",cursive;font-size:13px;color:var(--accent)}
+.form .fr>span{border-right:1px solid var(--accent);border-bottom:1px solid var(--accent);padding:5px 9px}
+.form .fr>span:last-child{border-right:none}
+.form .fr .k{color:var(--accent)} .form .fr .v{color:var(--white);font-family:"Oswald",sans-serif;font-weight:700}
+
+.stamprow{display:flex;align-items:center;gap:18px;justify-content:center;padding:4px 0}
+.stamprow .big{font-family:"Oswald",sans-serif;font-weight:700;font-size:34px;letter-spacing:.1em;color:var(--white);
+  border:3px solid var(--white);padding:4px 14px;transform:rotate(-3deg)}
+.stamprow .strike{font-family:"Anton",sans-serif;font-size:30px;color:var(--accent);text-decoration:line-through;text-decoration-color:var(--white);letter-spacing:.04em}
+
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.bottom .sig{font-family:"Special Elite",cursive;font-size:13px;color:var(--accent);line-height:1.7}
+.bottom .sig u{font-family:"DM Serif Display",serif;font-style:italic;font-size:24px}
+.bottom .big{font-family:"DM Serif Display",serif;font-size:80px;line-height:.8;color:var(--accent);text-align:right}
+.bottom .big i{font-style:italic;color:var(--white)}
+
+.ft{display:flex;justify-content:space-between;align-items:center;border-top:var(--bw) solid var(--accent);
+  padding-top:6px;font-family:"Special Elite",cursive;font-size:13px;letter-spacing:.08em;color:var(--accent)}
+.ft .bc{width:130px;height:24px;background:repeating-linear-gradient(90deg,
+  var(--accent) 0 2px,transparent 2px 5px,var(--accent) 5px 6px,transparent 6px 10px,var(--accent) 10px 13px,transparent 13px 17px)}
+.ft b{font-family:"Anton",sans-serif;font-size:28px;color:var(--accent);letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 14 -4.5" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="6" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.3" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+ <div class="wrap">
+
+  <div class="hd">
+    <span>TOP SECRET // 機密 // FILE No.038 // 第六層</span>
+    <span class="stamp">Declassified</span>
+  </div>
+
+  <div class="mast">
+    <div class="t serif">Declassified.</div>
+    <div class="meta"><b>038</b>開示文書 / VOL.06<br>release date — 2026.06.25</div>
+  </div>
+
+  <div class="subbar">
+    <span>SUBJECT 035–038 ·</span><span class="redact" style="width:120px"></span>
+    <span>· 観測記録 ·</span><span class="redact" style="width:70px"></span>
+    <span>· CLEARANCE</span><span class="red">▲ LEVEL 6</span>
+  </div>
+
+  <div class="main">
+    <div class="report">
+      <div class="h">Report // 報告書</div>
+      <div class="cols">The subject identified as <span class="rb">████████</span> was observed crossing five gates in sequence. Probability, overload, conflict, the after, and the quarantine zone. Each threshold rewrote the observer. 被験者ハ五ツノ門ヲ通過シタ。<span class="rb">█████</span> ニ於イテ汚染ガ確認サレ、記録ハ <span class="rb">███</span> 級ニ分類サレタ。What remained could not be classified — only sealed, photographed, and filed under <span class="rb">██████</span>. The committee concludes that no observer returns unchanged; the maze is not a place but a process. 結論：観測者ハ決シテ元ニハ戻ラナイ。</div>
+      <div class="red-note">CONCLUSION ▸ THE OBSERVER DOES NOT RETURN.</div>
+    </div>
+
+    <div class="exhibit">
+      <div class="eh"><span>EXHIBIT A // 証拠写真</span><span>035–038</span></div>
+      <div class="ei">
+        <span class="ph"></span>
+        <span class="xstamp">SEALED</span>
+        <span class="cap">subj. 035–038 — composite</span>
+        <a class="gate" href="index.html" aria-label="進む" style="position:absolute;inset:0;z-index:5"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="form">
+    <div class="fh">CASE RECORD // 記録表</div>
+    <div class="fr"><span class="k">SUBJECT</span><span class="v">035–038</span><span class="k">STATUS</span><span class="v">SEALED</span></div>
+    <div class="fr"><span class="k">CLEARANCE</span><span class="v">LEVEL 6</span><span class="k">EXIT</span><span class="v">NONE</span></div>
+    <div class="fr"><span class="k">NODE</span><span class="v">観測者 / observer</span><span class="k">VERDICT</span><span class="v">CLASSIFIED</span></div>
+  </div>
+
+  <div class="stamprow">
+    <span class="big">Approved</span>
+    <span class="strike">CONFIDENTIAL</span>
+    <span class="stamp" style="font-size:18px;transform:rotate(5deg)">No.038</span>
+  </div>
+
+  <div class="bottom">
+    <div class="sig">authorised by —<br><u>4SOU9 committee</u><br>2026.06.25 · 機密解除</div>
+    <div class="big">THE <i>AFTER</i><br>FILE.</div>
+  </div>
+
+  <div class="ft">
+    <b>4SOU9</b>
+    <span>— 機密は解除された。観測は続く。 —</span>
+    <span class="bc"></span>
+  </div>
+
+ </div>
+</div>
+</body>
+</html>
