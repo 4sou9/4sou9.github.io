@@ -10,4 +10,7 @@ export default defineConfig({
   build: {
     format: 'file',
   },
+  // Pages rely on literal newlines inside white-space:pre blocks (ASCII art),
+  // so leave HTML untouched at build time.
+  compressHTML: false,
 });
