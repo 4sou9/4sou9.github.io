@@ -1,0 +1,158 @@
+---
+// 深層 / 監視 — コマ割り
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1000">
+<title>深層 / 監視</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0b0d0b;    /* 黒地 */
+  --phos:#3dff7c;     /* 蛍光緑(蛍光体) */
+  --dim:#1c5a34;      /* 同系の沈み緑 */
+}
+html,body{background:var(--black)}
+body{min-height:100vh;padding:18px;overflow:auto;
+     font-family:'Silkscreen',monospace;color:var(--phos)}
+.poster{position:relative;width:960px;height:1300px;margin:0 auto;
+        background:transparent;filter:url(#ink);overflow:hidden}
+
+/* ── 左端の縦ラベル(ヘッダ代わり)── */
+.rail{position:absolute;left:0;top:0;width:56px;height:100%;
+      border-right:2px solid var(--dim)}
+.rail .v{position:absolute;left:50%;top:30px;transform:translateX(-50%);
+     writing-mode:vertical-rl;font-family:'DotGothic16',sans-serif;
+     font-size:30px;letter-spacing:22px;color:var(--phos)}
+.rail .vf{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+     writing-mode:vertical-rl;font-size:10px;letter-spacing:4px;color:var(--dim)}
+
+/* ── カメラ枠(不均一コマ)── */
+.cam{position:absolute;border:2px solid var(--phos);overflow:hidden}
+.cam .id{position:absolute;left:6px;top:4px;font-size:11px;letter-spacing:2px;z-index:2}
+.cam .ts{position:absolute;right:6px;bottom:4px;font-size:10px;letter-spacing:1px;
+         color:var(--dim);z-index:2}
+/* 同一素材の連作クロップ */
+.cam i{position:absolute;inset:0;display:block;background:var(--phos);
+  -webkit-mask-image:url('/assets/fig/f18.svg');mask-image:url('/assets/fig/f18.svg');
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-mode:alpha;mask-mode:alpha}
+.c1 i{-webkit-mask-size:700px auto;mask-size:700px auto;
+      -webkit-mask-position:-120px -40px;mask-position:-120px -40px}
+.c2 i{-webkit-mask-size:1100px auto;mask-size:1100px auto;
+      -webkit-mask-position:-560px -60px;mask-position:-560px -60px;
+      transform:scaleX(-1)}
+.c3 i{-webkit-mask-size:1600px auto;mask-size:1600px auto;
+      -webkit-mask-position:-700px -520px;mask-position:-700px -520px;
+      background:var(--dim)}
+.c4 i{-webkit-mask-size:520px auto;mask-size:520px auto;
+      -webkit-mask-position:-60px -300px;mask-position:-60px -300px}
+.c6 i{-webkit-mask-size:2400px auto;mask-size:2400px auto;
+      -webkit-mask-position:-1100px -900px;mask-position:-1100px -900px}
+
+/* 信号途絶(網点スタティック §2c) */
+.c5{border-color:var(--dim)}
+.c5 .noise{position:absolute;inset:0;
+  background-image:radial-gradient(var(--dim) 30%, transparent 31%);
+  background-size:7px 7px}
+.c5 .lost{position:absolute;left:0;top:50%;width:100%;transform:translateY(-50%);
+  text-align:center;font-family:'DotGothic16',sans-serif;font-size:17px;
+  letter-spacing:6px;color:var(--phos);z-index:2}
+
+/* REC(唯一の動き: ハード明滅) */
+.rec{position:absolute;right:8px;top:5px;font-size:11px;letter-spacing:2px;z-index:2;
+     animation:blink 1.2s steps(2,jump-none) infinite}
+.rec::before{content:"● "}
+@keyframes blink{0%{opacity:1}100%{opacity:0}}
+
+/* 帯クロップ(スキャンライン断面) */
+.strip{position:absolute;left:88px;top:1180px;width:840px;height:44px;
+  border-top:2px solid var(--dim);border-bottom:2px solid var(--dim);overflow:hidden}
+.strip i{position:absolute;inset:0;display:block;background:var(--dim);
+  -webkit-mask-image:url('/assets/fig/f18.svg');mask-image:url('/assets/fig/f18.svg');
+  -webkit-mask-size:1800px auto;mask-size:1800px auto;
+  -webkit-mask-position:-500px -700px;mask-position:-500px -700px;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-mode:alpha;mask-mode:alpha}
+
+/* 欄外の極小注記 */
+.note{position:absolute;font-size:10px;letter-spacing:2px;color:var(--dim);line-height:1.9}
+
+.brand{position:absolute;right:20px;bottom:14px;font-size:10px;letter-spacing:3px;color:var(--dim)}
+
+.gate{cursor:default;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+.gate:focus{outline:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" result="b"/>
+    <feColorMatrix in="b" type="matrix"
+      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 13 -4" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="2" seed="18" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+
+  <div class="rail">
+    <div class="v">監視中</div>
+    <div class="vf">UNDER OBSERVATION</div>
+  </div>
+
+  <div class="cam c1" style="left:88px;top:26px;width:520px;height:390px">
+    <span class="id">CAM XX-A</span><span class="rec">REC</span>
+    <i></i><span class="ts">00:33:33</span>
+  </div>
+
+  <div class="cam c2" style="left:632px;top:26px;width:296px;height:230px">
+    <span class="id">CAM XX-B</span>
+    <i></i><span class="ts">00:33:33</span>
+  </div>
+
+  <div class="cam c3" style="left:632px;top:280px;width:296px;height:320px">
+    <span class="id">CAM XX-C</span>
+    <i></i><span class="ts">00:33:34</span>
+  </div>
+
+  <div class="cam c4" style="left:88px;top:440px;width:322px;height:400px">
+    <span class="id">CAM XX-D</span>
+    <i></i><span class="ts">00:33:34</span>
+  </div>
+
+  <div class="cam c5" style="left:434px;top:440px;width:174px;height:190px">
+    <span class="id">CAM XX-E</span>
+    <div class="noise"></div>
+    <div class="lost">信号途絶</div>
+  </div>
+
+  <div class="note" style="left:434px;top:650px;width:174px">
+    対象ハ枠ノ外デ<br>静止シテイル。<br>枠ヲ増ヤシテモ<br>映ルノハ枠ダケ。
+  </div>
+
+  <div class="cam c6" style="left:88px;top:864px;width:840px;height:290px">
+    <span class="id">CAM XX-F / 拡大解析</span>
+    <i></i><span class="ts">00:33:35</span>
+  </div>
+
+  <div class="strip"><i></i></div>
+  <div class="note" style="left:88px;top:1232px">走査断面 — 照合値 ∅ / 一致 ナシ</div>
+  <div class="note" style="right:20px;top:1232px;text-align:right">наблюдение · 監視 · surveillance</div>
+
+  <div class="brand">STN <b>NULLSECT</b> / vol.∞ / 深層</div>
+
+  <a class="gate" href="/lull" aria-label="進む"
+     style="position:absolute;left:434px;top:440px;width:174px;height:190px;z-index:5"></a>
+  <a class="gate" href="/" aria-label="進む"
+     style="position:absolute;left:632px;top:280px;width:296px;height:320px;z-index:5"></a>
+</div>
+</body>
+</html>

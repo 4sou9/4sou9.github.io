@@ -1,0 +1,180 @@
+---
+// 深層 / 入口 — 門
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1000">
+<title>深層 / 門</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Chakra+Petch:wght@600&family=Shippori+Antique+B1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ground:#d8c400;   /* 工業イエロー地 */
+  --ink:#12100a;      /* 黒 */
+  --white:#f2efe4;
+}
+html,body{background:var(--ground)}
+body{min-height:100vh;padding:18px;overflow:auto;
+     font-family:'Chakra Petch',sans-serif;color:var(--ink)}
+.poster{position:relative;width:960px;height:1300px;margin:0 auto;
+        background:transparent;filter:url(#ink);overflow:hidden}
+
+/* ── 楣(まぐさ)── */
+.lintel{position:absolute;left:60px;top:70px;width:840px;height:150px;background:var(--ink)}
+.lintel .big{position:absolute;left:0;top:14px;width:100%;text-align:center;
+     font-family:'Shippori Antique B1',serif;font-size:96px;letter-spacing:60px;
+     text-indent:60px;color:var(--ground);line-height:1;white-space:nowrap}
+.lintel .en{position:absolute;left:0;bottom:8px;width:100%;text-align:center;
+     font-family:'Bungee',sans-serif;font-size:15px;letter-spacing:12px;color:var(--white)}
+
+/* 楣上の小札 */
+.plaque{position:absolute;top:26px;font-size:12px;letter-spacing:2px;line-height:1.7}
+.plaque.l{left:64px;text-align:left}
+.plaque.r{right:64px;text-align:right}
+
+/* ── 門柱(左右対称)── */
+.pillar{position:absolute;top:220px;width:150px;height:830px;background:var(--ink)}
+.pillar.l{left:60px}
+.pillar.r{right:60px}
+.pillar .v{position:absolute;left:50%;top:52px;transform:translateX(-50%);
+     writing-mode:vertical-rl;text-orientation:upright;
+     font-family:'Shippori Antique B1',serif;font-size:26px;letter-spacing:14px;
+     color:var(--ground)}
+.pillar .vf{position:absolute;left:50%;bottom:150px;transform:translateX(-50%);
+     writing-mode:vertical-rl;font-size:11px;letter-spacing:5px;color:var(--white)}
+
+/* 柱脚のハザード縞(ハードストップ) */
+.hazard{position:absolute;left:0;bottom:0;width:100%;height:120px;
+     background:repeating-linear-gradient(45deg,
+       var(--ground) 0 22px, var(--ink) 22px 44px)}
+
+/* ── 開口部(門の奥)── */
+.void{position:absolute;left:250px;top:260px;width:460px;height:790px;
+      background:var(--ink);overflow:hidden}
+/* 奥の闇 → 手前に浮かぶ網点(カラーハーフトーン §2c) */
+.void .dots{position:absolute;left:0;width:100%}
+.d1{bottom:0;height:200px;
+    background-image:radial-gradient(var(--ground) 34%, transparent 35%);
+    background-size:16px 16px}
+.d2{bottom:200px;height:170px;
+    background-image:radial-gradient(var(--ground) 26%, transparent 27%);
+    background-size:24px 24px}
+.d3{bottom:370px;height:150px;
+    background-image:radial-gradient(var(--ground) 18%, transparent 19%);
+    background-size:36px 36px}
+.d4{bottom:520px;height:130px;
+    background-image:radial-gradient(var(--ground) 11%, transparent 12%);
+    background-size:54px 54px}
+/* 奥に立つ待ち人 */
+.watcher{position:absolute;left:50%;bottom:150px;width:120px;height:300px;
+     transform:translateX(-50%);background:var(--white);
+     -webkit-mask-image:url('/assets/fig/f17.svg');mask-image:url('/assets/fig/f17.svg');
+     -webkit-mask-size:300px auto;mask-size:300px auto;
+     -webkit-mask-position:-90px 0;mask-position:-90px 0;
+     -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+     -webkit-mask-mode:alpha;mask-mode:alpha}
+.void .call{position:absolute;left:0;top:60px;width:100%;text-align:center;
+     font-size:13px;letter-spacing:9px;color:var(--ground)}
+.void .call b{display:block;font-weight:400;font-family:'Bungee',sans-serif;
+     font-size:11px;letter-spacing:6px;margin-top:10px;color:var(--white)}
+
+/* ── 敷居(地面のライングラデーション §2c)── */
+.sill{position:absolute;left:250px;top:1064px;width:460px;height:80px;
+   background:repeating-linear-gradient(0deg,
+     var(--ink) 0 3px, transparent 3px 7px,
+     var(--ink) 7px 11px, transparent 11px 17px,
+     var(--ink) 17px 20px, transparent 20px 30px,
+     var(--ink) 30px 32px, transparent 32px 48px,
+     var(--ink) 48px 50px, transparent 50px 76px)}
+
+/* ── 検印(重ね押し §5h)── */
+.stamp{position:absolute;width:110px;height:110px;border:4px solid var(--ink);
+   border-radius:50%;font-family:'Shippori Antique B1',serif;font-size:44px;
+   display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.st1{right:40px;bottom:110px;transform:rotate(-14deg)}
+.st2{right:88px;bottom:74px;transform:rotate(9deg);
+     clip-path:polygon(0 0,100% 0,100% 62%,0 62%)}   /* 半分欠け */
+
+/* ── 通行票(左下)── */
+.permit{position:absolute;left:40px;bottom:66px;width:190px;
+   border:2.5px solid var(--ink);padding:12px 14px;
+   font-size:11.5px;line-height:1.85;letter-spacing:1px;
+   clip-path:polygon(0 0,100% 0,100% 100%,14px 100%,0 calc(100% - 14px))}
+.permit .head{font-family:'Bungee',sans-serif;font-size:13px;letter-spacing:3px;
+   border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:7px}
+.permit em{font-style:normal;background:var(--ink);color:var(--ground);padding:0 4px}
+
+.brand{position:absolute;left:40px;bottom:36px;font-size:11px;letter-spacing:3px}
+
+.gate{cursor:default;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+.gate:focus{outline:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="b"/>
+    <feColorMatrix in="b" type="matrix"
+      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 14 -4.5" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.44" numOctaves="2" seed="41" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+
+  <div class="plaque l">GATE — XX<br>認可番号 XX-∅</div>
+  <div class="plaque r">開門 00:00 — 00:00<br>閉門 <b>永久</b></div>
+
+  <div class="lintel">
+    <div class="big">関門</div>
+    <div class="en">PASS OR REMAIN</div>
+  </div>
+
+  <div class="pillar l">
+    <div class="v">立入ハ自己申告</div>
+    <div class="vf">προσοχή · вход · प्रवेश</div>
+    <div class="hazard"></div>
+  </div>
+
+  <div class="void">
+    <div class="call">クグレバ 戻レナイ<b>NO RE-ENTRY</b></div>
+    <div class="dots d4"></div>
+    <div class="dots d3"></div>
+    <div class="dots d2"></div>
+    <div class="dots d1"></div>
+    <div class="watcher"></div>
+  </div>
+
+  <div class="pillar r">
+    <div class="v">通過ハ許可サレタ</div>
+    <div class="vf">خروج · 출구 · ทางออก</div>
+    <div class="hazard"></div>
+  </div>
+
+  <div class="sill"></div>
+
+  <div class="permit">
+    <div class="head">通行票 XX</div>
+    所持人: <em>未記入</em><br>
+    有効期限: 発行前<br>
+    検問官: 不在<br>
+    備考: 門ハ常ニ開イテイル。<br>
+    閉ジテイルノハ <em>手前側</em>。
+  </div>
+
+  <div class="stamp st1">検</div>
+  <div class="stamp st2">検</div>
+
+  <div class="brand">STN <b>NULLSECT</b> / vol.∞ / 深層</div>
+
+  <a class="gate" href="/lull" aria-label="進む"
+     style="position:absolute;left:330px;top:420px;width:300px;height:520px;z-index:5"></a>
+</div>
+</body>
+</html>

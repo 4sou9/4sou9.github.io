@@ -1,100 +1,70 @@
 ---
-// 深層 / 入口 — 受信
+// 深層 / 入口 — 遺失物
 ---
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1000">
-<title>深層 / 受信</title>
+<title>深層 / 遺失</title>
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Share+Tech+Mono&family=DotGothic16&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Yuji+Syuku&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --ground:#101a4a;   /* 群青地 */
-  --sky:#7db8d8;      /* 空色 */
-  --white:#e9edf4;
+  --ground:#0a2e2e;   /* ダークティール地 */
+  --bone:#e6e1d3;     /* 骨白 */
+  --dim:#3f6a63;      /* 同系の沈み色 */
 }
 html,body{background:var(--ground)}
 body{min-height:100vh;padding:18px;overflow:auto;
-     font-family:'Share Tech Mono',monospace;color:var(--sky)}
-.poster{position:relative;width:960px;height:1260px;margin:0 auto;
+     font-family:'Syne Mono',monospace;color:var(--bone)}
+.poster{position:relative;width:960px;height:1300px;margin:0 auto;
         background:transparent;filter:url(#ink);overflow:hidden}
 
-/* ── 円環ダイヤル ── */
-.dial{position:absolute;left:130px;top:230px;width:700px;height:700px}
-.ring{position:absolute;border-radius:50%;border:3px solid var(--sky)}
-.r1{inset:0}
-.r2{inset:64px;border-width:1.5px}
-.r3{inset:210px;border-width:1.5px;border-style:dashed}
-.tick{position:absolute;left:50%;top:50%;width:2px;height:350px;
-      transform-origin:0 0;background:transparent}
-.tick::before{content:'';position:absolute;left:0;top:-350px;width:2px;height:26px;background:var(--sky)}
-.freq{position:absolute;left:50%;top:50%;transform-origin:0 0;
-      font-size:15px;letter-spacing:2px;color:var(--sky)}
-.freq b{font-weight:400;color:var(--white)}
+/* ── 荒野(ほぼ何もない)── */
+/* 地平のライン: 画面下方に細い点線一本だけ */
+.horizon{position:absolute;left:0;top:920px;width:100%;height:2px;
+   background:repeating-linear-gradient(90deg,
+     var(--dim) 0 6px, transparent 6px 22px)}
 
-/* 中心の実体(超拡大クロップ) */
-.core{position:absolute;left:50%;top:50%;width:340px;height:340px;
-      transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;
-      background:var(--white);
-      -webkit-mask-image:url('/assets/astral/a41.svg');mask-image:url('/assets/astral/a41.svg');
-      -webkit-mask-size:contain;mask-size:contain;
-      -webkit-mask-position:center;mask-position:center;
-      -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-      -webkit-mask-mode:alpha;mask-mode:alpha}
+/* 隅の極小座標 */
+.coord{position:absolute;font-size:10px;letter-spacing:3px;color:var(--dim)}
+.coord.tl{left:34px;top:30px}
+.coord.br{right:34px;bottom:28px;text-align:right}
 
-/* ── 巨大語 ── */
-.title{position:absolute;left:0;top:44px;width:100%;text-align:center;
-       font-family:'Michroma',sans-serif;font-size:118px;letter-spacing:26px;
-       color:var(--white);line-height:1;white-space:nowrap}
-.subtitle{position:absolute;left:0;top:178px;width:100%;text-align:center;
-          font-family:'DotGothic16',monospace;font-size:19px;letter-spacing:14px;color:var(--sky)}
+/* ── 落ちている1枚のタグ ── */
+.tag{position:absolute;left:390px;top:760px;width:220px;height:340px;
+   transform:rotate(-7deg);
+   border:2.5px solid var(--bone);padding:52px 18px 18px;
+   font-size:11.5px;line-height:2.1;letter-spacing:1.5px;
+   clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 26px,7px 20px,0 14px)}
+/* 紐穴 */
+.tag .hole{position:absolute;left:50%;top:16px;width:18px;height:18px;
+   transform:translateX(-50%);border:2.5px solid var(--bone);border-radius:50%}
+/* 紐(タグから画面外へ) */
+.string{position:absolute;left:496px;top:690px;width:2px;height:86px;
+   background:var(--dim);transform:rotate(18deg)}
+.tag .head{font-family:'Yuji Syuku',serif;font-size:22px;letter-spacing:8px;
+   text-align:center;margin-bottom:14px}
+.tag em{font-style:normal;color:var(--dim)}
+.tag .sym{position:absolute;right:14px;bottom:14px;width:52px;height:52px;
+   background:var(--dim);
+   -webkit-mask-image:url('/assets/sym/s40.svg');mask-image:url('/assets/sym/s40.svg');
+   -webkit-mask-size:contain;mask-size:contain;
+   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+   -webkit-mask-position:center;mask-position:center;
+   -webkit-mask-mode:alpha;mask-mode:alpha}
 
-/* ── 数字局ログ(左下) ── */
-.log{position:absolute;left:36px;bottom:40px;width:300px;
-     font-size:13px;line-height:2.05;letter-spacing:1px}
-.log em{font-style:normal;color:var(--white)}
-.log .jp{font-family:'DotGothic16',monospace}
+/* タグの影ではなく「置き跡」: ずれた輪郭線 */
+.trace{position:absolute;left:402px;top:774px;width:220px;height:340px;
+   transform:rotate(-4deg);border:1px solid var(--dim);
+   clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 26px,7px 20px,0 14px)}
 
-/* ── 傍受票(右下) ── */
-.slip{position:absolute;right:36px;bottom:40px;width:250px;border:2px solid var(--sky);padding:14px 16px;
-      font-size:12.5px;line-height:1.9;letter-spacing:1px}
-.slip .head{font-family:'Michroma',sans-serif;font-size:14px;letter-spacing:4px;
-            color:var(--white);border-bottom:1.5px solid var(--sky);padding-bottom:8px;margin-bottom:9px}
-.slip .sig{display:block;height:44px;background:var(--white);margin:9px 0;
-      -webkit-mask-image:url('/assets/ten/t12.svg');mask-image:url('/assets/ten/t12.svg');
-      -webkit-mask-size:130px 130px;mask-size:130px 130px;
-      -webkit-mask-position:0 -46px;mask-position:0 -46px;
-      -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;
-      -webkit-mask-mode:alpha;mask-mode:alpha}
-
-/* ── 右縁の縦コールサイン ── */
-.callsign{position:absolute;right:14px;top:220px;writing-mode:vertical-rl;
-          font-family:'Michroma',sans-serif;font-size:17px;letter-spacing:15px;color:var(--white)}
-
-/* ── 左縁: 断ち落とし人影(反転クロップ) ── */
-.ghost{position:absolute;left:-150px;top:340px;width:300px;height:600px;
-       background:var(--sky);transform:scaleX(-1);
-       -webkit-mask-image:url('/assets/fig/f17.svg');mask-image:url('/assets/fig/f17.svg');
-       -webkit-mask-size:640px auto;mask-size:640px auto;
-       -webkit-mask-position:-160px -30px;mask-position:-160px -30px;
-       -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-       -webkit-mask-mode:alpha;mask-mode:alpha}
-
-/* ── 上縁の帯 ── */
-.band{position:absolute;left:0;top:0;width:100%;height:16px;background:var(--sky);
-      -webkit-mask-image:url('/assets/sym/s7.svg');mask-image:url('/assets/sym/s7.svg');
-      -webkit-mask-size:56px 56px;mask-size:56px 56px;
-      -webkit-mask-position:0 -20px;mask-position:0 -20px;
-      -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;
-      -webkit-mask-mode:alpha;mask-mode:alpha}
-
-.brand{position:absolute;left:36px;top:200px;font-size:12px;letter-spacing:3px}
-.brand em{font-style:normal;color:var(--white)}
+.brand{position:absolute;left:34px;bottom:28px;font-size:10px;
+   letter-spacing:3px;color:var(--dim)}
 
 .gate{cursor:default;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
 .gate:focus{outline:none}
@@ -106,71 +76,36 @@ body{min-height:100vh;padding:18px;overflow:auto;
     <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" result="b"/>
     <feColorMatrix in="b" type="matrix"
       values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 13 -4" result="t"/>
-    <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="2" seed="19" result="n"/>
-    <feDisplacementMap in="t" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="2" seed="73" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
   </filter>
 </defs></svg>
 
 <div class="poster">
-  <div class="band"></div>
-  <div class="title">受信</div>
-  <div class="subtitle">シグナルハ ゴウセイ サレテイル</div>
-  <div class="brand">STN <em>NULLSECT</em> / vol.∞ / XX kHz</div>
 
-  <div class="dial">
-    <div class="ring r1"></div>
-    <div class="ring r2"></div>
-    <div class="ring r3"></div>
-    <div class="tick" style="transform:rotate(0deg)"></div>
-    <div class="tick" style="transform:rotate(30deg)"></div>
-    <div class="tick" style="transform:rotate(60deg)"></div>
-    <div class="tick" style="transform:rotate(90deg)"></div>
-    <div class="tick" style="transform:rotate(120deg)"></div>
-    <div class="tick" style="transform:rotate(150deg)"></div>
-    <div class="tick" style="transform:rotate(180deg)"></div>
-    <div class="tick" style="transform:rotate(210deg)"></div>
-    <div class="tick" style="transform:rotate(240deg)"></div>
-    <div class="tick" style="transform:rotate(270deg)"></div>
-    <div class="tick" style="transform:rotate(300deg)"></div>
-    <div class="tick" style="transform:rotate(330deg)"></div>
-    <div class="freq" style="transform:rotate(-90deg) translate(298px,-8px)">4625 <b>×</b></div>
-    <div class="freq" style="transform:rotate(-60deg) translate(298px,-8px)">Θ 6998</div>
-    <div class="freq" style="transform:rotate(-30deg) translate(298px,-8px)">8300</div>
-    <div class="freq" style="transform:rotate(0deg) translate(298px,-8px)">שדר 971</div>
-    <div class="freq" style="transform:rotate(30deg) translate(298px,-8px)">1030 잡음</div>
-    <div class="freq" style="transform:rotate(60deg) translate(298px,-8px)">пусто</div>
-    <div class="freq" style="transform:rotate(120deg) translate(298px,-8px)">虚 1197</div>
-    <div class="freq" style="transform:rotate(150deg) translate(298px,-8px)">0000 <b>◉</b></div>
-    <div class="freq" style="transform:rotate(180deg) translate(298px,-8px)">คลื่น 33</div>
-    <div class="freq" style="transform:rotate(210deg) translate(298px,-8px)">16.4 <b>Δ</b></div>
-    <div class="freq" style="transform:rotate(240deg) translate(298px,-8px)">صمت</div>
-    <div class="freq" style="transform:rotate(270deg) translate(298px,-8px)">ΣΗΜΑ 77</div>
-    <div class="core"></div>
-    <a class="gate" href="/lull" aria-label="進む"
-       style="position:absolute;left:50%;top:50%;width:340px;height:340px;transform:translate(-50%,-50%);border-radius:50%;z-index:5"></a>
+  <div class="coord tl">N ??°??′ E ??°??′</div>
+  <div class="coord br">拾得日時 不明<br>届出 ナシ</div>
+
+  <div class="horizon"></div>
+
+  <div class="trace"></div>
+  <div class="string"></div>
+
+  <div class="tag">
+    <div class="hole"></div>
+    <div class="head">遺失物</div>
+    品名: <em>記載ナシ</em><br>
+    所有者: <em>照会中</em><br>
+    保管場所: 深層<br>
+    引取期限: 経過済<br>
+    <em>期限経過ノ品ハ<br>処分サレマシタ</em>
+    <div class="sym"></div>
   </div>
 
-  <div class="ghost"></div>
-  <div class="callsign">誰モ発信シテイナイ</div>
+  <div class="brand">STN <b>NULLSECT</b> / vol.∞ / 深層</div>
 
-  <div class="log">
-    <em>// INTERCEPT LOG</em><br>
-    03:33:07 &nbsp;584 291 077 305<br>
-    03:33:19 &nbsp;<span class="jp">くりかえす</span> 584 291<br>
-    03:34:02 &nbsp;<em>carrier lost</em><br>
-    03:41:56 &nbsp;WX WX WX <em>?</em><br>
-    04:00:00 &nbsp;<span class="jp">むおん</span> — — —<br>
-    04:07:33 &nbsp;584 291 077 <em>306</em>
-  </div>
-
-  <div class="slip">
-    <div class="head">傍受票 XX</div>
-    帯域: XX kHz — 深層<br>
-    発信源: <b>不明</b> / 方位 ∅<br>
-    <span class="sig"></span>
-    復調 <em>不能</em>。搬送波の背後に<br>
-    声紋。言語は特定できない。
-  </div>
+  <a class="gate" href="/lull" aria-label="進む"
+     style="position:absolute;left:390px;top:740px;width:230px;height:370px;z-index:5"></a>
 </div>
 </body>
 </html>
