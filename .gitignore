@@ -3,7 +3,8 @@
 Thumbs.db
 
 # Claude Code
-.claude/
+.claude/*
+!.claude/skills/
 
 # 素材ソース・参考（巨大なので除外）
 SVG/
