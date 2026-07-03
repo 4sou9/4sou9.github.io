@@ -327,10 +327,12 @@ CRT/放送機材 ・ 時刻表/カレンダー ・ 帳票/パンチカード ・
 ```css
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:var(--black)}          /* 地色はここ */
-body{min-height:100vh;padding:18px;overflow:auto}
+body{min-height:100vh;padding:18px 0;overflow:auto}  /* 左右paddingなし(モバイルでフチなし表示) */
 .poster{position:relative;width:960px;margin:0 auto;
         background:transparent;filter:url(#ink);padding:22px}
 ```
+- viewport は `<meta name="viewport" content="width=960">`(ポスター幅に一致させ、
+  モバイルで左右マージンなしの全幅表示にする)。
 - 中央寄せは `margin:0 auto`。`flex;justify-content:center` は狭幅で左が切れるので禁止。
 - 共有プリミティブは `public/assets/poster.css`。各ページは `.astro` 内 `<style is:inline>` 等で独自分を書く。
 - はみ出す子要素には `min-width:0; overflow:hidden`。
