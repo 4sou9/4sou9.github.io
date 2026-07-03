@@ -1,0 +1,146 @@
+---
+// 深層 / 調剤 — 薬袋
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1000">
+<title>深層 / 調剤</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Archivo+Black&family=Zen+Old+Mincho:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#ece7db;
+  --black:#141210;
+  --red:#b3231f;
+}
+html,body{background:var(--paper)}
+body{min-height:100vh;padding:18px;overflow:auto;
+     font-family:'Special Elite',monospace;color:var(--black)}
+.poster{position:relative;width:960px;height:1260px;margin:0 auto;
+        background:transparent;filter:url(#ink);overflow:hidden}
+
+/* ── 上帯: 処方箋(紙) ── */
+.rx{position:absolute;left:0;top:0;width:100%;height:820px;padding:34px 40px}
+.rx .no{position:absolute;right:40px;top:30px;font-size:14px;letter-spacing:2px}
+.rx .no b{color:var(--red);font-weight:400}
+.jp{font-family:'Zen Old Mincho',serif;font-weight:700}
+.h1{font-size:96px;letter-spacing:38px;line-height:1.15;margin-top:10px}
+.h2{font-size:15px;letter-spacing:7px;margin:6px 0 26px;color:var(--red)}
+.rule{border:none;border-top:2.5px solid var(--black);margin:14px 0}
+.row{display:flex;gap:16px;font-size:15px;line-height:2.2;letter-spacing:1px}
+.row .k{width:170px;flex:none;font-family:'Zen Old Mincho',serif;font-weight:700;font-size:16px}
+.row .v em{font-style:normal;color:var(--red)}
+
+/* 錠剤の列(同一素材の連作クロップ) */
+.pills{display:flex;gap:14px;margin:26px 0 8px}
+.pill{width:118px;height:118px;border:2px solid var(--black);position:relative;overflow:hidden}
+.pill i{position:absolute;inset:6px;display:block;background:var(--black);
+  -webkit-mask-image:url('/assets/fruit/fr29.svg');mask-image:url('/assets/fruit/fr29.svg');
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-mode:alpha;mask-mode:alpha}
+.p1 i{-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center}
+.p2 i{-webkit-mask-size:300px auto;mask-size:300px auto;-webkit-mask-position:-90px -60px;mask-position:-90px -60px}
+.p3 i{-webkit-mask-size:460px auto;mask-size:460px auto;-webkit-mask-position:-210px -180px;mask-position:-210px -180px;background:var(--red)}
+.p4 i{-webkit-mask-size:300px auto;mask-size:300px auto;-webkit-mask-position:-120px -140px;mask-position:-120px -140px;transform:scaleX(-1)}
+.p5 i{-webkit-mask-size:700px auto;mask-size:700px auto;-webkit-mask-position:-350px -260px;mask-position:-350px -260px}
+.pill .cap{position:absolute;left:4px;bottom:2px;font-size:11px;letter-spacing:1px}
+.pill .cap b{color:var(--red);font-weight:400}
+
+/* 赤スタンプ */
+.stamp{position:absolute;right:52px;top:430px;width:230px;padding:16px 10px;
+       border:5px double var(--red);color:var(--red);text-align:center;
+       transform:rotate(-11deg);
+       font-family:'Zen Old Mincho',serif;font-weight:700;font-size:34px;letter-spacing:12px}
+.stamp small{display:block;font-size:12px;letter-spacing:4px;margin-top:6px;
+             font-family:'Special Elite',monospace}
+
+/* ── 下帯: 黒(副作用警告) ── */
+.warn{position:absolute;left:0;bottom:0;width:100%;height:600px;background:var(--black);
+      color:var(--paper);padding:30px 40px}
+.warn .strip{position:absolute;left:0;top:-14px;width:100%;height:14px;background:var(--red)}
+.warn .big{font-family:'Archivo Black',sans-serif;font-size:76px;letter-spacing:4px;
+           color:var(--red);line-height:1.05;margin:16px 0 30px}
+.warn .cols{display:flex;gap:26px;font-size:14px;line-height:2.2;letter-spacing:1px;padding-right:210px}
+.warn .cols>div{flex:1;min-width:0}
+.warn em{font-style:normal;color:var(--red)}
+.warn .jp{color:var(--paper)}
+.warn .foot{position:absolute;left:40px;bottom:22px;right:40px;display:flex;
+            justify-content:space-between;font-size:12px;letter-spacing:2px}
+
+/* 下帯の図版(断ち落とし拡大クロップ) */
+.organ{position:absolute;right:-70px;bottom:-60px;width:330px;height:400px;
+       background:var(--paper);opacity:1;
+  -webkit-mask-image:url('/assets/grenade/gn10.svg');mask-image:url('/assets/grenade/gn10.svg');
+  -webkit-mask-size:620px auto;mask-size:620px auto;
+  -webkit-mask-position:-150px -80px;mask-position:-150px -80px;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-mode:alpha;mask-mode:alpha}
+
+.gate{cursor:default;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+.gate:focus{outline:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="b"/>
+    <feColorMatrix in="b" type="matrix"
+      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 14 -4.5" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.44" numOctaves="2" seed="31" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.3" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="poster">
+  <div class="rx">
+    <div class="no">処方箋 No.<b>0XX</b> / 深層薬局 <b>NULLSECT</b> 調剤</div>
+    <div class="h1 jp">調剤</div>
+    <div class="h2">シヨウ マエ ニ ヨク フル コト ・ ヒカリ ヲ サケル コト</div>
+    <hr class="rule">
+    <div class="row"><div class="k jp">患者氏名</div><div class="v">████████ 様 (性別 ∅ / 年齢 XX)</div></div>
+    <div class="row"><div class="k jp">用法・用量</div><div class="v">1日 <em>3.33</em> 回、<em>むおん</em> とともに服用。かんだり、つぶしたり しないこと。</div></div>
+    <div class="row"><div class="k jp">効能</div><div class="v">まぶたの裏の残像 / 遠い呼び鈴 / <em>受信</em></div></div>
+    <div class="row"><div class="k jp">保管</div><div class="v">湿気、直射日光、および <em>他人の夢</em> を避けて保管。</div></div>
+
+    <div class="pills">
+      <div class="pill p1"><i></i><span class="cap">fig.XX</span></div>
+      <div class="pill p2"><i></i><span class="cap">fig.XX</span></div>
+      <div class="pill p3"><i></i><span class="cap"><b>照合不能</b></span></div>
+      <div class="pill p4"><i></i><span class="cap">fig.XX</span></div>
+      <div class="pill p5"><i></i><span class="cap">fig.XX</span></div>
+    </div>
+    <hr class="rule">
+    <div class="row"><div class="k jp">備考</div><div class="v">錠剤の刻印が毎朝すこしずつ違う、という訴えは <em>仕様</em> です。</div></div>
+  </div>
+
+  <div class="stamp jp">要再診
+    <small>RETURN / VOID</small>
+    <a class="gate" href="/" aria-label="進む" style="position:absolute;inset:0;z-index:5"></a>
+  </div>
+
+  <div class="warn">
+    <div class="strip"></div>
+    <div class="big">SIDE EFFECTS</div>
+    <div class="cols">
+      <div>
+        <span class="jp">重大な副作用:</span> 耳鳴りが<em>周波数</em>を持つ / 鏡の中の遅延 /
+        自分の名前の<em>綴りへの疑い</em> / 既視感の連続再生。<br>
+        いずれかが現れた場合、服用を中止せず <em>そのまま奥へ</em>。
+      </div>
+      <div>
+        <span class="jp">禁忌:</span> 就寝前の送信 / 深層からの<em>折返し電話</em>に出ること /
+        錠剤を<em>数えること</em>。<br>
+        <span class="jp">相互作用:</span> 記憶(市販)と併用すると効果が<em>互いを上書き</em>します。
+      </div>
+    </div>
+    <div class="foot"><span>LOT ∅∅∅ / EXP <em>済</em></span><span class="jp">深層薬局 — 営業時間 XX:XX〜XX:XX</span></div>
+    <div class="organ"></div>
+  </div>
+</div>
+</body>
+</html>
