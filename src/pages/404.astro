@@ -27,14 +27,20 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
 /* ── center: the maw ── */
 .maw{position:absolute;left:180px;top:350px;width:600px;height:600px;
      background:var(--ink2);border-radius:50%}
-.maw i{position:absolute;inset:0;display:block;background:var(--blood);
-  border-radius:50%;overflow:hidden;
+/* 円の中身は別レイヤー(.inner)に分離 — 同一レイヤー内の色境界は
+   二階調化で再シャープ化されないため、アルファ境界に変えて滲みを効かせる */
+.inner{position:absolute;left:0;right:0;top:18px;margin:0 auto;
+  width:960px;height:1300px;pointer-events:none;
+  background:transparent;filter:url(#ink);z-index:3}
+.inner .maw2{position:absolute;left:180px;top:350px;width:600px;height:600px;
+  border-radius:50%;overflow:hidden}
+.inner .maw2 i{position:absolute;inset:0;display:block;background:var(--blood);
   -webkit-mask-image:url('/assets/astral/a35.svg');mask-image:url('/assets/astral/a35.svg');
   -webkit-mask-size:1500px auto;mask-size:1500px auto;
   -webkit-mask-position:-450px -300px;mask-position:-450px -300px;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-mode:alpha;mask-mode:alpha}
-.maw .word{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+.inner .word{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   font-family:'Nosifer',cursive;font-size:64px;letter-spacing:14px;
   color:var(--bone);white-space:nowrap;text-indent:12px}
 
@@ -97,10 +103,7 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
     </text>
   </svg>
 
-  <div class="maw">
-    <i></i>
-    <div class="word">VOID</div>
-  </div>
+  <div class="maw"></div>
 
   <div class="drip dr1"></div>
   <div class="drip dr2"></div>
@@ -118,6 +121,11 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
 
   <a class="gate" href="/" aria-label="return"
      style="position:absolute;left:280px;top:450px;width:400px;height:400px;z-index:5"></a>
+</div>
+
+<div class="inner" aria-hidden="true">
+  <div class="maw2"><i></i></div>
+  <div class="word">VOID</div>
 </div>
 </body>
 </html>

@@ -185,6 +185,12 @@ CRT/放送機材 ・ 時刻表/カレンダー ・ 帳票/パンチカード ・
 .poster{ filter:url(#ink); background:transparent; }
 ```
 
+**シェイプ内シェイプのぼやけ対策**: 二階調化はアルファ境界しか再シャープ化しないため、
+不透明シェイプの内側に置いた別色の図形・文字(例: 黒円の中の図版)は blur がかかったまま
+ぼやける。対策は**内側の要素を `.poster` の外の別レイヤーに分離**し、そのレイヤー自身に
+`filter:url(#ink)` をかける(同位置に `position:absolute` で重ね、`pointer-events:none`、
+背景透明)。分離すれば内側図形の輪郭がアルファ境界になり、滲み質感を保ったまま鮮明になる。
+
 チューニング: 小文字が痩せる→ `stdDeviation` を下げ閾値を緩める / 滲み感→ `scale`。
 標準値 blur 0.55 / alpha `13 -4` / baseFreq 0.5 scale 1.5。明るい地は弱め(blur 0.5 / `14 -4.5` / scale 1.3)。
 **seed と baseFrequency はページ毎に変えてよい**(質感の個性になる)。
