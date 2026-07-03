@@ -29,8 +29,8 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
      background:var(--ink2);border-radius:50%}
 /* 円の中身は別レイヤー(.inner)に分離 — 同一レイヤー内の色境界は
    二階調化で再シャープ化されないため、アルファ境界に変えて滲みを効かせる */
-.inner{position:absolute;left:0;right:0;top:18px;margin:0 auto;
-  width:960px;height:1300px;pointer-events:none;
+.stack{position:relative;width:960px;height:1300px;margin:0 auto}
+.inner{position:absolute;inset:0;pointer-events:none;
   background:transparent;filter:url(#ink);z-index:3}
 .inner .maw2{position:absolute;left:180px;top:350px;width:600px;height:600px;
   border-radius:50%;overflow:hidden}
@@ -55,7 +55,10 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
 
 /* ── satellites ── */
 .sat{position:absolute;font-size:17px;letter-spacing:2px;line-height:1.9;color:var(--ink2)}
-.sat b{font-weight:400;color:var(--bone);background:var(--ink2);padding:1px 7px 3px}
+.sat b{font-weight:400;color:transparent;background:var(--ink2);padding:1px 7px 3px}
+/* ゴースト複製(.inner側): チップ文字だけを描き、他は透明で位置合わせ */
+.ghost{color:transparent}
+.ghost b{color:var(--bone);background:transparent}
 .s1{left:66px;top:400px;writing-mode:vertical-rl}
 .s2{right:66px;top:400px;writing-mode:vertical-rl}
 .s3{left:70px;bottom:200px}
@@ -89,6 +92,7 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
   </filter>
 </defs></svg>
 
+<div class="stack">
 <div class="poster">
 
   <div class="decl">
@@ -126,6 +130,9 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
 <div class="inner" aria-hidden="true">
   <div class="maw2"><i></i></div>
   <div class="word">VOID</div>
+  <div class="sat s3 ghost">REMAINS: <b>URL</b><br>CAUSE OF DEATH: REFERENCE</div>
+  <div class="sat s4 ghost">WITNESS: YOU<br>STATEMENT: <b>REFUSED</b></div>
+</div>
 </div>
 </body>
 </html>

@@ -190,6 +190,11 @@ CRT/放送機材 ・ 時刻表/カレンダー ・ 帳票/パンチカード ・
 ぼやける。対策は**内側の要素を `.poster` の外の別レイヤーに分離**し、そのレイヤー自身に
 `filter:url(#ink)` をかける(同位置に `position:absolute` で重ね、`pointer-events:none`、
 背景透明)。分離すれば内側図形の輪郭がアルファ境界になり、滲み質感を保ったまま鮮明になる。
+- 重ねは `.stack{position:relative;width:960px;height:◯px;margin:0 auto}` で両レイヤーを包み
+  `inset:0` で合わせる(body の padding や座標指定に頼るとズレる)。
+- インライン要素(文中のチップ等)は座標が流し込み依存なので、**同じマークアップの
+  ゴースト複製**を上層に置き、`.ghost{color:transparent}` で対象以外を消して位置を一致させる
+  (下層側は `color:transparent` で箱だけ残す)。
 
 チューニング: 小文字が痩せる→ `stdDeviation` を下げ閾値を緩める / 滲み感→ `scale`。
 標準値 blur 0.55 / alpha `13 -4` / baseFreq 0.5 scale 1.5。明るい地は弱め(blur 0.5 / `14 -4.5` / scale 1.3)。
