@@ -1,0 +1,158 @@
+---
+// 深層 / DRAW — losing tickets
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=960">
+<title>DRAW</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik+Glitch&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --violet:#3a1060;   /* 紫地 */
+  --acid:#d6ff00;     /* 酸性黄 */
+  --ink:#141216;      /* 黒 */
+}
+html,body{background:var(--violet)}
+body{min-height:100vh;padding:18px 0;overflow:auto;
+     font-family:'Anton',sans-serif;color:var(--acid)}
+.stack{position:relative;width:960px;height:1300px;margin:0 auto}
+.poster{position:relative;width:960px;height:1300px;
+        background:transparent;filter:url(#ink);overflow:hidden}
+/* 券面のテキストは別レイヤー(§5a シェイプ内ぼやけ対策) */
+.inner{position:absolute;inset:0;pointer-events:none;
+       background:transparent;filter:url(#ink);z-index:3;overflow:hidden}
+
+/* ── 斜めの帯・券(全て -14deg で平行) ── */
+.band,.ticket{position:absolute;transform:rotate(-14deg)}
+
+/* 見出し帯 */
+.band{left:-70px;top:150px;width:1120px;height:170px;background:var(--ink)}
+.inner .band{background:transparent}
+.band .h1{position:absolute;left:120px;top:10px;font-size:104px;letter-spacing:30px;font-family:'Rubik Glitch',cursive;
+  color:var(--acid);white-space:nowrap}
+.band .h2{position:absolute;left:126px;bottom:12px;font-family:'Rubik Glitch',cursive;
+  font-size:16px;letter-spacing:10px;color:#fff0;color:var(--acid)}
+
+/* くじ券 */
+.ticket{border:3px solid var(--ink)}
+.tk-a{background:var(--acid)}
+.tk-b{background:var(--ink);border-color:var(--acid)}
+.inner .ticket{background:transparent;border-color:transparent}
+/* ミシン目(ハードストップ点線) */
+.ticket .perf{position:absolute;top:0;bottom:0;width:3px;
+  background:repeating-linear-gradient(0deg,currentColor 0 8px,transparent 8px 18px)}
+.tk-a .perf{color:var(--ink);right:120px}
+.tk-b .perf{color:var(--acid);right:120px}
+/* 券面テキスト(inner側でのみ描画) */
+.ticket .no{position:absolute;left:22px;top:14px;font-size:15px;letter-spacing:3px}
+.ticket .big{position:absolute;left:150px;bottom:24px;font-size:38px;letter-spacing:8px;
+  line-height:1;font-family:'Rubik Glitch',cursive}
+.ticket .stub{position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  writing-mode:vertical-rl;font-size:13px;letter-spacing:4px}
+.tk-a .no,.tk-a .big,.tk-a .stub{color:var(--ink)}
+.tk-b .no,.tk-b .big,.tk-b .stub{color:var(--acid)}
+/* 検印(スカ/当) */
+.seal{position:absolute;width:84px;height:84px;border:4px double currentColor;
+  border-radius:50%;font-size:22px;letter-spacing:2px;display:flex;align-items:center;justify-content:center}
+.inner .seal{border-color:transparent}
+.tk-a .seal{color:var(--ink)}
+.tk-b .seal{color:var(--acid)}
+
+/* 券の配置 */
+.t1{left:-50px;top:420px;width:620px;height:132px}
+.t2{left:430px;top:500px;width:660px;height:132px}
+.t3{left:-90px;top:690px;width:700px;height:132px}
+.t4{left:390px;top:810px;width:680px;height:132px}
+.t5{left:-50px;top:1010px;width:620px;height:132px}
+
+/* 傾かない欄外注記(対角への対比) */
+.note{position:absolute;font-size:11px;letter-spacing:3px;line-height:2;color:var(--acid)}
+.n1{left:30px;top:26px}
+.n2{right:30px;bottom:24px;text-align:right}
+
+.gate{cursor:default;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+.gate:focus{outline:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.45" result="b"/>
+    <feColorMatrix in="b" type="matrix"
+      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -5" result="t"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.52" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="t" in2="n" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div class="stack">
+<div class="poster">
+
+  <div class="note n1">PRIZE: NONE<br>REDEMPTION: DENIED</div>
+
+  <div class="band"></div>
+
+  <div class="ticket tk-a t1"><div class="perf"></div></div>
+  <div class="ticket tk-b t2"><div class="perf"></div>
+    <a class="gate" href="/lens" aria-label="進む" style="position:absolute;inset:0;z-index:5"></a>
+  </div>
+  <div class="ticket tk-a t3"><div class="perf"></div>
+    <a class="gate" href="/lull" aria-label="進む"
+       style="position:absolute;right:0;top:0;width:130px;height:100%;z-index:5"></a>
+  </div>
+  <div class="ticket tk-b t4"><div class="perf"></div></div>
+  <div class="ticket tk-a t5"><div class="perf"></div>
+    <a class="gate" href="/" aria-label="進む"
+       style="position:absolute;left:380px;top:14px;width:110px;height:110px;z-index:5"></a>
+  </div>
+
+  <div class="note n2">WINNING NUMBERS WILL NOT BE ANNOUNCED<br>THE DRAW ENDED BEFORE YOU ARRIVED</div>
+
+</div>
+
+<div class="inner" aria-hidden="true">
+
+  <div class="band">
+    <div class="h1">DRAW</div>
+    <div class="h2">EVERY TICKET LOSES DIFFERENTLY</div>
+  </div>
+
+  <div class="ticket t1">
+    <div class="no" style="color:var(--ink)">SER.XX &mdash; NO.0333</div>
+    <div class="big" style="color:var(--ink)">BLANK</div>
+    <div class="stub" style="color:var(--ink)">KEEP THE STUB</div>
+    <div class="seal" style="color:var(--ink);left:390px;top:16px;transform:rotate(11deg)">NO</div>
+  </div>
+  <div class="ticket t2">
+    <div class="no" style="color:var(--acid)">SER.XX &mdash; NO.3333</div>
+    <div class="big" style="color:var(--acid)">WIN</div>
+    <div class="stub" style="color:var(--acid)">REDEEM BELOW</div>
+  </div>
+  <div class="ticket t3">
+    <div class="no" style="color:var(--ink)">SER.XX &mdash; NO.0000</div>
+    <div class="big" style="color:var(--ink)">LOSS</div>
+    <div class="stub" style="color:var(--ink)">RIGHT OF RETURN</div>
+  </div>
+  <div class="ticket t4">
+    <div class="no" style="color:var(--acid)">SER.XX &mdash; NO.&#8709;&#8709;&#8709;&#8709;</div>
+    <div class="big" style="color:var(--acid)">NULL</div>
+    <div class="stub" style="color:var(--acid)">EXPIRED UNISSUED</div>
+    <div class="seal" style="color:var(--acid);left:400px;top:18px;transform:rotate(-8deg)">NO</div>
+  </div>
+  <div class="ticket t5">
+    <div class="no" style="color:var(--ink)">SER.XX &mdash; NO.0404</div>
+    <div class="big" style="color:var(--ink)">BLANK</div>
+    <div class="stub" style="color:var(--ink)">START OVER</div>
+    <div class="seal" style="color:var(--ink);left:380px;top:14px;transform:rotate(15deg)">RET</div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>
