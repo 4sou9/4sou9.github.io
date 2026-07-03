@@ -1,33 +1,32 @@
 ---
-// 深層 / 虚無 — 頁ハ喰ワレタ
+// 深層 / VOID — the devoured page
 ---
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=960">
-<title>深層 / 虚無</title>
+<title>VOID</title>
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Nosifer&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nosifer&family=Pirata+One&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --blood:#6e0d0d;    /* 血赤地 */
-  --ink2:#0d0405;     /* 黒 */
-  --bone:#ddd2bd;     /* 骨白 */
+  --blood:#6e0d0d;    /* blood ground */
+  --ink2:#0d0405;     /* black */
+  --bone:#ddd2bd;     /* bone */
 }
 html,body{background:var(--blood)}
 body{min-height:100vh;padding:18px 0;overflow:auto;
-     font-family:'Reggae One',serif;color:var(--ink2)}
+     font-family:'Pirata One',serif;color:var(--ink2)}
 .poster{position:relative;width:960px;height:1300px;margin:0 auto;
         background:transparent;filter:url(#ink);overflow:hidden}
 
-/* ── 中央: 喰った円 ── */
+/* ── center: the maw ── */
 .maw{position:absolute;left:180px;top:350px;width:600px;height:600px;
      background:var(--ink2);border-radius:50%}
-/* 円の内側に沈む像(拡大クロップ) */
 .maw i{position:absolute;inset:0;display:block;background:var(--blood);
   border-radius:50%;overflow:hidden;
   -webkit-mask-image:url('/assets/astral/a35.svg');mask-image:url('/assets/astral/a35.svg');
@@ -36,37 +35,37 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-mode:alpha;mask-mode:alpha}
 .maw .word{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  font-size:64px;letter-spacing:26px;color:var(--bone);white-space:nowrap;
-  text-indent:26px}
+  font-family:'Nosifer',cursive;font-size:64px;letter-spacing:14px;
+  color:var(--bone);white-space:nowrap;text-indent:12px}
 
-/* 円周テキスト */
+/* ring text */
 .orbit{position:absolute;left:130px;top:300px;width:700px;height:700px}
 
-/* ── 上: 宣告 ── */
+/* ── top: verdict ── */
 .decl{position:absolute;left:0;top:80px;width:100%;text-align:center}
 .decl .num{font-family:'Nosifer',cursive;font-size:120px;letter-spacing:20px;
   color:var(--ink2);line-height:1}
-.decl .jp{font-size:26px;letter-spacing:16px;margin-top:22px}
+.decl .en{font-family:'Pirata One',serif;font-size:34px;letter-spacing:9px;margin-top:24px}
 
-/* ── 衛星: 円の周囲の断片 ── */
-.sat{position:absolute;font-size:12px;letter-spacing:3px;line-height:2;color:var(--ink2)}
-.sat b{font-weight:400;color:var(--bone);background:var(--ink2);padding:0 5px}
-.s1{left:60px;top:420px;writing-mode:vertical-rl;text-orientation:upright}
-.s2{right:60px;top:420px;writing-mode:vertical-rl;text-orientation:upright}
-.s3{left:70px;bottom:210px}
-.s4{right:70px;bottom:210px;text-align:right}
+/* ── satellites ── */
+.sat{position:absolute;font-size:17px;letter-spacing:2px;line-height:1.9;color:var(--ink2)}
+.sat b{font-weight:400;color:var(--bone);background:var(--ink2);padding:1px 7px 3px}
+.s1{left:66px;top:400px;writing-mode:vertical-rl}
+.s2{right:66px;top:400px;writing-mode:vertical-rl}
+.s3{left:70px;bottom:200px}
+.s4{right:70px;bottom:200px;text-align:right}
 
-/* 滴り(円の下から) */
+/* drips */
 .drip{position:absolute;background:var(--ink2)}
 .dr1{left:380px;top:940px;width:10px;height:150px}
 .dr2{left:474px;top:940px;width:16px;height:230px}
 .dr3{left:600px;top:940px;width:8px;height:100px}
 .dr4{left:530px;top:940px;width:6px;height:60px}
 
-/* 最下部の帰還文 */
-.ret{position:absolute;left:0;bottom:60px;width:100%;text-align:center;
-  font-size:15px;letter-spacing:10px;color:var(--ink2)}
-.ret b{font-weight:400;font-family:'Nosifer',cursive;font-size:11px;letter-spacing:6px;
+/* bottom return line */
+.ret{position:absolute;left:0;bottom:56px;width:100%;text-align:center;
+  font-size:24px;letter-spacing:7px;color:var(--ink2)}
+.ret b{font-weight:400;font-family:'Nosifer',cursive;font-size:12px;letter-spacing:6px;
   display:block;margin-top:12px}
 
 .gate{cursor:default;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
@@ -76,11 +75,11 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <filter id="ink" x="-3%" y="-2%" width="106%" height="104%" color-interpolation-filters="sRGB">
-    <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" result="b"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.4" result="b"/>
     <feColorMatrix in="b" type="matrix"
-      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 13 -4" result="t"/>
+      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 16 -5.5" result="t"/>
     <feTurbulence type="fractalNoise" baseFrequency="0.38" numOctaves="2" seed="66" result="n"/>
-    <feDisplacementMap in="t" in2="n" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    <feDisplacementMap in="t" in2="n" scale="1.1" xChannelSelector="R" yChannelSelector="G"/>
   </filter>
 </defs></svg>
 
@@ -88,19 +87,19 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
 
   <div class="decl">
     <div class="num">404</div>
-    <div class="jp">此ノ頁ハ 既ニ 喰ワレタ</div>
+    <div class="en">THIS PAGE HAS BEEN DEVOURED</div>
   </div>
 
   <svg class="orbit" viewBox="0 0 700 700" aria-hidden="true">
     <defs><path id="ring" d="M350,30 a320,320 0 1,1 -0.1,0"/></defs>
-    <text font-size="21" letter-spacing="13" fill="var(--ink2)">
-      <textPath href="#ring">探シテイル頁ハ存在シタコトガナイ・訪レタ記録ダケガ残ッテイル・引キ返セ・引キ返セ・引キ返セ・</textPath>
+    <text font-family="Pirata One" font-size="26" letter-spacing="9" fill="var(--ink2)">
+      <textPath href="#ring">THE PAGE YOU SEEK NEVER EXISTED &#183; ONLY YOUR VISIT WAS RECORDED &#183; TURN BACK &#183; TURN BACK &#183;</textPath>
     </text>
   </svg>
 
   <div class="maw">
     <i></i>
-    <div class="word">虚無</div>
+    <div class="word">VOID</div>
   </div>
 
   <div class="drip dr1"></div>
@@ -108,16 +107,16 @@ body{min-height:100vh;padding:18px 0;overflow:auto;
   <div class="drip dr3"></div>
   <div class="drip dr4"></div>
 
-  <div class="sat s1">骨ハ番地ヲ覚エテイル</div>
-  <div class="sat s2">扉ハ内側カラ削レタ</div>
-  <div class="sat s3">遺骸: <b>URL</b><br>死因: 参照</div>
-  <div class="sat s4">目撃者: アナタ<br>供述: <b>拒否</b></div>
+  <div class="sat s1">THE BONES REMEMBER THE ADDRESS</div>
+  <div class="sat s2">THE DOOR WAS SCRATCHED FROM WITHIN</div>
+  <div class="sat s3">REMAINS: <b>URL</b><br>CAUSE OF DEATH: REFERENCE</div>
+  <div class="sat s4">WITNESS: YOU<br>STATEMENT: <b>REFUSED</b></div>
 
-  <div class="ret">口ノ中ヲ通ッテ 入口ヘ<b>SWALLOWED — RETURN</b>
-    <a class="gate" href="/" aria-label="入口へ" style="position:absolute;inset:-10px 0;z-index:5"></a>
+  <div class="ret">PASS THROUGH THE MOUTH<b>SWALLOWED &#8212; RETURN</b>
+    <a class="gate" href="/" aria-label="return" style="position:absolute;inset:-10px 0;z-index:5"></a>
   </div>
 
-  <a class="gate" href="/" aria-label="入口へ"
+  <a class="gate" href="/" aria-label="return"
      style="position:absolute;left:280px;top:450px;width:400px;height:400px;z-index:5"></a>
 </div>
 </body>
