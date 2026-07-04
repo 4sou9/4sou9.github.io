@@ -10,6 +10,9 @@ Thumbs.db
 SVG/
 参考/
 
+# 素材選定用の一時コンタクトシート（公開物に混ぜない）
+public/_probe.html
+
 # Astro / Node
 node_modules/
 dist/
