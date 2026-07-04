@@ -25,6 +25,7 @@ description: 迷路サイト(4sou9.github.io)の新規ページ制作・既存�
 | bane | 全面ブリード | 本草図譜 | 退色桃#d8a8a0 | 墨+胡粉 | 中庸 | 文言文 | Cormorant Garamond / Noto Serif TC | 静 |
 | case | 均質グリッド | 驚異の部屋 | セメント#8a8a82 | 墨+群青#1e2fae | 過密 | 羅語目録 | Shippori Antique B1 / IM Fell English | 静 |
 | pass | 多段組+対角帯 | 検問/通行証 | セメント#8a8a82 | 黒+酸黄#d8c400 | 中庸 | 旧仮名カナ | Zen Old Mincho / Tourney | 静 |
+| gala | 放射/円環 | 福引/ガラポン抽選 | ボルドー#3a0a14 | 酸性ライム#c6ff1a+胡粉 | 中庸 | 告示文語体 | Hina Mincho / Zen Dots | 静 |
 | 404 | 入れ子/額縁 | OSダイアログ | 工業黄#d8c400 | 黒+警報赤 | 中庸 | 英システム文 | VT323 / Press Start 2P | 明滅 |
 
 - 404 は迷路外だが見た目の比較対象には含める。
