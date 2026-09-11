@@ -7,6 +7,7 @@ interface Props {
   path: string;
   body: string;
   mode?: 'calm' | 'fault';
+  negative?: boolean;
   noindex?: boolean;
 }
 
@@ -16,6 +17,7 @@ const {
   path,
   body,
   mode = 'calm',
+  negative = false,
   noindex = false,
 } = Astro.props;
 
@@ -41,14 +43,14 @@ const canonical = new URL(path, site).href;
 const ogImage = new URL('/og.png', site).href;
 ---
 
-<html lang="ja">
+<html lang="ja" data-negative={negative ? 'on' : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content="#eceae4" />
+    <meta name="color-scheme" content={negative ? 'dark' : 'light'} />
+    <meta name="theme-color" content={negative ? '#16161a' : '#eceae4'} />
     {noindex
       ? <meta name="robots" content="noindex, follow" />
       : <link rel="canonical" href={canonical} />}
@@ -82,6 +84,13 @@ const ogImage = new URL('/og.png', site).href;
           'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
         --serif: 'Instrument Serif', 'Times New Roman', ui-serif, serif;
         --pad: clamp(18px, 3.4vw, 52px);
+      }
+
+      /* Negative print: the same two tones, traded. */
+      :root[data-negative] {
+        --paper: #16161a;
+        --ink: #eceae4;
+        --hair: rgba(236, 234, 228, 0.26);
       }
 
       * { box-sizing: border-box; }
@@ -132,6 +141,11 @@ const ogImage = new URL('/og.png', site).href;
         letter-spacing: -0.02em;
         mix-blend-mode: multiply;
       }
+
+      :root[data-negative] .display { mix-blend-mode: screen; }
+
+      /* Dark noise vanishes on a dark ground; flip it so the grain lightens. */
+      :root[data-negative] .grain { filter: invert(1); opacity: 0.045; }
 
       .display em {
         font-style: italic;
@@ -190,7 +204,7 @@ const ogImage = new URL('/og.png', site).href;
   </head>
 
   <body>
-    <canvas id="stage" aria-hidden="true" data-mode={mode}></canvas>
+    <canvas id="stage" aria-hidden="true" data-mode={mode} data-negative={negative ? 'on' : undefined}></canvas>
     <div class="grain" aria-hidden="true"></div>
 
     <div class="frame">
@@ -210,6 +224,7 @@ const ogImage = new URL('/og.png', site).href;
       (() => {
         const canvas = document.getElementById('stage');
         const fault = canvas.dataset.mode === 'fault' ? 1 : 0;
+        const neg = canvas.dataset.negative ? 1 : 0;
         const gl = canvas.getContext('webgl2', {
           antialias: false,
           alpha: false,
@@ -238,6 +253,7 @@ const ogImage = new URL('/og.png', site).href;
         uniform vec2  uShift;  // where the object sits, in uv units
         uniform float uZoom;   // >1 pulls the object away
         uniform float uFault;  // 0 = intact, 1 = the lattice comes apart
+        uniform float uNeg;    // 1 = negative print, paper and ink traded
 
         mat2 rot(float a){ float c = cos(a), s = sin(a); return mat2(c, -s, s, c); }
 
@@ -250,8 +266,10 @@ const ogImage = new URL('/og.png', site).href;
         // Hollow sphere carved out of a layered gyroid lattice.
         float map(vec3 p){
           vec3 q = p;
-          q.xz *= rot(uTime * 0.075);
-          q.xy *= rot(uTime * 0.048);
+          // The cursor turns the lattice itself, not only the camera, so the
+          // shape reads as something handled rather than orbited.
+          q.xz *= rot(uTime * 0.075 + uMouse.x * 1.15);
+          q.xy *= rot(uTime * 0.048 - uMouse.y * 0.75);
 
           // Fault mode shears the field into slabs, so the sphere reads as
           // something that has come apart along horizontal planes.
@@ -304,8 +322,8 @@ const ogImage = new URL('/og.png', site).href;
           vec2 uv = (gl_FragCoord.xy * 2. - uRes) / uRes.y;
           uv = uv * uZoom - uShift;
 
-          vec3 ro = vec3(uMouse.x * 0.42, uMouse.y * 0.3, 3.95);
-          vec3 ta = vec3(0., 0., 0.);
+          vec3 ro = vec3(uMouse.x * 0.72, uMouse.y * 0.52, 3.95);
+          vec3 ta = vec3(uMouse.x * -0.11, uMouse.y * -0.08, 0.);
           vec3 fw = normalize(ta - ro);
           vec3 rt = normalize(cross(vec3(0., 1., 0.), fw));
           vec3 up = cross(fw, rt);
@@ -360,7 +378,12 @@ const ogImage = new URL('/og.png', site).href;
           vec2 v = (gl_FragCoord.xy * 2. - uRes) / uRes.y;
           float wash = 1. - dot(v, v) * 0.018 - v.y * 0.012;
 
-          O = vec4(vec3(q) * wash * vec3(0.985, 0.98, 0.96), 1.);
+          // The quantised tone is placed between a ground and a highlight,
+          // which is the one spot the negative needs: trade the two ends.
+          float tone = mix(q, 1. - q, uNeg);
+          vec3 lo = mix(vec3(0.), vec3(0.055, 0.055, 0.066), uNeg);
+          vec3 hi = mix(vec3(0.985, 0.98, 0.96), vec3(0.93, 0.925, 0.90), uNeg);
+          O = vec4(mix(lo, hi, tone) * wash, 1.);
         }`;
 
         const compile = (type, src) => {
@@ -403,6 +426,7 @@ const ogImage = new URL('/og.png', site).href;
             shift: gl.getUniformLocation(prog, 'uShift'),
             zoom: gl.getUniformLocation(prog, 'uZoom'),
             fault: gl.getUniformLocation(prog, 'uFault'),
+            neg: gl.getUniformLocation(prog, 'uNeg'),
           };
           return true;
         };
@@ -458,9 +482,12 @@ const ogImage = new URL('/og.png', site).href;
         window.addEventListener('resize', resize, { passive: true });
         resize();
 
+        // Reduced-motion visitors get the same tracking at a third the reach.
+        const reach = calm ? 0.35 : 1;
+
         const point = (x, y) => {
-          state.target[0] = (x / window.innerWidth) * 2 - 1;
-          state.target[1] = 1 - (y / window.innerHeight) * 2;
+          state.target[0] = ((x / window.innerWidth) * 2 - 1) * reach;
+          state.target[1] = (1 - (y / window.innerHeight) * 2) * reach;
         };
 
         window.addEventListener(
@@ -501,8 +528,12 @@ const ogImage = new URL('/og.png', site).href;
           last = now;
           clock += calm ? dt * 0.12 : dt;
 
-          state.smooth[0] += (state.target[0] - state.smooth[0]) * 0.045;
-          state.smooth[1] += (state.target[1] - state.smooth[1]) * 0.045;
+          // Exponential chase, so the feel holds at 30fps and at 60fps alike.
+          // 7/s covers most of the gap in a fifth of a second: it follows the
+          // cursor closely without snapping rigidly to it.
+          const follow = 1 - Math.exp(-(calm ? 3 : 7) * dt);
+          state.smooth[0] += (state.target[0] - state.smooth[0]) * follow;
+          state.smooth[1] += (state.target[1] - state.smooth[1]) * follow;
 
           resize();
           gl.uniform2f(u.res, canvas.width, canvas.height);
@@ -514,6 +545,7 @@ const ogImage = new URL('/og.png', site).href;
           gl.uniform2f(u.shift, wide ? 0.54 : 0, wide ? -0.02 : 0.42);
           gl.uniform1f(u.zoom, wide ? 1 : 1.5);
           gl.uniform1f(u.fault, fault);
+          gl.uniform1f(u.neg, neg);
           gl.drawArrays(gl.TRIANGLES, 0, 3);
 
           // Adaptive quality: trade resolution before frame rate.
